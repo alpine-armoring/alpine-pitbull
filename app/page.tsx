@@ -1,34 +1,32 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import styles from './page.module.css';
 import BannerHero from '@/components/banner-hero/BannerHero';
 
 export default function Home() {
-
   const BannerHeroData = {
     title: 'Mission-Ready Mobility',
     video: {
       video_mp4: {
         data: {
-          attributes:{
-            url: "https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4",
-            mime: "video/mp4"
-          }
-        }
+          attributes: {
+            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4',
+            mime: 'video/mp4',
+          },
+        },
       },
       video_webm: {
         data: {
-          attributes:{
-            url: "https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4",
-            mime: "video/webm"
-          }
-        }
-      }
-    }
+          attributes: {
+            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4',
+            mime: 'video/webm',
+          },
+        },
+      },
+    },
   };
 
   return (
     <div>
-
       {BannerHeroData ? <BannerHero props={BannerHeroData} /> : null}
 
       <main className={styles.main}>
