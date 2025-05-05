@@ -17,7 +17,7 @@
   },
   "overrides": [
     {
-      "files": ["*.tsx", "*.jsx"],
+      "files": ["*.tsx", "*.jsx", "*.ts"],
       "rules": {
         "@typescript-eslint/ban-types": [
           "error",
@@ -27,7 +27,8 @@
               "{}": false
             }
           }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "off"
       }
     }
   ]

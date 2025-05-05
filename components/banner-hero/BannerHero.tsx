@@ -1,25 +1,24 @@
-"use client";
+'use client';
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import styles from './BannerHero.module.scss';
+import { BannerHeroProps } from 'types';
 
-const HpBanner = ( data ) => {
-    const props = data.props;
-    console.log(props)
-  const [isPlaying, setIsPlaying] = useState(true);
+const BannerHero = ({ props }: BannerHeroProps) => {
+  // const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const togglePlayPause = useCallback(() => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-        setIsPlaying(true);
-      } else {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  }, []);
+  // const togglePlayPause = useCallback(() => {
+  //   if (videoRef.current) {
+  //     if (videoRef.current.paused) {
+  //       videoRef.current.play();
+  //       setIsPlaying(true);
+  //     } else {
+  //       videoRef.current.pause();
+  //       setIsPlaying(false);
+  //     }
+  //   }
+  // }, []);
 
   const isIOS = useCallback(() => {
     return /iPad|iPhone|iPod/i.test(navigator.userAgent);
@@ -82,20 +81,20 @@ const HpBanner = ( data ) => {
     getSafariVersion,
   ]);
 
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    if (videoElement) {
-      const handleEnded = () => {
-        togglePlayPause();
-      };
+  // useEffect(() => {
+  //   const videoElement = videoRef.current;
+  //   if (videoElement) {
+  //     const handleEnded = () => {
+  //       togglePlayPause();
+  //     };
 
-      videoElement.addEventListener('ended', handleEnded);
+  //     videoElement.addEventListener('ended', handleEnded);
 
-      return () => {
-        videoElement.removeEventListener('ended', handleEnded);
-      };
-    }
-  }, [togglePlayPause]);
+  //     return () => {
+  //       videoElement.removeEventListener('ended', handleEnded);
+  //     };
+  //   }
+  // }, [togglePlayPause]);
 
   return (
     <div className={`${styles.hp_banner}`}>
@@ -125,19 +124,23 @@ const HpBanner = ( data ) => {
         ) : null}
 
         <div className={`${styles.hp_banner_content}`}>
-          {props.title ? (<>
-            <h1
-              dangerouslySetInnerHTML={{
-                __html: props.title,
-              }}
-              className={`${styles.hp_banner_title}`}
-            ></h1>
-            <button className={`${styles.hp_banner_button}`}>Discover Alpine Pit-bull</button>
-            </>) : null}
+          {props.title ? (
+            <>
+              <h1
+                dangerouslySetInnerHTML={{
+                  __html: props.title,
+                }}
+                className={`${styles.hp_banner_title}`}
+              ></h1>
+              <button className={`${styles.hp_banner_button}`}>
+                Discover Alpine Pit-bull
+              </button>
+            </>
+          ) : null}
         </div>
       </div>
     </div>
   );
 };
 
-export default HpBanner;
+export default BannerHero;
