@@ -1,0 +1,74 @@
+.hp_banner {
+  position: relative;
+  margin-bottom: rem(-10);
+  height: 93vh;
+  height: calc(100svh + 50px);
+  max-height: 800px;
+  overflow: hidden;
+  z-index: 2;
+  color: var(--color-white);
+
+  @include breakpoint(large) {
+    max-height: 1400px;
+    height: calc(100vh + 100px);
+
+    &:hover {
+      .hp_banner_pause {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &_inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #030303;
+
+    &:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .4);
+    }
+  }
+
+  &_content {
+    position: relative;
+    z-index: 3;
+  }
+
+  &_video {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &_title {
+    margin-bottom: rem(30);
+    font-weight: 500;
+    font-size: 8vw;
+    line-height: 1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &_button{
+    display: block;
+    margin: 0 auto;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid white;
+  }
+}

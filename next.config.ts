@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  sassOptions: {
+    prependData: `@use './styles/_mixins.scss' as *;`,
+  },
 };
 
 export default nextConfig;
