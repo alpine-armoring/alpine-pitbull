@@ -56,10 +56,14 @@
   &_title {
     margin-bottom: rem(30);
     font-weight: 500;
-    font-size: 8vw;
+    font-size: 11vw;
     line-height: 1em;
     text-transform: uppercase;
     text-align: center;
+
+    @include breakpoint(large) {
+      font-size: 8vw;
+    }
   }
 
   &_button {

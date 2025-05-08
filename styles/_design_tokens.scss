@@ -1,7 +1,7 @@
 :root {
   // Colors
   --color-white: #fff;
-  --color-background: #e1e1e1;
+  --color-background: #08090b;
   --color-primary: #6f6044;
   --color-grayLight: #eeeeee;
   --color-grayDark: #bebbbe;
@@ -20,8 +20,8 @@
 }
 
 body {
-  // font-family: Termina, sans-serif;
-  color: var(--color-secondary);
+  font-family: Montserrat, sans-serif;
+  color: #fff;
 
   &.background-dark {
     color: var(--color-white);
@@ -203,13 +203,32 @@ small {
   }
 }
 
-.c-title {
-  margin-bottom: rem(32);
-  font-size: rem(26);
+.c-content{
   text-align: center;
+  margin-bottom: rem(32);
+
   @include breakpoint(large) {
     margin-bottom: rem(48);
-    font-size: rem(36);
+  }
+}
+.c-title {
+  margin-bottom: rem(12);
+  font-size: rem(30);
+  text-transform: uppercase;
+  font-weight: 500;
+
+  @include breakpoint(large) {
+    margin-bottom: rem(16);
+    font-size: rem(60);
+  }
+}
+.c-description{
+  font-size: rem(15);
+
+  @include breakpoint(large) {
+    max-width: 768px;
+    margin: auto;
+    font-size: rem(20);
   }
 }
 

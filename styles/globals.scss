@@ -9,7 +9,7 @@ body {
   margin: 0;
   background: var(--color-background);
   top: 0 !important;
-  padding-top: var(--header-height);
+  // padding-top: var(--header-height);
 }
 * {
   -webkit-tap-highlight-color: transparent;
@@ -24,11 +24,11 @@ body {
   margin-top: 0 !important;
 }
 .m2 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
   @include breakpoint(large) {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 4rem !important;
+    margin-bottom: 4rem !important;
   }
 }
 .mt2 {
@@ -69,7 +69,7 @@ body {
 .container,
 .container_small,
 .container_extrasmall {
-  padding: 0 rem(16);
+  padding: 0 rem(12);
   @include breakpoint(medium) {
     padding: 0 rem(32);
   }
