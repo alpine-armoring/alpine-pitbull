@@ -203,7 +203,7 @@ small {
   }
 }
 
-.c-content{
+.c-content {
   text-align: center;
   margin-bottom: rem(32);
 
@@ -222,7 +222,7 @@ small {
     font-size: rem(60);
   }
 }
-.c-description{
+.c-description {
   font-size: rem(15);
 
   @include breakpoint(large) {
