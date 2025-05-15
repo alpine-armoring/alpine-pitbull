@@ -1,13 +1,13 @@
-import styles from './ColumnsThree.module.scss';
+import styles from './columnsList.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const ColumnsThree = (props) => {
+const columnsList = (props) => {
   const { className, data } = props;
 
   return (
     <div
-      className={`container ${className || ''} ${styles.columnsThree_wrapper}`}
+      className={`container ${className || ''} ${styles.columnsList_wrapper}`}
     >
       <div className={`c-content`}>
         {data?.title && <h2 className={`c-title`}>{data.title}</h2>}
@@ -17,28 +17,28 @@ const ColumnsThree = (props) => {
       </div>
 
       <div
-        className={`${styles.columnsThree_container} ${className ? styles[className] : ''}`}
+        className={`${styles.columnsList_container} ${className ? styles[className] : ''}`}
       >
         {data.items?.map((item, index) => (
-          <Link href="/" className={`${styles.columnsThree_item}`} key={index}>
+          <Link href="/" className={`${styles.columnsList_item}`} key={index}>
             {item.image && (
               <Image
                 src={item.image}
                 alt="Alpine Armoring"
                 width="450"
                 height="570"
-                className={`${styles.columnsThree_item_image}`}
+                className={`${styles.columnsList_item_image}`}
               ></Image>
             )}
-            <div className={`${styles.columnsThree_item_content}`}>
+            <div className={`${styles.columnsList_item_content}`}>
               {item.subtitle && (
-                <h4 className={`${styles.columnsThree_item_subtitle}`}>
+                <h4 className={`${styles.columnsList_item_subtitle}`}>
                   {item.subtitle}
                 </h4>
               )}
               {item.title &&
                 (item.titleType !== 'image' ? (
-                  <h3 className={`${styles.columnsThree_item_title}`}>
+                  <h3 className={`${styles.columnsList_item_title}`}>
                     {item.title}
                   </h3>
                 ) : (
@@ -47,11 +47,11 @@ const ColumnsThree = (props) => {
                     alt="Alpine Armoring"
                     width="500"
                     height="110"
-                    className={`${styles.columnsThree_item_logo}`}
+                    className={`${styles.columnsList_item_logo}`}
                   />
                 ))}
               {item.button && (
-                <button className={`${styles.columnsThree_item_button}`}>
+                <button className={`${styles.columnsList_item_button}`}>
                   {item.button}
                 </button>
               )}
@@ -63,4 +63,4 @@ const ColumnsThree = (props) => {
   );
 };
 
-export default ColumnsThree;
+export default columnsList;

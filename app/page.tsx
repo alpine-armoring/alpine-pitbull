@@ -1,5 +1,5 @@
 import BannerHero from '@/components/banner-hero/BannerHero';
-import ColumnsThree from '@/components/columns-three/ColumnsThree';
+import ColumnsList from '@/components/columns-list/ColumnsList';
 
 export default function Home() {
   const BannerHeroData = {
@@ -29,22 +29,22 @@ export default function Home() {
       'Since 1909, the people at BUGATTI Automobiles create incomparable products and experiences by pushing the limits of aesthetics and dynamics.',
     items: [
       {
-        subtitle: 'Discover Alpine',
+        subtitle: 'Discover Pit-Bull',
         title: 'Tactical Features and Customizations',
         image:
           'https://bugatti.imgix.net/6734a2b6eae7ef2f6d1c330d/02 BUGATTI_Custmer-Car-Gathering.jpg',
         button: 'Learn More About Alpine',
       },
       {
-        subtitle: 'from 2010 to today and beyond',
-        title: 'history of Alpine Pit-Bull',
+        subtitle: 'From 2010 to Today',
+        title: 'History of Alpine Armoring Pit-Bull',
         image:
           'https://bugatti.imgix.net/6734a52ceae7ef2f6d1c380c/AB105132_Crop.jpg',
         button: 'Learn More About Alpine',
       },
       {
         subtitle: 'Discover Alpine',
-        title: 'Testing & certifications',
+        title: 'Testing and Certification',
         image:
           'https://bugatti.imgix.net/6734a28b8d33578d8bd2af36/01 BUGATTI_Type 35 Making of a Champion_edit.jpg',
         button: 'Learn More About Alpine',
@@ -98,9 +98,9 @@ export default function Home() {
     <>
       {BannerHeroData ? <BannerHero props={BannerHeroData} /> : null}
 
-      <ColumnsThree data={InternalPages} />
+      <ColumnsList data={InternalPages} />
 
-      <ColumnsThree className="col-2" data={Vehicles} />
+      <ColumnsList className="col-2" data={Vehicles} />
     </>
   );
 }

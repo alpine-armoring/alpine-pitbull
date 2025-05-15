@@ -1,4 +1,4 @@
-.columnsThree {
+.columnsList {
   &_wrapper {
     margin: 64px auto;
 
@@ -41,7 +41,7 @@
       }
 
       &:hover {
-        .columnsThree_item_image {
+        .columnsList_item_image {
           transform: scaleX(1.05) scaleY(1.05);
         }
       }
