@@ -3,22 +3,10 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import styles from './BannerHero.module.scss';
 import { BannerHeroProps } from 'types';
+import Link from 'next/link';
 
 const BannerHero = ({ props }: BannerHeroProps) => {
-  // const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  // const togglePlayPause = useCallback(() => {
-  //   if (videoRef.current) {
-  //     if (videoRef.current.paused) {
-  //       videoRef.current.play();
-  //       setIsPlaying(true);
-  //     } else {
-  //       videoRef.current.pause();
-  //       setIsPlaying(false);
-  //     }
-  //   }
-  // }, []);
 
   const isIOS = useCallback(() => {
     return /iPad|iPhone|iPod/i.test(navigator.userAgent);
@@ -81,24 +69,24 @@ const BannerHero = ({ props }: BannerHeroProps) => {
     getSafariVersion,
   ]);
 
-  // useEffect(() => {
-  //   const videoElement = videoRef.current;
-  //   if (videoElement) {
-  //     const handleEnded = () => {
-  //       togglePlayPause();
-  //     };
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      const handleEnded = () => {
+        videoElement.play();
+      };
 
-  //     videoElement.addEventListener('ended', handleEnded);
+      videoElement.addEventListener('ended', handleEnded);
 
-  //     return () => {
-  //       videoElement.removeEventListener('ended', handleEnded);
-  //     };
-  //   }
-  // }, [togglePlayPause]);
+      return () => {
+        videoElement.removeEventListener('ended', handleEnded);
+      };
+    }
+  }, []);
 
   return (
     <div className={`${styles.hp_banner}`}>
-      <div className={`${styles.hp_banner_inner}`}>
+      <Link href="/models" className={`${styles.hp_banner_inner}`}>
         {props.video?.video_webm.data || props.video?.video_mp4.data ? (
           <video
             ref={videoRef}
@@ -133,12 +121,12 @@ const BannerHero = ({ props }: BannerHeroProps) => {
                 className={`${styles.hp_banner_title}`}
               ></h1>
               <button className={`${styles.hp_banner_button}`}>
-                Discover Alpine Pit-bull
+                Discover Alpine Pit-Bull
               </button>
             </>
           ) : null}
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

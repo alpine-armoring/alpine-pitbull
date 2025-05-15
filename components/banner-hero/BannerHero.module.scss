@@ -41,6 +41,10 @@
   &_content {
     position: relative;
     z-index: 3;
+
+    @include breakpoint(large) {
+      padding-bottom: rem(100);
+    }
   }
 
   &_video {
@@ -74,5 +78,6 @@
     font-size: 14px;
     background: transparent;
     border: 1px solid #fff;
+    cursor: pointer;
   }
 }
