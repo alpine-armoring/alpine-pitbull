@@ -1,5 +1,6 @@
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
+import Header from '@/components/header/Header';
 
 export default function Home() {
   const BannerHeroData = {
@@ -96,6 +97,8 @@ export default function Home() {
 
   return (
     <>
+      <Header />
+
       {BannerHeroData ? <BannerHero props={BannerHeroData} /> : null}
 
       <ColumnsList data={InternalPages} />

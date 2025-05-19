@@ -51,9 +51,14 @@ const columnsList = (props) => {
                   />
                 ))}
               {item.button && (
-                <button className={`${styles.columnsList_item_button}`}>
-                  {item.button}
-                </button>
+                <div className={`${styles.columnsList_item_button_wrap}`}>
+                  <button className={`${styles.columnsList_item_button}`}>
+                    {item.button}
+                  </button>
+                  <button className={`${styles.columnsList_item_button}`}>
+                    Build your own
+                  </button>
+                </div>
               )}
             </div>
           </Link>

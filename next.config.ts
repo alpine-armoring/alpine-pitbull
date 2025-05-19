@@ -2,6 +2,14 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   sassOptions: {
+    logger: {
+      warn: (message) => {
+        if (message.includes('Deprecation') || message.includes('deprecat')) {
+          return;
+        }
+      },
+    },
+    quietDeps: true,
     prependData: `@use './styles/_mixins.scss' as *;`,
   },
   images: {
@@ -37,6 +45,16 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'bugatti.imgix.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'alpineco.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.alpineco.com',
         pathname: '**',
       },
     ],
