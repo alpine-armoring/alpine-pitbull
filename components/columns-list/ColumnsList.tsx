@@ -1,6 +1,6 @@
-import styles from './columnsList.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import styles from './ColumnsList.module.scss';
 
 const columnsList = (props) => {
   const { className, data } = props;
