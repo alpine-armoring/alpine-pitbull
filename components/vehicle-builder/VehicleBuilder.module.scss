@@ -64,7 +64,19 @@
     //     #e5dccb 78%,
     //     #e5dccb 100%
     //   );
-    background: radial-gradient(50% 50% at 30% 60%, rgba(255, 255, 255, 0.9098039216) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, rgba(224, 224, 224, 0) 0%, rgba(255, 255, 255, 0.6509803922) 62%, #e0e0e0 86%), linear-gradient(90deg, #e5dccb 1%, #e5dccb 24%, #c4d1da 78%, #becbd3 100%);
+    background:
+      radial-gradient(
+        50% 50% at 30% 60%,
+        rgba(255, 255, 255, 0.9098039216) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(224, 224, 224, 0) 0%,
+        rgba(255, 255, 255, 0.6509803922) 62%,
+        #e0e0e0 86%
+      ),
+      linear-gradient(90deg, #e5dccb 1%, #e5dccb 24%, #c4d1da 78%, #becbd3 100%);
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -174,22 +186,24 @@
     }
   }
 
-  &_section{
-    margin-bottom: rem(20);    
+  &_section {
+    margin-bottom: rem(20);
     padding: 20px 16px;
-    --tw-shadow: 0px 4px 16px rgba(0, 0, 0, .16);
+    --tw-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
     --tw-shadow-colored: 0px 4px 16px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    box-shadow:
+      var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+      var(--tw-shadow);
     border-radius: 12px;
-    
-    &_title{
+
+    &_title {
       display: flex;
       align-items: baseline;
       margin-bottom: rem(32);
       font-size: rem(20);
       font-weight: 500;
 
-      span{
+      span {
         transform: translateY(-1px);
         padding-left: 5px;
         font-size: rem(16);
@@ -227,7 +241,7 @@
       }
     }
 
-    &_title{
+    &_title {
       margin-left: rem(16);
     }
 
@@ -241,7 +255,7 @@
       background: none;
       cursor: pointer;
       transition: color 0.2s ease-in-out;
-    
+
       &:hover {
         color: var(--color-dark);
       }
@@ -329,7 +343,7 @@
     }
   }
 
-  &_select{
+  &_select {
     width: 100%;
     padding: rem(16);
     border: 1px solid rgba(12, 18, 28, 0.1);
@@ -338,15 +352,17 @@
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
-  
+
     /* Arrow */
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M6%208.5l-4.5-4.5%201.06-1.06L6%206.38%209.44%202.94%2010.5%204%206%208.5z%22%20fill%3D%22%23131313%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M6%208.5l-4.5-4.5%201.06-1.06L6%206.38%209.44%202.94%2010.5%204%206%208.5z%22%20fill%3D%22%23131313%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 16px top 50%;
     background-size: 16px auto;
-    transition: color .2s ease-in-out, border-color .2s ease-in-out;
-    
+    transition:
+      color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out;
+
     &:focus,
     &:hover,
     &_active {
