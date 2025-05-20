@@ -534,37 +534,43 @@ const VehicleBuilder: React.FC = () => {
               ref={(el: HTMLDivElement | null) => {
                 sectionRefs.current[section.id] = el;
               }}
-              className={styles.section}
+              className={styles.vehicleConfigurator_section}
             >
-              <h2 className={styles.sectionTitle}>{section.title}</h2>
+              <h2 className={styles.vehicleConfigurator_section_title}>
+                {section.title}
+                {section.options.length > 2 && (
+                  <span>({section.options?.length})</span>
+                )}
+              </h2>
 
               {section.type === 'group' && section.subsections && (
                 <div className={styles.subsections}>
                   {section.subsections.map((subsection) => (
                     <div key={subsection.id} className={styles.subsection}>
-                      {/* <h3 className={styles.subsectionTitle}>{subsection.title}</h3> */}
-                      <div className={styles.selectContainer}>
-                        <select
-                          className={styles.select}
-                          value={(selections[subsection.id] as string) || ''}
-                          onChange={(e) =>
-                            handleOptionChange(
-                              subsection.id,
-                              e.target.value,
-                              true
-                            )
-                          }
-                          name={subsection.title}
-                          id={subsection.title}
-                        >
-                          <option value="">{subsection.title}</option>
-                          {subsection.options.map((option) => (
-                            <option key={option.id} value={option.id}>
-                              {option.title}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        className={`${styles.vehicleConfigurator_select} ${
+                          selections[subsection.id]
+                            ? styles.vehicleConfigurator_select_active
+                            : ''
+                        }`}
+                        value={(selections[subsection.id] as string) || ''}
+                        onChange={(e) =>
+                          handleOptionChange(
+                            subsection.id,
+                            e.target.value,
+                            true
+                          )
+                        }
+                        name={subsection.title}
+                        id={subsection.title}
+                      >
+                        <option value="">{subsection.title}</option>
+                        {subsection.options.map((option) => (
+                          <option key={option.id} value={option.id}>
+                            {option.title}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   ))}
                 </div>
@@ -573,7 +579,7 @@ const VehicleBuilder: React.FC = () => {
               {section.type === 'select' && (
                 <div className={styles.selectContainer}>
                   <select
-                    className={styles.select}
+                    className={styles.vehicleConfigurator_select}
                     value={(selections[section.id] as string) || ''}
                     onChange={(e) =>
                       handleOptionChange(section.id, e.target.value, true)
@@ -632,49 +638,59 @@ const VehicleBuilder: React.FC = () => {
                   {section.options.map((option) => (
                     <div
                       key={option.id}
-                      className={`${styles.vehicleConfigurator_card_wrap} ${expandedCard === option.id ? styles.vehicleConfigurator_card_wrap_expanded : ''}`}
+                      // className={`${styles.vehicleConfigurator_card_wrap} ${expandedCard === option.id ? styles.vehicleConfigurator_card_wrap_expanded : ''}`}
+                      className={`${styles.vehicleConfigurator_card_wrap} 
+                                ${expandedCard === option.id ? styles.vehicleConfigurator_card_wrap_expanded : ''} 
+                                ${isOptionSelected(section.id, option.id) ? styles.vehicleConfigurator_card_wrap_active : ''}`}
                     >
                       <div
                         className={`${styles.vehicleConfigurator_card}`}
                         onClick={() => handleCardClick(option.id)}
                       >
-                        <span>{option.title}</span>
-                        <div className={styles.optionControls}>
-                          {/* <button
-                            className={styles.infoButton}
-                            onClick={e => handleInfoClick(e, option.id)}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                            </svg>
-                          </button> */}
-                          {/* <input
+                        <div
+                          className={`${styles.vehicleConfigurator_card_checkbox} checkboxCustom`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <input
                             type="checkbox"
                             id={option.id}
                             checked={isOptionSelected(section.id, option.id)}
-                            onChange={e => handleOptionChange(section.id, option.id, e.target.checked)}
-                            onClick={e => e.stopPropagation()}
-                            className={styles.checkbox}
-                          /> */}
-                          <div
-                            className={`${styles.vehicleConfigurator_card_checkbox} checkboxCustom`}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <input
-                              type="checkbox"
-                              id={option.id}
-                              checked={isOptionSelected(section.id, option.id)}
-                              onChange={(e) =>
-                                handleOptionChange(
-                                  section.id,
-                                  option.id,
-                                  e.target.checked
-                                )
-                              }
-                            />
-                            <label htmlFor={option.id}></label>
-                          </div>
+                            onChange={(e) =>
+                              handleOptionChange(
+                                section.id,
+                                option.id,
+                                e.target.checked
+                              )
+                            }
+                          />
+                          <label htmlFor={option.id}></label>
                         </div>
+
+                        <span
+                          className={`${styles.vehicleConfigurator_card_title}`}
+                        >
+                          {option.title}
+                        </span>
+
+                        <span
+                          className={styles.vehicleConfigurator_card_info}
+                          // onClick={e => handleInfoClick(e, option.id)}
+                        >
+                          <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="100%"
+                            width="100%"
+                            preserveAspectRatio="xMidYMid meet"
+                            focusable="false"
+                          >
+                            <path
+                              data-name="Pfad 7209"
+                              d="M14.8 9.65h2.63v2.63H14.8Zm0 5.25h2.63v7.86H14.8Z"
+                            ></path>
+                            <path d="M16 31.85A15.85 15.85 0 1 1 31.85 16 15.86 15.86 0 0 1 16 31.85Zm0-30.59A14.75 14.75 0 1 0 30.76 16 14.76 14.76 0 0 0 16 1.26Z"></path>
+                          </svg>
+                        </span>
                       </div>
 
                       {/* Info Popup */}

@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "noImplicitAny": false,
     "paths": {
+      "@/*": ["./*"],
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"]
     },
@@ -23,10 +24,7 @@
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./*"]
-    }
+    ]
   },
   "include": [
     "next-env.d.ts",

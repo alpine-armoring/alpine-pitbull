@@ -1,10 +1,21 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import '../styles/globals.scss';
+
+// import localFont from 'next/font/local'
+// const avenirFont = localFont({
+//   src: [
+//     {
+//       path: '../public/fonts/AvenirLTStd-Roman.woff2',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//   ]
+// })
+
 // import Header from '@/components/header/Header';
 
 const montserrat = Montserrat({
-  variable: '--font-montserrat',
   subsets: ['latin'],
 });
 
@@ -20,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable}`}>
+      <body className={`${montserrat.className}`}>
         {/* <Header /> */}
         {children}
       </body>
