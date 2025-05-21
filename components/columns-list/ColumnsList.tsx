@@ -41,7 +41,10 @@ const columnsList = (props) => {
               )}
               {item.title &&
                 (item.titleType !== 'image' ? (
-                  <h3 className={`${styles.columnsList_item_title}`}>
+                  <h3
+                    className={`${styles.columnsList_item_title}`}
+                    data-text={item.title}
+                  >
                     {item.title}
                   </h3>
                 ) : (
