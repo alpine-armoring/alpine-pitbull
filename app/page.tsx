@@ -27,28 +27,28 @@ export default function Home() {
   const InternalPages = {
     title: 'Alpine Armoring',
     description:
-      'Since 1909, the people at BUGATTI Automobiles create incomparable products and experiences by pushing the limits of aesthetics and dynamics.',
+      'Alpine Armoring is a certified US based armored vehicle Manufacturer specializing in Designs & Engineering of variety of Armoured Cars for over 30 years',
     items: [
       {
         subtitle: 'Discover Pit-Bull',
         title: 'Tactical Features and Customizations',
         image:
           'https://bugatti.imgix.net/6734a2b6eae7ef2f6d1c330d/02 BUGATTI_Custmer-Car-Gathering.jpg',
-        button: 'Learn More About Alpine',
+        button: 'Learn More About ??',
       },
       {
         subtitle: 'From 2010 to Today',
         title: 'History of Alpine Armoring Pit-Bull',
         image:
           'https://bugatti.imgix.net/6734a52ceae7ef2f6d1c380c/AB105132_Crop.jpg',
-        button: 'Learn More About Alpine',
+        button: 'See Our ??',
       },
       {
         subtitle: 'Discover Alpine',
         title: 'Testing and Certification',
         image:
           'https://bugatti.imgix.net/6734a28b8d33578d8bd2af36/01 BUGATTI_Type 35 Making of a Champion_edit.jpg',
-        button: 'Learn More About Alpine',
+        button: 'Discover ??',
       },
     ],
   };
@@ -58,38 +58,14 @@ export default function Home() {
     items: [
       {
         subtitle: 'Timeless elegance and speed',
-        titleType: 'image',
-        title:
-          'https://bugatti.imgix.net/67079fd3fa42b0c51df171f2/tourbillon.png?auto=format,compress&cs=srgb&sharp=10&w=512&dpr=1.25',
-        image:
-          'https://bugatti.imgix.net/6733871ced9d56f31c5f0182/bugatti-tourbillon-card.jpg',
+        title: 'VX',
+        image: '/images/VX.jpg',
         button: 'Learn More',
       },
       {
         subtitle: 'The ultimate roadster',
-        titleType: 'image',
-        title:
-          'https://bugatti.imgix.net/67079cfafa42b0c51df16f7f/mistral.png?auto=format,compress&cs=srgb&sharp=10&w=512&dpr=1.25',
-        image:
-          'https://bugatti.imgix.net/677e8130e825e63ca2bd56fe/bugatti-w16mistral-card_v3.jpg',
-        button: 'Learn More',
-      },
-      {
-        subtitle: 'The ultimate roadster',
-        titleType: 'image',
-        title:
-          'https://bugatti.imgix.net/67079cfafa42b0c51df16f7f/mistral.png?auto=format,compress&cs=srgb&sharp=10&w=512&dpr=1.25',
-        image:
-          'https://bugatti.imgix.net/677e8130e825e63ca2bd56fe/bugatti-w16mistral-card_v3.jpg',
-        button: 'Learn More',
-      },
-      {
-        subtitle: 'Timeless elegance and speed',
-        titleType: 'image',
-        title:
-          'https://bugatti.imgix.net/67079fd3fa42b0c51df171f2/tourbillon.png?auto=format,compress&cs=srgb&sharp=10&w=512&dpr=1.25',
-        image:
-          'https://bugatti.imgix.net/6733871ced9d56f31c5f0182/bugatti-tourbillon-card.jpg',
+        title: 'VXT',
+        image: '/images/VXT.jpg',
         button: 'Learn More',
       },
     ],
@@ -103,7 +79,11 @@ export default function Home() {
 
       <ColumnsList data={InternalPages} />
 
-      <ColumnsList className="col-2" data={Vehicles} />
+      <ColumnsList
+        className={`vehicles_item col-2`}
+        data={Vehicles}
+        configurator
+      />
     </>
   );
 }

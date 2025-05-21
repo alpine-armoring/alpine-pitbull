@@ -226,7 +226,7 @@ small {
   font-size: rem(15);
 
   @include breakpoint(large) {
-    max-width: 768px;
+    max-width: 830px;
     margin: auto;
     font-size: rem(20);
   }

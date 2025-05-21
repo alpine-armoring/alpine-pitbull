@@ -4,6 +4,11 @@ import styles from './ColumnsList.module.scss';
 
 const columnsList = (props) => {
   const { className, data } = props;
+  const classNames = className ? className.split(' ') : [];
+  const moduleClasses = classNames
+    .map((cls) => styles[cls])
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div
@@ -16,9 +21,7 @@ const columnsList = (props) => {
         )}
       </div>
 
-      <div
-        className={`${styles.columnsList_container} ${className ? styles[className] : ''}`}
-      >
+      <div className={`${styles.columnsList_container} ${moduleClasses}`}>
         {data.items?.map((item, index) => (
           <Link href="/" className={`${styles.columnsList_item}`} key={index}>
             {item.image && (
@@ -55,9 +58,11 @@ const columnsList = (props) => {
                   <button className={`${styles.columnsList_item_button}`}>
                     {item.button}
                   </button>
-                  <button className={`${styles.columnsList_item_button}`}>
-                    Build your own
-                  </button>
+                  {props.configurator && (
+                    <button className={`${styles.columnsList_item_button}`}>
+                      Build your own
+                    </button>
+                  )}
                 </div>
               )}
             </div>
