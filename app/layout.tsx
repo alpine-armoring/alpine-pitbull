@@ -1,23 +1,33 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+// import { Montserrat } from 'next/font/google';
 import '../styles/globals.scss';
 
-// import localFont from 'next/font/local'
-// const avenirFont = localFont({
-//   src: [
-//     {
-//       path: '../public/fonts/AvenirLTStd-Roman.woff2',
-//       weight: '400',
-//       style: 'normal',
-//     },
-//   ]
-// })
+import localFont from 'next/font/local';
+const terminaFont = localFont({
+  src: [
+    {
+      path: '../public/fonts/Termina-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Termina-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Termina-Demi.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
+});
 
 // import Header from '@/components/header/Header';
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-});
+// const montserrat = Montserrat({
+//   subsets: ['latin'],
+// });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -31,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className}`}>
+      <body className={`${terminaFont.className}`}>
         {/* <Header /> */}
         {children}
       </body>

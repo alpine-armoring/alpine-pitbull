@@ -6,7 +6,7 @@
   padding: 0 20px;
   height: 100vh;
   width: 100%;
-  color: black;
+  color: var(--color-background);
   background: white;
 
   &_nav {
@@ -20,7 +20,6 @@
       cursor: pointer;
       background: none;
       border: none;
-      font-family: inherit;
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 500;
@@ -281,7 +280,7 @@
   &_radioGroup {
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
 
     &_item {
@@ -315,7 +314,7 @@
 
     &_title {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     &_button {
@@ -328,7 +327,6 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 2px;
-      font-family: inherit;
       cursor: pointer;
       transition:
         color 0.2s ease-in-out,
@@ -348,7 +346,6 @@
     padding: rem(16);
     border: 1px solid rgba(12, 18, 28, 0.1);
     border-radius: 5px;
-    font-family: inherit;
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;

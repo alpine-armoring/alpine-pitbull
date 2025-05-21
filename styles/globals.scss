@@ -17,6 +17,10 @@ body {
   // user-select: none;
 }
 
+button, input, select{
+  font-family: inherit;
+}
+
 .p0 {
   padding: 0 !important;
 }

@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: Montserrat, sans-serif;
+  font-family: Termina, sans-serif;
   color: #fff;
 
   &.background-dark {
@@ -226,9 +226,9 @@ small {
   font-size: rem(15);
 
   @include breakpoint(large) {
-    max-width: 830px;
+    max-width: 900px;
     margin: auto;
-    font-size: rem(20);
+    font-size: rem(18);
   }
 }
 
