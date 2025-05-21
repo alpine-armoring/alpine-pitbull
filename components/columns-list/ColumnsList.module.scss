@@ -138,7 +138,7 @@
       text-align: center;
 
       @include breakpoint(large) {
-        font-size: clamp(1.3125rem, 0.3125rem + 1.25vw, 1.8125rem);; // 21-29
+        font-size: clamp(1.3125rem, 0.3125rem + 1.25vw, 1.8125rem); // 21-29
       }
 
       .vehicles_item & {
@@ -178,11 +178,13 @@
       cursor: pointer;
       color: white;
       font-weight: 500;
-      transition: color .2s ease-in-out, background .2s ease-in-out;
-  
-      &:hover{
+      transition:
+        color 0.2s ease-in-out,
+        background 0.2s ease-in-out;
+
+      &:hover {
         background: white;
-        color: var(--color-background)
+        color: var(--color-background);
       }
 
       &:nth-child(2) {

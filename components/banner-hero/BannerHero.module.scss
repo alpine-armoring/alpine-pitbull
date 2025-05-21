@@ -82,11 +82,13 @@
     border: 1px solid #fff;
     cursor: pointer;
     color: white;
-    transition: color .2s ease-in-out, background .2s ease-in-out;
+    transition:
+      color 0.2s ease-in-out,
+      background 0.2s ease-in-out;
 
-    &:hover{
+    &:hover {
       background: white;
-      color: var(--color-background)
+      color: var(--color-background);
     }
   }
 }
