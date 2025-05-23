@@ -83,10 +83,10 @@ const BannerHero = ({ props }: BannerHeroProps) => {
       };
     }
   }, []);
-
+  console.log(props);
   return (
     <div className={`${styles.hp_banner}`}>
-      <Link href="/models" className={`${styles.hp_banner_inner}`}>
+      <div className={`${styles.hp_banner_inner}`}>
         {props.video?.video_webm.data || props.video?.video_mp4.data ? (
           <video
             ref={videoRef}
@@ -112,21 +112,43 @@ const BannerHero = ({ props }: BannerHeroProps) => {
         ) : null}
 
         <div className={`${styles.hp_banner_content}`}>
+          {props.subTitle && (
+            <h4
+              dangerouslySetInnerHTML={{
+                __html: props.subTitle,
+              }}
+              className={`${styles.hp_banner_subTitle}`}
+            ></h4>
+          )}
+
           {props.title ? (
-            <>
-              <h1
-                dangerouslySetInnerHTML={{
-                  __html: props.title,
-                }}
-                className={`${styles.hp_banner_title}`}
-              ></h1>
-              <button className={`${styles.hp_banner_button}`}>
-                Discover Alpine Pit-Bull
-              </button>
-            </>
+            <h1
+              dangerouslySetInnerHTML={{
+                __html: props.title,
+              }}
+              className={`${styles.hp_banner_title}`}
+            ></h1>
           ) : null}
+
+          {props.button && (
+            <Link
+              href={props.button.url}
+              className={`${styles.hp_banner_button}`}
+            >
+              {props.button.title}
+            </Link>
+          )}
+
+          {props.text && (
+            <p
+              dangerouslySetInnerHTML={{
+                __html: props.text,
+              }}
+              className={`${styles.hp_banner_text}`}
+            ></p>
+          )}
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

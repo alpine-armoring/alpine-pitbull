@@ -5,6 +5,10 @@ import Header from '@/components/header/Header';
 export default function Home() {
   const BannerHeroData = {
     title: 'Mission-Ready Mobility',
+    button: {
+      title: 'Discover Alpine Pit-Bull',
+      url: '/models',
+    },
     video: {
       video_mp4: {
         data: {
@@ -46,8 +50,7 @@ export default function Home() {
       {
         subtitle: 'Discover Alpine',
         title: 'Testing and Certification',
-        image:
-          'https://bugatti.imgix.net/6734a28b8d33578d8bd2af36/01 BUGATTI_Type 35 Making of a Champion_edit.jpg',
+        image: '/images/testing-certification-pitbll.jpg',
         button: 'Discover ??',
       },
     ],
