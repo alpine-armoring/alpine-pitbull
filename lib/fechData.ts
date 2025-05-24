@@ -1,4 +1,6 @@
+// lib/strapi.ts
 const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
+const SILENT_MODE = process.env.NEXT_PUBLIC_STRAPI_SILENT === 'true';
 
 interface FetchOptions {
   cache?: RequestCache;
@@ -26,8 +28,14 @@ export async function fetchAPI(path: string, options: FetchOptions = {}) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching data from Strapi:', error);
-    throw error;
+    // Only log errors if not in silent mode
+    if (!SILENT_MODE) {
+      console.error('Error fetching data from Strapi:', error);
+      throw error;
+    }
+
+    // Return null instead of throwing to prevent app crashes
+    return null;
   }
 }
 
@@ -79,7 +87,9 @@ export async function getStrapiData({
     const data = await fetchAPI(query, { cache, revalidate });
     return data;
   } catch (error) {
-    console.error(`Error fetching ${route}:`, error);
+    if (!SILENT_MODE) {
+      console.error(`Error fetching ${route}:`, error);
+    }
     return null;
   }
 }
