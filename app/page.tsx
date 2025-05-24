@@ -4,9 +4,9 @@ import BannerHero from '@/components/banner-hero/BannerHero';
 import Header from '@/components/header/Header';
 
 // This runs on the server
-async function getPageData() {
+async function getpageData() {
   try {
-    const [pageDAta] = await Promise.all([
+    const [pageData] = await Promise.all([
       getStrapiData({
         route: 'pitbull-homepage',
         populate: 'deep',
@@ -15,19 +15,19 @@ async function getPageData() {
     ]);
 
     return {
-      pageDAta: pageDAta?.data?.attributes || null,
+      pageData: pageData?.data?.attributes || null,
     };
   } catch (error) {
     console.error('Error fetching page data:', error);
     return {
-      pageDAta: null,
+      pageData: null,
     };
   }
 }
 
 export default async function Home() {
-  const { pageDAta } = await getPageData();
-  // console.log(pageDAta)
+  const { pageData } = await getpageData();
+  // console.log(pageData)
 
   // const InternalPages = internalPages || {
   //   title: 'Alpine Armoring',
@@ -48,7 +48,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      {pageDAta.banner && <BannerHero props={pageDAta.banner} />}
+      {pageData?.banner && <BannerHero props={pageData.banner} />}
       {/* <ColumnsList data={InternalPages} />
       <ColumnsList
         className="vehicles_item col-2"
