@@ -36,6 +36,7 @@ export default async function Home() {
       {
         titleNav: 'Timeless elegance and speed',
         title: 'VX',
+        linkURL: 'vx',
         image: {
           data: [
             {
@@ -47,11 +48,12 @@ export default async function Home() {
             },
           ],
         },
-        button: 'Learn More',
+        linkText: 'Learn More',
       },
       {
         titleNav: 'The ultimate roadster',
         title: 'VXT',
+        linkURL: 'vxt',
         image: {
           data: [
             {
@@ -63,7 +65,7 @@ export default async function Home() {
             },
           ],
         },
-        button: 'Learn More',
+        linkText: 'Learn More',
       },
     ],
   };
