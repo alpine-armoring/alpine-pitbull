@@ -3,60 +3,70 @@ import Image from 'next/image';
 import styles from './ColumnsList.module.scss';
 
 const columnsList = (props) => {
-  const { className, data } = props;
+  const { className, items, title, description } = props;
   const classNames = className ? className.split(' ') : [];
   const moduleClasses = classNames
     .map((cls) => styles[cls])
     .filter(Boolean)
     .join(' ');
 
+  console.log(items);
+
   return (
     <div
       className={`container ${className || ''} ${styles.columnsList_wrapper}`}
     >
       <div className={`c-content`}>
-        {data?.title && <h2 className={`c-title`}>{data.title}</h2>}
-        {data?.description && (
-          <p className={`c-description`}>{data.description}</p>
-        )}
+        {title && <h2 className={`c-title`}>{title}</h2>}
+        {description && <p className={`c-description`}>{description}</p>}
       </div>
 
       <div className={`${styles.columnsList_container} ${moduleClasses}`}>
-        {data.items?.map((item, index) => (
-          <Link href="/" className={`${styles.columnsList_item}`} key={index}>
-            {item.image && (
+        {items?.map((item, index) => (
+          <Link
+            href={`/${item.linkURL}`}
+            className={`${styles.columnsList_item}`}
+            key={index}
+          >
+            {item.image.data && (
               <Image
-                src={item.image}
-                alt="Alpine Armoring"
-                width="450"
-                height="570"
+                src={
+                  item.image.data[0].attributes.formats?.medium?.url ||
+                  item.image.data[0].attributes.url
+                }
+                alt={
+                  item.image.data[0].attributes.alternativeText ||
+                  'Alpine Armoring'
+                }
+                width={
+                  item.image.data[0].attributes.formats?.medium?.width ||
+                  item.image.data[0].attributes.width
+                }
+                height={
+                  item.image.data[0].attributes.formats?.medium?.height ||
+                  item.image.data[0].attributes.height
+                }
                 className={`${styles.columnsList_item_image}`}
               ></Image>
             )}
+
             <div className={`${styles.columnsList_item_content}`}>
-              {item.subtitle && (
+              {item.titleNav && (
                 <h4 className={`${styles.columnsList_item_subtitle}`}>
-                  {item.subtitle}
+                  {item.titleNav}
                 </h4>
               )}
-              {item.title &&
-                (item.titleType !== 'image' ? (
-                  <h3 className={`${styles.columnsList_item_title}`}>
-                    {item.title}
-                  </h3>
-                ) : (
-                  <Image
-                    src={item.title}
-                    alt="Alpine Armoring"
-                    width="500"
-                    height="110"
-                    className={`${styles.columnsList_item_logo}`}
-                  />
-                ))}
-              {item.button && (
+
+              {item.title && (
+                <h3 className={`${styles.columnsList_item_title}`}>
+                  {item.title}
+                </h3>
+              )}
+
+              {item.linkText && (
                 <div className={`${styles.columnsList_item_button_wrap}`}>
                   <button className={`${styles.columnsList_item_button}`}>
-                    {item.button}
+                    {item.linkText}
                   </button>
                   {props.configurator && (
                     <button className={`${styles.columnsList_item_button}`}>

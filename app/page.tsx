@@ -29,62 +29,40 @@ export default async function Home() {
   const { pageData } = await getpageData();
   // console.log(pageData)
 
-  // const InternalPages = internalPages || {
-  //   title: 'Alpine Armoring',
-  //   description: 'Alpine Armoring is a certified US based armored vehicle Manufacturer...',
-  //   items: [
-  //     // Your fallback items
-  //   ],
-  // };
-
-  // const Vehicles = vehicles || {
-  //   title: 'Our Armored Pit-Bulls',
-  //   description: 'The quintessence of luxury and speed.',
-  //   items: [
-  //     // Your fallback items
-  //   ],
-  // };
-  const InternalPages = {
-    title: 'Alpine Armoring',
-    description:
-      'Alpine Armoring is a certified US based armored vehicle Manufacturer specializing in Designs & Engineering of variety of Armoured Cars for over 30 years',
-    items: [
-      {
-        subtitle: 'Discover Pit-Bull',
-        title: 'Tactical Features and Customizations',
-        image:
-          'https://bugatti.imgix.net/6734a2b6eae7ef2f6d1c330d/02 BUGATTI_Custmer-Car-Gathering.jpg',
-        button: 'Learn More About ??',
-      },
-      {
-        subtitle: 'From 2010 to Today',
-        title: 'History of Alpine Armoring Pit-Bull',
-        image:
-          'https://bugatti.imgix.net/6734a52ceae7ef2f6d1c380c/AB105132_Crop.jpg',
-        button: 'See Our ??',
-      },
-      {
-        subtitle: 'Discover Alpine',
-        title: 'Testing and Certification',
-        image: '/images/testing-certification-pitbll.jpg',
-        button: 'Discover ??',
-      },
-    ],
-  };
   const Vehicles = {
     title: 'Our Armored Pit-Bulls',
     description: 'The quintessence of luxury and speed.',
     items: [
       {
-        subtitle: 'Timeless elegance and speed',
+        titleNav: 'Timeless elegance and speed',
         title: 'VX',
-        image: '/images/VX.jpg',
+        image: {
+          data: [
+            {
+              attributes: {
+                url: '/images/VX.jpg',
+                width: 450,
+                height: 570,
+              },
+            },
+          ],
+        },
         button: 'Learn More',
       },
       {
-        subtitle: 'The ultimate roadster',
+        titleNav: 'The ultimate roadster',
         title: 'VXT',
-        image: '/images/VXT.jpg',
+        image: {
+          data: [
+            {
+              attributes: {
+                url: '/images/VXT.jpg',
+                width: 450,
+                height: 570,
+              },
+            },
+          ],
+        },
         button: 'Learn More',
       },
     ],
@@ -93,11 +71,22 @@ export default async function Home() {
   return (
     <>
       <Header />
+
       {pageData?.banner && <BannerHero props={pageData.banner} />}
-      <ColumnsList data={InternalPages} />
+
+      {pageData?.otherPages && (
+        <ColumnsList
+          items={pageData.otherPages}
+          title={pageData.otherPagesTitle}
+          description={pageData.otherPagesText}
+        />
+      )}
+
       <ColumnsList
         className="vehicles_item col-2"
-        data={Vehicles}
+        title={Vehicles.title}
+        description={Vehicles.description}
+        items={Vehicles.items}
         configurator
       />
     </>

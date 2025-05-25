@@ -44,17 +44,17 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'bugatti.imgix.net',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
         hostname: 'alpineco.com',
         pathname: '**',
       },
       {
         protocol: 'https',
         hostname: 'www.alpineco.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd102sycao8uwt8.cloudfront.net',
         pathname: '**',
       },
     ],
