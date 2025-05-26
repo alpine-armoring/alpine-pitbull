@@ -10,8 +10,6 @@ const columnsList = (props) => {
     .filter(Boolean)
     .join(' ');
 
-  console.log(items);
-
   return (
     <div
       className={`container ${className || ''} ${styles.columnsList_wrapper}`}
@@ -24,36 +22,24 @@ const columnsList = (props) => {
       <div className={`${styles.columnsList_container} ${moduleClasses}`}>
         {items?.map((item, index) => (
           <Link
-            href={`/${item.linkURL}`}
+            href={`/${item.link}`}
             className={`${styles.columnsList_item}`}
             key={index}
           >
-            {item.image.data && (
+            {item.image && (
               <Image
-                src={
-                  item.image.data[0].attributes.formats?.medium?.url ||
-                  item.image.data[0].attributes.url
-                }
-                alt={
-                  item.image.data[0].attributes.alternativeText ||
-                  'Alpine Armoring'
-                }
-                width={
-                  item.image.data[0].attributes.formats?.medium?.width ||
-                  item.image.data[0].attributes.width
-                }
-                height={
-                  item.image.data[0].attributes.formats?.medium?.height ||
-                  item.image.data[0].attributes.height
-                }
+                src={item.image.formats?.medium?.url || item.image.url}
+                alt={item.image.alternativeText || 'Alpine Armoring'}
+                width={item.image.formats?.medium?.width || item.image.width}
+                height={item.image.formats?.medium?.height || item.image.height}
                 className={`${styles.columnsList_item_image}`}
               ></Image>
             )}
 
             <div className={`${styles.columnsList_item_content}`}>
-              {item.titleNav && (
+              {item.subtitle && (
                 <h4 className={`${styles.columnsList_item_subtitle}`}>
-                  {item.titleNav}
+                  {item.subtitle}
                 </h4>
               )}
 
@@ -63,18 +49,18 @@ const columnsList = (props) => {
                 </h3>
               )}
 
-              {item.linkText && (
-                <div className={`${styles.columnsList_item_button_wrap}`}>
+              <div className={`${styles.columnsList_item_button_wrap}`}>
+                {item.buttonText && (
                   <button className={`${styles.columnsList_item_button}`}>
-                    {item.linkText}
+                    {item.buttonText}
                   </button>
-                  {props.configurator && (
-                    <button className={`${styles.columnsList_item_button}`}>
-                      Build your own
-                    </button>
-                  )}
-                </div>
-              )}
+                )}
+                {props.configurator && (
+                  <button className={`${styles.columnsList_item_button}`}>
+                    Build your own
+                  </button>
+                )}
+              </div>
             </div>
           </Link>
         ))}
