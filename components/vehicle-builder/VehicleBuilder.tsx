@@ -440,7 +440,7 @@ const VehicleBuilder: React.FC = () => {
         {/* Slider with Images */}
         <div className={styles.vehicleConfigurator_slider}>
           <Image
-            src="https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_armored_audi_q7_suv_01_834e78bbb4.png&w=1920&q=100"
+            src="https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_Armored_PITBULL_VXT_SWAT_Truck_e3eb28c07b.png&w=2200&q=100"
             width={1500}
             height={750}
             alt="Alpineco"
@@ -734,7 +734,7 @@ const VehicleBuilder: React.FC = () => {
       {/* Bottom Summary Button */}
       <div className={styles.vehicleConfigurator_bottomBar}>
         <h4 className={styles.vehicleConfigurator_bottomBar_title}>
-          Armored Audi Q7
+          Pit-Bull VXT® Armored Tactical SWAT/APC Truck
         </h4>
 
         <button
