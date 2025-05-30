@@ -12,18 +12,18 @@ function normalizeItemData(items, type = 'default') {
     if (type === 'vehicles') {
       const attrs = item.attributes || item;
       normalizedItem = {
-        title: attrs.pitbullHomepageTitle,
-        subtitle: attrs.pitbullHomepageSubtitle,
+        title: attrs.featuredTitle,
+        subtitle: attrs.featuredSubtitle,
         link: 'vehicles/' + attrs.slug,
         buttonText: attrs.linkText || 'Learn More',
-        image: attrs.pitbullFeaturedImage?.data?.attributes
+        image: attrs.featuredImage?.data?.attributes
           ? {
-              url: attrs.pitbullFeaturedImage.data.attributes.url,
+              url: attrs.featuredImage.data.attributes.url,
               alternativeText:
-                attrs.pitbullFeaturedImage.data.attributes.alternativeText,
-              width: attrs.pitbullFeaturedImage.data.attributes.width,
-              height: attrs.pitbullFeaturedImage.data.attributes.height,
-              formats: attrs.pitbullFeaturedImage.data.attributes.formats,
+                attrs.featuredImage.data.attributes.alternativeText,
+              width: attrs.featuredImage.data.attributes.width,
+              height: attrs.featuredImage.data.attributes.height,
+              formats: attrs.featuredImage.data.attributes.formats,
             }
           : null,
       };
@@ -56,12 +56,13 @@ async function getpageData() {
       getStrapiData({
         route: 'pitbull-homepage',
         // populate: 'deep',
-        // populate: 'banner.media, otherPages.image, vehicles_we_armors.pitbullFeaturedImage',
+        // populate: 'banner.media, otherPages.image, vehicles.featuredImage',
         custom:
-          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles_we_armors][fields][0]=pitbullHomepageTitle&populate[vehicles_we_armors][fields][1]=pitbullHomepageSubtitle&populate[vehicles_we_armors][fields][2]=slug&populate[vehicles_we_armors][populate]=pitbullFeaturedImage',
+          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
         revalidate: 3600,
       }),
     ]);
+    // console.log(pageData?.data?.attributes)
 
     return {
       pageData: pageData?.data?.attributes || null,
@@ -82,7 +83,7 @@ export default async function Home() {
     'default'
   );
   const normalizedVehicles = normalizeItemData(
-    pageData?.vehicles_we_armors?.data,
+    pageData?.vehicles?.data,
     'vehicles'
   );
 

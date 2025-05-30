@@ -1,36 +1,55 @@
+import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import Header from '@/components/header/Header';
 
-export default function Home() {
-  const BannerHeroData = {
-    title: 'VXT',
-    subTitle: 'Beauty meets Beast',
-    text: `Breaking new barriers and dimensions through a modern reinterpretation of ALPINE'S iconic history. The VXT emphasizes comfort and sophistication as much as innovative technology and performance-oriented form.`,
-    video: {
-      video_mp4: {
-        data: {
-          attributes: {
-            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4',
-            mime: 'video/mp4',
-          },
-        },
-      },
-      video_webm: {
-        data: {
-          attributes: {
-            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_10_23_6dfc97de70.mp4',
-            mime: 'video/webm',
-          },
-        },
-      },
-    },
-  };
+async function getVehicleData(slug: string) {
+  try {
+    const vehicleData = await getStrapiData({
+      route: 'vehicles-alternatives',
+      custom: `filters[slug][$eq]=${slug}&populate=deep`,
+      // custom: `filters[slug][$eq]=${slug}&populate[video][populate]=*&populate[bannerImage][populate]=*`
+      revalidate: 3600,
+    });
+
+    const vehicle = vehicleData?.data?.[0];
+
+    console.log(vehicleData);
+
+    return {
+      vehicleData: vehicle?.attributes || null,
+    };
+  } catch (error) {
+    console.error('Error fetching vehicle data:', error);
+    return {
+      vehicleData: null,
+    };
+  }
+}
+
+interface VehiclePageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export default async function VehiclePage({ params }: VehiclePageProps) {
+  // Await the params Promise
+  const { slug } = await params;
+  const { vehicleData } = await getVehicleData(slug);
+
+  if (!vehicleData) {
+    return (
+      <>
+        <Header />
+        <div>Vehicle not found</div>
+      </>
+    );
+  }
 
   return (
     <>
       <Header />
-
-      {BannerHeroData ? <BannerHero props={BannerHeroData} /> : null}
+      {vehicleData.banner && <BannerHero props={vehicleData.banner} />}
     </>
   );
 }
