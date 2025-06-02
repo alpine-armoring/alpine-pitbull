@@ -28,11 +28,12 @@ const columnsList = (props) => {
           >
             {item.image && (
               <Image
-                src={item.image.formats?.medium?.url || item.image.url}
+                src={item.image.formats?.large?.url || item.image.url}
                 alt={item.image.alternativeText || 'Alpine Armoring'}
-                width={item.image.formats?.medium?.width || item.image.width}
-                height={item.image.formats?.medium?.height || item.image.height}
+                width={item.image.formats?.large?.width || item.image.width}
+                height={item.image.formats?.large?.height || item.image.height}
                 className={`${styles.columnsList_item_image}`}
+                quality={90}
               ></Image>
             )}
 
