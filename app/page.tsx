@@ -2,6 +2,8 @@ import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
 import Header from '@/components/header/Header';
+import { getInstagramFeed } from '@/lib/instagramApi';
+import InstagramFeed from '@/components/instagram-feed/InstagramFeed';
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -49,34 +51,33 @@ function normalizeItemData(items, type = 'default') {
   });
 }
 
-// This runs on the server
 async function getpageData() {
   try {
-    const [pageData] = await Promise.all([
+    const [pageData, instagramPosts] = await Promise.all([
       getStrapiData({
         route: 'pitbull-homepage',
-        // populate: 'deep',
-        // populate: 'banner.media, otherPages.image, vehicles.featuredImage',
         custom:
           'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
         revalidate: 3600,
       }),
+      getInstagramFeed(), // Add Instagram feed fetch
     ]);
-    // console.log(pageData?.data?.attributes)
 
     return {
       pageData: pageData?.data?.attributes || null,
+      instagramPosts,
     };
   } catch (error) {
     console.error('Error fetching page data:', error);
     return {
       pageData: null,
+      instagramPosts: [],
     };
   }
 }
 
 export default async function Home() {
-  const { pageData } = await getpageData();
+  const { pageData, instagramPosts } = await getpageData(); // Add instagramPosts
 
   const normalizedOtherPages = normalizeItemData(
     pageData?.otherPages,
@@ -108,6 +109,9 @@ export default async function Home() {
         items={normalizedVehicles}
         configurator
       />
+
+      {/* Add Instagram Feed */}
+      <InstagramFeed posts={instagramPosts} title="Follow Us on Instagram" />
     </>
   );
 }

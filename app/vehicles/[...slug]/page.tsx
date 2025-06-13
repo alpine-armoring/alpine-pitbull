@@ -1,6 +1,8 @@
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import Header from '@/components/header/Header';
+import { Suspense } from 'react';
+import VehicleBuilder from '@/components/vehicle-builder/VehicleBuilder';
 
 async function getVehicleData(slug: string) {
   try {
@@ -49,7 +51,12 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
   return (
     <>
       <Header />
+
       {vehicleData.banner && <BannerHero props={vehicleData.banner} />}
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <VehicleBuilder />
+      </Suspense>
     </>
   );
 }
