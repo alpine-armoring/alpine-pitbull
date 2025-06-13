@@ -26,3 +26,11 @@ export interface BannerHeroProps {
   };
   error?: Error;
 }
+
+export interface IconProps {
+  className?: string;
+  color?: string;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
+  onClick?: () => void;
+}

@@ -60,7 +60,7 @@ async function getpageData() {
           'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
         revalidate: 3600,
       }),
-      getInstagramFeed(), // Add Instagram feed fetch
+      getInstagramFeed(),
     ]);
 
     return {
@@ -110,7 +110,6 @@ export default async function Home() {
         configurator
       />
 
-      {/* Add Instagram Feed */}
       <InstagramFeed posts={instagramPosts} title="Follow Us on Instagram" />
     </>
   );

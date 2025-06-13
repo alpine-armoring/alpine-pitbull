@@ -7,8 +7,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-background);
+  // background: var(--color-background);
   top: 0 !important;
+  background: var(--color-background) url(/images/noise4.png);
+  background-size: 30px;
   // padding-top: var(--header-height);
 }
 * {
