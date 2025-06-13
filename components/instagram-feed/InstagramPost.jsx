@@ -39,10 +39,7 @@ export default function InstagramPost({ post }) {
                 aria-label="Play video"
               >
                 <div className={styles.playIcon}>
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
@@ -66,9 +63,7 @@ export default function InstagramPost({ post }) {
 
       {post.caption && (
         <div className={styles.caption}>
-          <p className={styles.captionText}>
-            {post.caption}
-          </p>
+          <p className={styles.captionText}>{post.caption}</p>
           <a
             href={post.permalink}
             target="_blank"
