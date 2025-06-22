@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ReactLenis } from 'lenis/react';
 // import { Montserrat } from 'next/font/google';
 import '../styles/globals.scss';
 
@@ -42,8 +43,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${terminaFont.className}`}>
-        {/* <Header /> */}
-        {children}
+        <ReactLenis root>
+          {/* <Header /> */}
+          {children}
+        </ReactLenis>
       </body>
     </html>
   );

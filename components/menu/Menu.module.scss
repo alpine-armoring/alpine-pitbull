@@ -31,6 +31,7 @@
   left: 0;
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
   z-index: 3;
+  will-change: clip-path;
 
   img {
     width: 100%;
@@ -85,9 +86,9 @@
         &:hover {
           transform: translateY(-3px);
         }
-        &:not(.navigationPopup_socials_item_tiktok):not(
-            .navigationPopup_socials_item_threads
-          ):not(.navigationPopup_socials_item_x):hover {
+        &:not(.menuContent_socials_item_tiktok):not(
+            .menuContent_socials_item_threads
+          ):not(.menuContent_socials_item_x):hover {
           svg path {
             fill: var(--color-primary);
           }

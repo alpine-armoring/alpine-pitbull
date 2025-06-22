@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './Header.module.scss';
 import Menu from '@/components/menu/Menu';
+import Image from 'next/image';
 
 const header = () => {
   return (
@@ -9,7 +10,14 @@ const header = () => {
         <Link href="/configurator">Vehicle Configurator</Link>
       </nav> */}
       <Link href="/" className={`${styles.header_logo}`}>
-        Alpine Armoring
+        {/* Alpine Armoring */}
+        <Image
+          src="/images/alpine-pitbull-logo.svg"
+          alt="Alpine Armoring Pitbull Logo"
+          width={50}
+          height={60}
+          quality={100}
+        ></Image>
       </Link>
       <Menu
         defaultPreviewImage="https://alpine-pitbull.vercel.app/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_tactical_features_button_image_6e23a07a4d.jpg&w=1024&q=90"

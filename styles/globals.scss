@@ -1149,3 +1149,65 @@ $shapeColor: var(--color-background);
     }
   }
 }
+
+
+
+
+.textSection{
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+  // text-align: center;
+  font-size: rem(20);
+  margin: auto;
+
+  @include breakpoint(large) {
+    padding: rem(150) rem(50);
+    font-size: rem(28);
+    max-width: 1024px;
+  }
+
+  p{
+    line-height: 1.2;
+  }
+}
+
+.imageRight{
+  // position: relative;
+  // aspect-ratio: 4 / 3;
+  margin: rem(24) auto;
+
+  @include breakpoint(large) {
+    max-width: 1500px;
+  }
+
+  img{
+    // object-fit: cover;
+    // object-position: 50% 50%;
+    width: 85%;
+    max-width: 100%;
+    margin-left: auto;
+    border-radius: 6px;
+
+    @include breakpoint(large) {
+      max-width: 1000px;
+    }
+  }
+}
+.imageLeft{
+  margin: rem(24) auto;
+
+  @include breakpoint(large) {
+    max-width: 1500px;
+  }
+
+  img{
+    width: 65%;
+    max-width: 100%;
+    border-radius: 6px;
+
+    @include breakpoint(large) {
+      max-width: 750px;
+    }
+  }
+
+}
