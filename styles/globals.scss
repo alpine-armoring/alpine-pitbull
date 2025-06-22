@@ -1150,10 +1150,7 @@ $shapeColor: var(--color-background);
   }
 }
 
-
-
-
-.textSection{
+.textSection {
   padding-top: rem(24);
   padding-bottom: rem(24);
   // text-align: center;
@@ -1166,12 +1163,12 @@ $shapeColor: var(--color-background);
     max-width: 1024px;
   }
 
-  p{
+  p {
     line-height: 1.2;
   }
 }
 
-.imageRight{
+.imageRight {
   // position: relative;
   // aspect-ratio: 4 / 3;
   margin: rem(24) auto;
@@ -1180,7 +1177,7 @@ $shapeColor: var(--color-background);
     max-width: 1500px;
   }
 
-  img{
+  img {
     // object-fit: cover;
     // object-position: 50% 50%;
     width: 85%;
@@ -1193,14 +1190,14 @@ $shapeColor: var(--color-background);
     }
   }
 }
-.imageLeft{
+.imageLeft {
   margin: rem(24) auto;
 
   @include breakpoint(large) {
     max-width: 1500px;
   }
 
-  img{
+  img {
     width: 65%;
     max-width: 100%;
     border-radius: 6px;
@@ -1209,5 +1206,4 @@ $shapeColor: var(--color-background);
       max-width: 750px;
     }
   }
-
 }
