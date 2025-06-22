@@ -101,17 +101,17 @@
     font-size: 13px;
     font-weight: 500;
     border-radius: 25px;
-    background: transparent;
+    background: #fff;
     border: 1px solid #fff;
     cursor: pointer;
-    color: white;
+    color: var(--color-background);
     transition:
       color 0.2s ease-in-out,
       background 0.2s ease-in-out;
 
     &:hover {
-      background: white;
-      color: var(--color-background);
+      background: var(--color-background);
+      color: white;
     }
   }
 }
