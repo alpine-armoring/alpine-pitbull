@@ -1,31 +1,21 @@
-.instagramFeed {
-  padding: 48px 0;
-}
+.instagramFeed{
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+  &_container{
+    margin-bottom: rem(30);
+  }
 
-.title {
-  margin-bottom: 32px;
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  color: #111827;
-}
+  &_title{
+    margin-bottom: rem(30);
+  }
 
-.postsGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-
-  @media (min-width: 640px) {
+  &_list{
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  
+    @include breakpoint(large) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }

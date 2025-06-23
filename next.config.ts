@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'https://alpinetesting.cloudflex-ha.com',
+        hostname: 'alpinetesting.cloudflex-ha.com',
         pathname: '**',
       },
       {
@@ -55,6 +55,21 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'd102sycao8uwt8.cloudfront.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent-waw2-1.cdninstagram.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent-waw2-2.cdninstagram.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent-bru2-1.cdninstagram.com',
         pathname: '**',
       },
     ],

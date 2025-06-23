@@ -2,9 +2,9 @@ import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
 import Header from '@/components/header/Header';
-import { getInstagramFeed } from '@/lib/instagramApi';
+import { getInstagramFeedWithFileCache } from '@/lib/instagramApi';
 import InstagramFeed from '@/components/instagram-feed/InstagramFeed';
-import InstagramEmbed from '@/components/InstagramEmbed';
+// import InstagramEmbed from '@/components/InstagramEmbed';
 
 // import dynamic from 'next/dynamic';
 // const InstagramEmbed = dynamic(() => import('@/componentsInstagramEmbed'), {
@@ -72,7 +72,7 @@ async function getpageData() {
           'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
         revalidate: 3600,
       }),
-      getInstagramFeed(),
+      getInstagramFeedWithFileCache(),
     ]);
 
     return {
@@ -122,9 +122,9 @@ export default async function Home() {
         configurator
       />
 
-      <InstagramEmbed />
+      {/* <InstagramEmbed /> */}
 
-      <InstagramFeed posts={instagramPosts} title="Follow Us on Instagram" />
+      <InstagramFeed posts={instagramPosts} title="ALPINE Live" />
     </>
   );
 }

@@ -19,7 +19,7 @@ export default function InstagramPost({ post }) {
 
   const isVideo = post.media_type === 'VIDEO';
   const displayImage = isVideo ? post.thumbnail_url : post.media_url;
-
+// console.log(post)
   return (
     <div className={styles.instagramPost}>
       <div className={styles.imageContainer}>
@@ -38,11 +38,7 @@ export default function InstagramPost({ post }) {
                 className={styles.playButton}
                 aria-label="Play video"
               >
-                <div className={styles.playIcon}>
-                  <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
+                <svg className={styles.playIcon} aria-hidden="true" viewBox="0 0 60 60"><path fill="currentColor" d="m24 0c-13.26 0-24 10.74-24 24s10.74 24 24 24 24-10.74 24-24-10.74-24-24-24zm-4.8 34.8v-21.6l14.4 10.8z" transform="translate(6 6)"></path></svg>
               </button>
             )}
           </>
@@ -61,7 +57,7 @@ export default function InstagramPost({ post }) {
         )}
       </div>
 
-      {post.caption && (
+      {/* {post.caption && (
         <div className={styles.caption}>
           <p className={styles.captionText}>{post.caption}</p>
           <a
@@ -73,7 +69,7 @@ export default function InstagramPost({ post }) {
             View on Instagram
           </a>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

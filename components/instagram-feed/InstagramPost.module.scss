@@ -1,16 +1,16 @@
 .instagramPost {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: white;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease-in-out;
+  // transition: transform 0.2s ease-in-out;
 
-  &:hover {
-    transform: translateY(-2px);
-  }
+  // &:hover {
+  //   transform: translateY(-2px);
+  // }
 }
 
 .imageContainer {
@@ -40,29 +40,35 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    .playIcon{
+      opacity: 1;
+      transform: scale(1.1);
+      transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+    }
   }
 }
 
 .playIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.9);
-  transition: transform 0.2s ease;
+  bottom: 0;
+  filter: drop-shadow(0 .5em 2em rgba(0, 0, 0, .5));
+  left: 0;
+  margin: auto;
+  position: absolute;
+  pointer-events: none;
+  right: 0;
+  top: 0;
+  height: 60px;
+  width: 60px;
+  color: #fff;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transform: scale(1);
+  opacity: .6;
+  transition: transform .5s ease-in-out, opacity .5s ease-in-out;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  svg {
-    width: 32px;
-    height: 32px;
-    color: #1f2937;
-    margin-left: 4px;
+  @include breakpoint(large) {
+    height: 90px;
+    width: 90px;
   }
 }
 
@@ -72,29 +78,17 @@
   object-fit: cover;
 }
 
-.caption {
-  padding: 16px;
-}
+// .caption {
+//   padding: 16px;
+// }
 
-.captionText {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.instagramLink {
-  display: inline-block;
-  font-size: 12px;
-  color: #2563eb;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #1d4ed8;
-  }
-}
+// .captionText {
+//   font-size: 14px;
+//   color: #6b7280;
+//   line-height: 1.4;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 3;
+//   -webkit-box-orient: vertical;
+//   overflow: hidden;
+//   margin-bottom: 8px;
+// }
