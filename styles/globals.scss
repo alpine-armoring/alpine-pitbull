@@ -1208,9 +1208,6 @@ $shapeColor: var(--color-background);
   }
 }
 
-
-
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;
@@ -1236,8 +1233,9 @@ $shapeColor: var(--color-background);
   animation: none !important;
 }
 
-.text-reveal-container{
-  .word, .line {
+.text-reveal-container {
+  .word,
+  .line {
     transform: translateY(100%);
   }
 }

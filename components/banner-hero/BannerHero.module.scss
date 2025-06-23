@@ -64,8 +64,8 @@
     letter-spacing: 0.4px;
     font-weight: var(--font-medium);
     opacity: 0;
-    
-    &[data-gsap-ready="true"] {
+
+    &[data-gsap-ready='true'] {
       opacity: 1;
     }
 
@@ -82,8 +82,8 @@
     text-transform: uppercase;
     text-align: center;
     opacity: 0;
-    
-    &[data-gsap-ready="true"] {
+
+    &[data-gsap-ready='true'] {
       opacity: 1;
     }
 
