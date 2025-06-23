@@ -1,21 +1,19 @@
-.instagramFeed{
-
-  &_container{
+.instagramFeed {
+  &_container {
     margin-bottom: rem(30);
   }
 
-  &_title{
+  &_title {
     margin-bottom: rem(30);
   }
 
-  &_list{
+  &_list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-  
+
     @include breakpoint(large) {
       grid-template-columns: repeat(3, 1fr);
     }
   }
-
 }

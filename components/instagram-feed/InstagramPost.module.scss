@@ -40,17 +40,19 @@
   cursor: pointer;
 
   &:hover {
-    .playIcon{
+    .playIcon {
       opacity: 1;
       transform: scale(1.1);
-      transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+      transition:
+        transform 0.2s ease-in-out,
+        opacity 0.2s ease-in-out;
     }
   }
 }
 
 .playIcon {
   bottom: 0;
-  filter: drop-shadow(0 .5em 2em rgba(0, 0, 0, .5));
+  filter: drop-shadow(0 0.5em 2em rgba(0, 0, 0, 0.5));
   left: 0;
   margin: auto;
   position: absolute;
@@ -63,8 +65,10 @@
   cursor: pointer;
   will-change: transform, opacity;
   transform: scale(1);
-  opacity: .6;
-  transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+  opacity: 0.6;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
 
   @include breakpoint(large) {
     height: 90px;
