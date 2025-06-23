@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import { ReactLenis } from 'lenis/react';
 import '../styles/globals.scss';
-import { ViewTransitions } from 'next-view-transitions';
+// import { ViewTransitions } from 'next-view-transitions';
 import Header from '@/components/header/Header';
+import { Providers } from './providers';
 
 import localFont from 'next/font/local';
 const terminaFont = localFont({
+  variable: '--font-primary',
+  preload: true,
   src: [
     {
       path: '../public/fonts/Termina-Regular.woff2',
@@ -40,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
+    <Providers>
       <html lang="en">
         <body className={`${terminaFont.className}`}>
           <ReactLenis root>
@@ -49,6 +52,6 @@ export default function RootLayout({
           </ReactLenis>
         </body>
       </html>
-    </ViewTransitions>
+    </Providers>
   );
 }

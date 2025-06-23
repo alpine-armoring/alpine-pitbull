@@ -88,7 +88,7 @@ export default async function Home() {
   );
 
   return (
-    <div>
+    <>
       {pageData?.banner && <BannerHero props={pageData.banner} />}
 
       {pageData?.otherPages && (
@@ -110,6 +110,6 @@ export default async function Home() {
       {/* <InstagramEmbed /> */}
 
       <InstagramFeed posts={instagramPosts} title="ALPINE Live" />
-    </div>
+    </>
   );
 }

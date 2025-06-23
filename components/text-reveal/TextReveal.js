@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useTransitionState } from 'next-transition-router';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -20,10 +21,13 @@ export default function TextReveal({
   const elementRefs = useRef([]);
   const splitRefs = useRef([]);
   const lines = useRef([]);
+  const { isReady } = useTransitionState();
 
   useGSAP(
     () => {
-      if (!containerRef.current) return;
+      // Only run animation when transition is ready
+      if (!isReady || !containerRef.current) return;
+      console.log('1');
 
       let elements = [];
       if (containerRef.current.hasAttribute('data-copy-wrapper')) {
@@ -110,7 +114,10 @@ export default function TextReveal({
         });
       };
     },
-    { scope: containerRef, dependencies: [animateOnScroll, delay, word, line] }
+    {
+      scope: containerRef,
+      dependencies: [isReady, animateOnScroll, delay, word, line],
+    }
   );
 
   if (React.Children.count(children) === 1) {
