@@ -1,6 +1,5 @@
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
-import Header from '@/components/header/Header';
 import { Suspense } from 'react';
 import VehicleBuilder from '@/components/vehicle-builder/VehicleBuilder';
 import TextReveal from '@/components/text-reveal/TextReveal';
@@ -15,8 +14,6 @@ async function getVehicleData(slug: string) {
     });
 
     const vehicle = vehicleData?.data?.[0];
-
-    console.log(vehicle);
 
     return {
       vehicleData: vehicle?.attributes || null,
@@ -36,14 +33,12 @@ interface VehiclePageProps {
 }
 
 export default async function VehiclePage({ params }: VehiclePageProps) {
-  // Await the params Promise
   const { slug } = await params;
   const { vehicleData } = await getVehicleData(slug);
 
   if (!vehicleData) {
     return (
       <>
-        <Header />
         <div>Vehicle not found</div>
       </>
     );
@@ -51,12 +46,10 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
 
   return (
     <>
-      <Header />
-
       {vehicleData.banner && <BannerHero props={vehicleData.banner} />}
 
       <div className="textSection">
-        <TextReveal delay={0.5}>
+        <TextReveal line>
           <p>
             The Pit-Bull VX® combines cutting-edge ballistic protection with
             advanced technology and superior maneuverability, capable of

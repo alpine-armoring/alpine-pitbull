@@ -8,6 +8,7 @@ export interface BannerHeroProps {
         attributes: {
           url: string;
           mime: string;
+          alternativeText: string;
         };
       } | null;
     };
@@ -16,6 +17,7 @@ export interface BannerHeroProps {
         attributes: {
           url: string;
           mime: string;
+          alternativeText: string;
         };
       } | null;
     };

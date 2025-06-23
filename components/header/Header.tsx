@@ -1,16 +1,91 @@
+'use client';
+import { useTransitionRouter } from 'next-view-transitions';
 import Link from 'next/link';
 import styles from './Header.module.scss';
 import Menu from '@/components/menu/Menu';
 import Image from 'next/image';
 
-const header = () => {
+const Header = () => {
+  const router = useTransitionRouter();
+
+  function slideInOut() {
+    // const videos = document.querySelectorAll('video');
+    // videos.forEach(video => {
+    //   video.pause();
+    //   video.style.opacity = '0';
+    //   video.style.transition = 'opacity 0.2s ease';
+    // });
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: 'translateY(0)',
+        },
+        {
+          opacity: 0.2,
+          transform: 'translateY(-35%)',
+        },
+      ],
+      {
+        duration: 1300,
+        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+        fill: 'forwards',
+        pseudoElement: '::view-transition-old(root)',
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+        },
+        {
+          clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
+        },
+      ],
+      {
+        duration: 1300,
+        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+        fill: 'forwards',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    );
+  }
+
   return (
     <header className={`${styles.header} container`}>
       {/* <nav className={`${styles.navigation}`}>
         <Link href="/configurator">Vehicle Configurator</Link>
       </nav> */}
-      <Link href="/" className={`${styles.header_logo}`}>
-        {/* Alpine Armoring */}
+      <Link
+        href="/"
+        className={`${styles.header_logo}`}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push(`/`, {
+            onTransitionReady: slideInOut,
+          });
+        }}
+      >
+        <Image
+          src="/images/alpine-pitbull-logo.svg"
+          alt="Alpine Armoring Pitbull Logo"
+          width={50}
+          height={60}
+          quality={100}
+        ></Image>
+      </Link>
+      <Link
+        href="/"
+        className={`${styles.header_logo}`}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push(`/vehicles/armored-vx`, {
+            onTransitionReady: slideInOut,
+          });
+        }}
+      >
         <Image
           src="/images/alpine-pitbull-logo.svg"
           alt="Alpine Armoring Pitbull Logo"
@@ -58,4 +133,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

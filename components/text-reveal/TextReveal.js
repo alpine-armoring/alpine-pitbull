@@ -13,6 +13,8 @@ export default function TextReveal({
   children,
   animateOnScroll = true,
   delay = 0,
+  word = false,
+  line = false,
 }) {
   const containerRef = useRef(null);
   const elementRefs = useRef([]);
@@ -23,10 +25,6 @@ export default function TextReveal({
     () => {
       if (!containerRef.current) return;
 
-      splitRefs.current = [];
-      lines.current = [];
-      elementRefs.current = [];
-
       let elements = [];
       if (containerRef.current.hasAttribute('data-copy-wrapper')) {
         elements = Array.from(containerRef.current.children);
@@ -34,32 +32,54 @@ export default function TextReveal({
         elements = [containerRef.current];
       }
 
+      splitRefs.current = [];
+      lines.current = [];
+      elementRefs.current = [];
+
       elements.forEach((element) => {
         elementRefs.current.push(element);
 
-        const split = SplitText.create(element, {
-          type: 'lines',
-          mask: 'lines',
-          linesClass: 'line++',
-          lineThreshold: 0.1,
-        });
+        // Determine split type based on props
+        const splitType = word ? 'words' : 'lines';
 
-        splitRefs.current.push(split);
+        const splitConfig = {
+          type: splitType,
+        };
 
-        const computedStyle = window.getComputedStyle(element);
-        const textIndent = computedStyle.textIndent;
-
-        if (textIndent && textIndent !== '0px') {
-          if (split.lines.length > 0) {
-            split.lines[0].style.paddingLeft = textIndent;
-          }
-          element.style.textIndent = '0';
+        if (!word) {
+          splitConfig.mask = 'lines';
+          splitConfig.linesClass = 'line++';
+          splitConfig.lineThreshold = 0.1;
+        } else {
+          splitConfig.wordsClass = 'word++';
         }
 
-        lines.current.push(...split.lines);
+        const split = SplitText.create(element, splitConfig);
+        splitRefs.current.push(split);
+
+        if (!word) {
+          const computedStyle = window.getComputedStyle(element);
+          const textIndent = computedStyle.textIndent;
+
+          if (textIndent && textIndent !== '0px') {
+            if (split.lines.length > 0) {
+              split.lines[0].style.paddingLeft = textIndent;
+            }
+            element.style.textIndent = '0';
+          }
+        }
+
+        const elementsToAnimate = word ? split.words : split.lines;
+        lines.current.push(...elementsToAnimate);
       });
 
+      // Set initial positions BEFORE making visible
       gsap.set(lines.current, { y: '100%' });
+
+      // Now make the container visible by adding the data attribute
+      elements.forEach((element) => {
+        element.setAttribute('data-gsap-ready', 'true');
+      });
 
       const animationProps = {
         y: '0%',
@@ -90,7 +110,7 @@ export default function TextReveal({
         });
       };
     },
-    { scope: containerRef, dependencies: [animateOnScroll, delay] }
+    { scope: containerRef, dependencies: [animateOnScroll, delay, word, line] }
   );
 
   if (React.Children.count(children) === 1) {

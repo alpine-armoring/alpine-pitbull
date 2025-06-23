@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { ReactLenis } from 'lenis/react';
-// import { Montserrat } from 'next/font/google';
 import '../styles/globals.scss';
+import { ViewTransitions } from 'next-view-transitions';
+import Header from '@/components/header/Header';
 
 import localFont from 'next/font/local';
 const terminaFont = localFont({
@@ -23,9 +24,7 @@ const terminaFont = localFont({
     },
   ],
 });
-
-// import Header from '@/components/header/Header';
-
+// import { Montserrat } from 'next/font/google';
 // const montserrat = Montserrat({
 //   subsets: ['latin'],
 // });
@@ -41,13 +40,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${terminaFont.className}`}>
-        <ReactLenis root>
-          {/* <Header /> */}
-          {children}
-        </ReactLenis>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={`${terminaFont.className}`}>
+          <ReactLenis root>
+            <Header />
+            {children}
+          </ReactLenis>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

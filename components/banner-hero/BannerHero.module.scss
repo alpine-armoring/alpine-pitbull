@@ -63,6 +63,11 @@
     text-transform: uppercase;
     letter-spacing: 0.4px;
     font-weight: var(--font-medium);
+    opacity: 0;
+    
+    &[data-gsap-ready="true"] {
+      opacity: 1;
+    }
 
     @include breakpoint(large) {
       font-size: rem(20);
@@ -76,6 +81,11 @@
     line-height: 1em;
     text-transform: uppercase;
     text-align: center;
+    opacity: 0;
+    
+    &[data-gsap-ready="true"] {
+      opacity: 1;
+    }
 
     @include breakpoint(large) {
       font-size: 7vw;

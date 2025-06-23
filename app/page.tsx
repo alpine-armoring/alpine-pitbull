@@ -1,21 +1,8 @@
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
-import Header from '@/components/header/Header';
 import { getInstagramFeedWithFileCache } from '@/lib/instagramApi';
 import InstagramFeed from '@/components/instagram-feed/InstagramFeed';
-// import InstagramEmbed from '@/components/InstagramEmbed';
-
-// import dynamic from 'next/dynamic';
-// const InstagramEmbed = dynamic(() => import('@/componentsInstagramEmbed'), {
-//   ssr: false,
-//   loading: () => (
-//     <div className="flex items-center justify-center p-8">
-//       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-//       <span className="ml-2">Loading Instagram post...</span>
-//     </div>
-//   ),
-// });
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -89,7 +76,7 @@ async function getpageData() {
 }
 
 export default async function Home() {
-  const { pageData, instagramPosts } = await getpageData(); // Add instagramPosts
+  const { pageData, instagramPosts } = await getpageData();
 
   const normalizedOtherPages = normalizeItemData(
     pageData?.otherPages,
@@ -101,9 +88,7 @@ export default async function Home() {
   );
 
   return (
-    <>
-      <Header />
-
+    <div>
       {pageData?.banner && <BannerHero props={pageData.banner} />}
 
       {pageData?.otherPages && (
@@ -125,6 +110,6 @@ export default async function Home() {
       {/* <InstagramEmbed /> */}
 
       <InstagramFeed posts={instagramPosts} title="ALPINE Live" />
-    </>
+    </div>
   );
 }
