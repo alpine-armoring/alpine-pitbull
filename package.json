@@ -16,14 +16,14 @@
     }
   },
   "lint-staged": {
-      "*.{js,jsx,ts,tsx}": [
-        "eslint --fix",
-        "prettier --write"
-      ],
-      "*.{css,scss,md}": [
-        "prettier --write"
-      ]
-    },
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "gsap": "^3.13.0",
