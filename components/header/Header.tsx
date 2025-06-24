@@ -21,7 +21,7 @@ const Header = () => {
         ></Image>
       </TransitionLink>
 
-      <TransitionLink
+      {/* <TransitionLink
         href="/vehicles/armored-vx"
         className={`${styles.header_logo}`}
       >
@@ -32,7 +32,7 @@ const Header = () => {
           height={60}
           quality={100}
         ></Image>
-      </TransitionLink>
+      </TransitionLink> */}
 
       <Menu
         defaultPreviewImage="https://alpine-pitbull.vercel.app/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_tactical_features_button_image_6e23a07a4d.jpg&w=1024&q=90"
