@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { ReactLenis } from 'lenis/react';
 import '../styles/globals.scss';
-// import { ViewTransitions } from 'next-view-transitions';
+import { ViewTransitions } from 'next-view-transitions';
 import Header from '@/components/header/Header';
-import { Providers } from './providers';
 
 import localFont from 'next/font/local';
 const terminaFont = localFont({
   variable: '--font-primary',
   preload: true,
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
   src: [
     {
       path: '../public/fonts/Termina-Regular.woff2',
@@ -43,15 +44,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
+    <ViewTransitions>
+      <html lang="en" className={terminaFont.variable}>
+        <head>
+          {/* Preconnect to external domains for better performance */}
+          <link rel="preconnect" href="https://d102sycao8uwt8.cloudfront.net" />
+          <link
+            rel="preconnect"
+            href="https://alpine-backend-992382787275.s3.us-east-1.amazonaws.com"
+          />
+
+          {/* Preload critical resources */}
+          <link
+            rel="preload"
+            href="/fonts/Termina-Medium.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+
+          {/* Critical CSS hint */}
+          <link
+            rel="preload"
+            href="/images/alpine-pitbull-logo.svg"
+            as="image"
+          />
+        </head>
+
         <body className={`${terminaFont.className}`}>
-          <ReactLenis root>
+          <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
             <Header />
+
             {children}
           </ReactLenis>
         </body>
       </html>
-    </Providers>
+    </ViewTransitions>
   );
 }

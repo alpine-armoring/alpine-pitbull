@@ -6,6 +6,7 @@
   overflow: hidden;
   z-index: 2;
   color: var(--color-white);
+  contain: layout style paint; 
 
   @include breakpoint(large) {
     max-height: 1400px;
@@ -29,11 +30,9 @@
     &:after {
       position: absolute;
       content: '';
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: rgba(0, 0, 0, 0.4);
+      pointer-events: none;
     }
   }
 
@@ -41,6 +40,7 @@
     position: relative;
     z-index: 3;
     text-align: center;
+    will-change: transform, opacity;
 
     @include breakpoint(large) {
       padding-bottom: 20vh;
@@ -50,11 +50,12 @@
   &_video {
     position: absolute;
     height: 100%;
-    top: 0;
-    left: 0;
+    inset: 0; 
     width: 100%;
     object-fit: cover;
     object-position: center center;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
   &_subTitle {
@@ -64,10 +65,12 @@
     letter-spacing: 0.4px;
     font-weight: var(--font-medium);
     opacity: 0;
-    will-change: opacity;
+    will-change: transform, opacity;
+    transform: translateY(20px);
 
     &[data-gsap-ready='true'] {
       opacity: 1;
+      transform: translateY(0);
     }
 
     @include breakpoint(large) {
@@ -83,10 +86,12 @@
     text-transform: uppercase;
     text-align: center;
     opacity: 0;
-    will-change: opacity;
+    will-change: transform, opacity;
+    transform: translateY(30px);
 
     &[data-gsap-ready='true'] {
       opacity: 1;
+      transform: translateY(0);
     }
 
     @include breakpoint(large) {
@@ -117,13 +122,34 @@
     border: 1px solid #fff;
     cursor: pointer;
     color: var(--color-background);
-    transition:
-      color 0.2s ease-in-out,
-      background 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    will-change: transform;
 
     &:hover {
       background: var(--color-background);
       color: white;
+      transform: translateY(-2px); 
     }
+
+    &:active {
+      transform: translateY(0); 
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp_banner {
+    &_subTitle,
+    &_title,
+    &_button {
+      transition: none;
+      animation: none;
+    }
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hp_banner_video {
+    // Higher quality settings for retina displays
+    image-rendering: -webkit-optimize-contrast;
   }
 }

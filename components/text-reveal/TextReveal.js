@@ -1,14 +1,40 @@
 'use client';
 
-import React, { useRef } from 'react';
-
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { useTransitionState } from 'next-transition-router';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
+
+// Global flag to track page transitions
+let isPageTransitioning = false;
+
+// Export function to set transition state
+export const setPageTransitioning = () => {
+  isPageTransitioning = true;
+};
+
+// Hook to detect if we arrived via page navigation vs direct visit/refresh
+const useNavigationState = (transitionDuration = 600) => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (isPageTransitioning) {
+      const timer = setTimeout(() => {
+        setIsReady(true);
+        isPageTransitioning = false;
+      }, transitionDuration);
+
+      return () => clearTimeout(timer);
+    } else {
+      setIsReady(true);
+    }
+  }, [transitionDuration]);
+
+  return isReady;
+};
 
 export default function TextReveal({
   children,
@@ -16,18 +42,31 @@ export default function TextReveal({
   delay = 0,
   word = false,
   line = false,
+  transitionDuration = 600,
 }) {
   const containerRef = useRef(null);
-  const elementRefs = useRef([]);
   const splitRefs = useRef([]);
-  const lines = useRef([]);
-  const { isReady } = useTransitionState();
+  const tl = useRef(null);
+
+  // Use the navigation-based ready state
+  const isReady = useNavigationState(transitionDuration);
+
+  // Memoize animation config to prevent unnecessary re-renders
+  const animationConfig = useMemo(
+    () => ({
+      y: '0%',
+      duration: 0.8, // Reduced from 1s for better performance
+      stagger: 0.05, // Reduced stagger for smoother effect
+      ease: 'power3.out', // Changed to power3 for better performance
+      delay: delay,
+    }),
+    [delay]
+  );
 
   useGSAP(
     () => {
       // Only run animation when transition is ready
       if (!isReady || !containerRef.current) return;
-      console.log('1');
 
       let elements = [];
       if (containerRef.current.hasAttribute('data-copy-wrapper')) {
@@ -37,12 +76,9 @@ export default function TextReveal({
       }
 
       splitRefs.current = [];
-      lines.current = [];
-      elementRefs.current = [];
+      const allTargets = [];
 
       elements.forEach((element) => {
-        elementRefs.current.push(element);
-
         // Determine split type based on props
         const splitType = word ? 'words' : 'lines';
 
@@ -61,6 +97,7 @@ export default function TextReveal({
         const split = SplitText.create(element, splitConfig);
         splitRefs.current.push(split);
 
+        // Handle text-indent for lines
         if (!word) {
           const computedStyle = window.getComputedStyle(element);
           const textIndent = computedStyle.textIndent;
@@ -74,39 +111,43 @@ export default function TextReveal({
         }
 
         const elementsToAnimate = word ? split.words : split.lines;
-        lines.current.push(...elementsToAnimate);
+        allTargets.push(...elementsToAnimate);
       });
 
-      // Set initial positions BEFORE making visible
-      gsap.set(lines.current, { y: '100%' });
+      // Set initial positions with better transform properties
+      gsap.set(allTargets, {
+        y: '100%',
+        force3D: true,
+        transformOrigin: 'center bottom',
+        willChange: 'transform', // Add will-change for better performance
+      });
 
-      // Now make the container visible by adding the data attribute
+      // Make the container visible
       elements.forEach((element) => {
         element.setAttribute('data-gsap-ready', 'true');
       });
 
-      const animationProps = {
-        y: '0%',
-        duration: 1,
-        stagger: 0.1,
-        ease: 'power4.out',
-        delay: delay,
-      };
+      // Create timeline for better performance
+      tl.current = gsap.timeline();
 
       if (animateOnScroll) {
-        gsap.to(lines.current, {
-          ...animationProps,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 75%',
-            once: true,
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: 'top 80%', // Slightly adjusted for better timing
+          once: true,
+          onEnter: () => {
+            tl.current.to(allTargets, animationConfig);
           },
         });
       } else {
-        gsap.to(lines.current, animationProps);
+        tl.current.to(allTargets, animationConfig);
       }
 
+      // Cleanup function
       return () => {
+        if (tl.current) {
+          tl.current.kill();
+        }
         splitRefs.current.forEach((split) => {
           if (split) {
             split.revert();
@@ -116,7 +157,14 @@ export default function TextReveal({
     },
     {
       scope: containerRef,
-      dependencies: [isReady, animateOnScroll, delay, word, line],
+      dependencies: [
+        isReady,
+        animateOnScroll,
+        delay,
+        word,
+        line,
+        transitionDuration,
+      ],
     }
   );
 

@@ -152,9 +152,10 @@ select {
   }
 }
 
-::i-block-chrome,
-.shape-before {
-  overflow-x: hidden;
+@supports (-webkit-appearance: none) {
+  .shape-before {
+    overflow-x: hidden;
+  }
 }
 
 .shape-before-white {
@@ -1208,73 +1209,72 @@ $shapeColor: var(--color-background);
   }
 }
 
-// ::view-transition-old(root),
-// ::view-transition-new(root) {
-//   animation: none !important;
-// }
-
-// ::view-transition-group(root) {
-//   z-index: auto !important;
-// }
-
-// ::view-transition-image-pair(root) {
-//   isolation: isolate;
-//   will-change: transform, opacity, clip-path;
-//   z-index: 1;
-// }
-
-// ::view-transition-new(root) {
-//   z-index: 10000;
-//   animation: none !important;
-// }
-
-// ::view-transition-old(root) {
-//   z-index: 1;
-//   animation: none !important;
-// }
-
-// .text-reveal-container {
-//   .word,
-//   .line {
-//     transform: translateY(100%);
-//   }
-// }
-
-.first-layer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 50;
-  transform: translateY(100%);
-  background-color: var(--color-primary);
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
 }
 
-.second-layer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 50;
-  transform: translateY(100%);
-  background-color: var(--color-background);
+::view-transition-group(root) {
+  z-index: auto !important;
 }
 
-// Alternative using mixins for reusability
-@mixin overlay-layer($bg-color) {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  transform: translateY(100%);
-  background-color: $bg-color;
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+  z-index: 1;
 }
 
-.first-layer-mixin {
-  @include overlay-layer(var(--color-primary));
+::view-transition-new(root) {
+  z-index: 10000;
+  animation: none !important;
 }
 
-.second-layer-mixin {
-  @include overlay-layer(var(--color-background));
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
 }
+
+[data-gsap-ready="true"] {
+  .line, .word{
+    will-change: transform;
+  }
+}
+
+// .first-layer {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 50;
+//   transform: translateY(100%);
+//   background-color: var(--color-primary);
+// }
+
+// .second-layer {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 50;
+//   transform: translateY(100%);
+//   background-color: var(--color-background);
+// }
+
+// // Alternative using mixins for reusability
+// @mixin overlay-layer($bg-color) {
+//   position: fixed;
+//   inset: 0;
+//   z-index: 50;
+//   transform: translateY(100%);
+//   background-color: $bg-color;
+// }
+
+// .first-layer-mixin {
+//   @include overlay-layer(var(--color-primary));
+// }
+
+// .second-layer-mixin {
+//   @include overlay-layer(var(--color-background));
+// }

@@ -40,6 +40,7 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
             alt={props.media.data.attributes.alternativeText || ''}
             className={`${styles.hp_banner_video}`}
             fill
+            priority
             // style={{ objectFit: 'cover', width: '100%', height: '100%' }}
           ></Image>
         ) : null}

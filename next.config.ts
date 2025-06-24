@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Keep only your working SASS configuration
   sassOptions: {
     logger: {
       warn: (message) => {
@@ -12,10 +13,40 @@ const nextConfig: NextConfig = {
     quietDeps: true,
     prependData: `@use './styles/_mixins.scss' as *;`,
   },
+
+  experimental: {
+    optimizePackageImports: ['gsap', 'lenis'], // Tree shake heavy libraries
+  },
+
+  webpack: (config) => {
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      cacheGroups: {
+        gsap: {
+          name: 'gsap',
+          test: /[\\/]node_modules[\\/](gsap)[\\/]/,
+          priority: 30,
+          reuseExistingChunk: true,
+        },
+        lenis: {
+          name: 'lenis',
+          test: /[\\/]node_modules[\\/](lenis)[\\/]/,
+          priority: 20,
+          reuseExistingChunk: true,
+        },
+      },
+    };
+    return config;
+  },
+
+  // Keep your working image configuration
   images: {
     contentDispositionType: 'inline',
     minimumCacheTTL: 60 * 60 * 24 * 30,
     deviceSizes: [375, 640, 768, 1024, 1280, 1920, 2200],
+    formats: ['image/webp', 'image/avif'],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -74,6 +105,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Only add safe, basic optimizations
+  compress: true,
+  poweredByHeader: false,
+
+  // Remove ALL experimental options that are causing errors
+  // No experimental, no serverExternalPackages, no swcMinify, etc.
 };
 
 export default nextConfig;
