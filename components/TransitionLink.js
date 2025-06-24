@@ -45,7 +45,7 @@ function slideInOut() {
 const TransitionLink = ({
   href,
   children,
-  className,
+  className = '',
   onClick = null,
   disabled = false,
   external = false,

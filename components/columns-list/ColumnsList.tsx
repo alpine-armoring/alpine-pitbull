@@ -1,50 +1,9 @@
 'use client';
-import { useTransitionRouter } from 'next-view-transitions';
-import Link from 'next/link';
+import TransitionLink from '@/components/TransitionLink';
 import Image from 'next/image';
 import styles from './ColumnsList.module.scss';
 
 const ColumnsList = (props) => {
-  const router = useTransitionRouter();
-
-  function slideInOut() {
-    document.documentElement.animate(
-      [
-        {
-          opacity: 1,
-          transform: 'translateY(0)',
-        },
-        {
-          opacity: 0.2,
-          transform: 'translateY(-35%)',
-        },
-      ],
-      {
-        duration: 1500,
-        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
-        fill: 'forwards',
-        pseudoElement: '::view-transition-old(root)',
-      }
-    );
-
-    document.documentElement.animate(
-      [
-        {
-          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-        },
-        {
-          clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
-        },
-      ],
-      {
-        duration: 1500,
-        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
-        fill: 'forwards',
-        pseudoElement: '::view-transition-new(root)',
-      }
-    );
-  }
-
   const { className, items, title, description } = props;
   const classNames = className ? className.split(' ') : [];
   const moduleClasses = classNames
@@ -63,13 +22,7 @@ const ColumnsList = (props) => {
 
       <div className={`${styles.columnsList_container} ${moduleClasses}`}>
         {items?.map((item, index) => (
-          <Link
-            onClick={(e) => {
-              e.preventDefault();
-              router.push(`/${item.link}`, {
-                onTransitionReady: slideInOut,
-              });
-            }}
+          <TransitionLink
             href={`/${item.link}`}
             className={`${styles.columnsList_item}`}
             key={index}
@@ -111,7 +64,7 @@ const ColumnsList = (props) => {
                 )}
               </div>
             </div>
-          </Link>
+          </TransitionLink>
         ))}
       </div>
     </div>
