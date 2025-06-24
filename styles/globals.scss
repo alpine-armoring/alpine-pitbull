@@ -1234,8 +1234,9 @@ $shapeColor: var(--color-background);
   animation: none !important;
 }
 
-[data-gsap-ready="true"] {
-  .line, .word{
+[data-gsap-ready='true'] {
+  .line,
+  .word {
     will-change: transform;
   }
 }

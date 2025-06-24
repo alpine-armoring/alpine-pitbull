@@ -6,7 +6,7 @@
   overflow: hidden;
   z-index: 2;
   color: var(--color-white);
-  contain: layout style paint; 
+  contain: layout style paint;
 
   @include breakpoint(large) {
     max-height: 1400px;
@@ -50,7 +50,7 @@
   &_video {
     position: absolute;
     height: 100%;
-    inset: 0; 
+    inset: 0;
     width: 100%;
     object-fit: cover;
     object-position: center center;
@@ -122,17 +122,20 @@
     border: 1px solid #fff;
     cursor: pointer;
     color: var(--color-background);
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition:
+      transform 0.2s ease-in-out,
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
     will-change: transform;
 
     &:hover {
       background: var(--color-background);
       color: white;
-      transform: translateY(-2px); 
+      transform: translateY(-2px);
     }
 
     &:active {
-      transform: translateY(0); 
+      transform: translateY(0);
     }
   }
 }
