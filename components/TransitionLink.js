@@ -1,9 +1,8 @@
 'use client';
 import { useTransitionRouter } from 'next-view-transitions';
 import Link from 'next/link';
-import { setPageTransitioning } from '@/components/text-reveal/TextReveal';
+import { setPageTransitioning } from '@/utils/navigationState';
 
-// Global slide transition function
 function slideInOut() {
   document.documentElement.animate(
     [
@@ -53,7 +52,6 @@ const TransitionLink = ({
 }) => {
   const router = useTransitionRouter();
 
-  // Check if it's an external link
   const isExternal =
     external ||
     href?.startsWith('http') ||
@@ -61,7 +59,6 @@ const TransitionLink = ({
     href?.startsWith('tel:');
 
   const handleClick = (e) => {
-    // Call any existing onClick first
     if (onClick) {
       onClick(e);
     }

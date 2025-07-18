@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './BannerHero.module.scss';
 import { BannerHeroProps } from 'types';
-import Link from 'next/link';
+import TransitionLink from '@/components/TransitionLink';
 import TextReveal from '@/components/text-reveal/TextReveal';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { useNavigationState } from '@/utils/navigationState';
 
 const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
   ssr: false,
@@ -24,6 +26,25 @@ interface BannerHeroComponentProps {
 }
 
 const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const { isReady, wasNavigating } = useNavigationState(600);
+
+  useEffect(() => {
+    if (!isReady || !buttonRef.current) {
+      return;
+    }
+
+    const animationDelay = wasNavigating ? delay + 0.4 : delay + 0.3;
+
+    gsap.to(buttonRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: animationDelay,
+      ease: 'power2.out',
+    });
+  }, [delay, isReady, wasNavigating]);
+
   return (
     <div className={`${styles.hp_banner}`}>
       <div className={`${styles.hp_banner_inner}`}>
@@ -41,8 +62,7 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
             className={`${styles.hp_banner_video}`}
             fill
             priority
-            // style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-          ></Image>
+          />
         ) : null}
 
         <div className={`${styles.hp_banner_content}`}>
@@ -69,21 +89,24 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
           ) : null}
 
           {props.Button && (
-            <Link
+            <TransitionLink
+              ref={buttonRef}
               href={props.Button.URL}
               className={`${styles.hp_banner_button}`}
             >
               {props.Button.Title}
-            </Link>
+            </TransitionLink>
           )}
 
           {props.Description && (
-            <p
-              dangerouslySetInnerHTML={{
-                __html: props.Description,
-              }}
-              className={`${styles.hp_banner_text}`}
-            />
+            <TextReveal word delay={0.3}>
+              <h1
+                dangerouslySetInnerHTML={{
+                  __html: props.Description,
+                }}
+                className={`${styles.hp_banner_text}`}
+              />
+            </TextReveal>
           )}
         </div>
       </div>

@@ -1,40 +1,13 @@
 'use client';
 
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useNavigationState } from '@/utils/navigationState';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
-
-// Global flag to track page transitions
-let isPageTransitioning = false;
-
-// Export function to set transition state
-export const setPageTransitioning = () => {
-  isPageTransitioning = true;
-};
-
-// Hook to detect if we arrived via page navigation vs direct visit/refresh
-const useNavigationState = (transitionDuration = 600) => {
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    if (isPageTransitioning) {
-      const timer = setTimeout(() => {
-        setIsReady(true);
-        isPageTransitioning = false;
-      }, transitionDuration);
-
-      return () => clearTimeout(timer);
-    } else {
-      setIsReady(true);
-    }
-  }, [transitionDuration]);
-
-  return isReady;
-};
 
 export default function TextReveal({
   children,
@@ -48,8 +21,8 @@ export default function TextReveal({
   const splitRefs = useRef([]);
   const tl = useRef(null);
 
-  // Use the navigation-based ready state
-  const isReady = useNavigationState(transitionDuration);
+  // Use the global navigation-based ready state
+  const { isReady } = useNavigationState(transitionDuration);
 
   // Memoize animation config to prevent unnecessary re-renders
   const animationConfig = useMemo(

@@ -1,8 +1,6 @@
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
-import { getInstagramFeedWithFileCache } from '@/lib/instagramApi';
-import InstagramFeed from '@/components/instagram-feed/InstagramFeed';
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -52,19 +50,17 @@ function normalizeItemData(items, type = 'default') {
 
 async function getpageData() {
   try {
-    const [pageData, instagramPosts] = await Promise.all([
+    const [pageData] = await Promise.all([
       getStrapiData({
         route: 'pitbull-homepage',
         custom:
           'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
         revalidate: 3600,
       }),
-      getInstagramFeedWithFileCache(),
     ]);
 
     return {
       pageData: pageData?.data?.attributes || null,
-      instagramPosts,
     };
   } catch (error) {
     console.error('Error fetching page data:', error);
@@ -76,7 +72,7 @@ async function getpageData() {
 }
 
 export default async function Home() {
-  const { pageData, instagramPosts } = await getpageData();
+  const { pageData } = await getpageData();
 
   const normalizedOtherPages = normalizeItemData(
     pageData?.otherPages,
@@ -106,10 +102,6 @@ export default async function Home() {
         items={normalizedVehicles}
         configurator
       />
-
-      {/* <InstagramEmbed /> */}
-
-      <InstagramFeed posts={instagramPosts} title="ALPINE Live" />
     </>
   );
 }

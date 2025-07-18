@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['gsap', 'lenis'], // Tree shake heavy libraries
+    optimizePackageImports: ['gsap', 'lenis'],
   },
 
   webpack: (config) => {
@@ -109,9 +109,6 @@ const nextConfig: NextConfig = {
   // Only add safe, basic optimizations
   compress: true,
   poweredByHeader: false,
-
-  // Remove ALL experimental options that are causing errors
-  // No experimental, no serverExternalPackages, no swcMinify, etc.
 };
 
 export default nextConfig;

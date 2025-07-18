@@ -85,8 +85,8 @@
     line-height: 1em;
     text-transform: uppercase;
     text-align: center;
-    opacity: 0;
     will-change: transform, opacity;
+    opacity: 0;
     transform: translateY(30px);
 
     &[data-gsap-ready='true'] {
@@ -103,6 +103,14 @@
     max-width: 800px;
     font-size: rem(17);
     line-height: 1.4;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(30px);
+
+    &[data-gsap-ready='true'] {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @include breakpoint(large) {
       text-transform: uppercase;
@@ -122,16 +130,18 @@
     border: 1px solid #fff;
     cursor: pointer;
     color: var(--color-background);
-    transition:
-      transform 0.2s ease-in-out,
-      background-color 0.2s ease-in-out,
-      color 0.2s ease-in-out;
-    will-change: transform;
+    transform: translateY(30px);
+    opacity: 0;
+    will-change: transform, opacity;
 
     &:hover {
       background: var(--color-background);
       color: white;
-      transform: translateY(-2px);
+      transform: translateY(-2px) !important;
+      transition: 
+        transform 0.2s ease-in-out,
+        background-color 0.2s ease-in-out,
+        color 0.2s ease-in-out;
     }
 
     &:active {
