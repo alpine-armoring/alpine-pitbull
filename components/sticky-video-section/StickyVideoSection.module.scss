@@ -1,0 +1,93 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5%;
+    
+    // Ensure proper stacking and smooth transforms
+    will-change: transform;
+    backface-visibility: hidden;
+    
+    @media (max-width: 768px) {
+      padding-right: 3%;
+      justify-content: center;
+    }
+  }
+  
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    
+    // Optimize video performance
+    will-change: auto;
+  }
+  
+  .textBox {
+    position: relative;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2rem;
+    color: white;
+    z-index: 10;
+    
+    // Optimize for smooth animations
+    will-change: transform;
+    backface-visibility: hidden;
+    
+    @media (max-width: 768px) {
+      max-width: 90%;
+      padding: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    text-wrap: balance;
+    
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+    font-family: monospace;
+    letter-spacing: 0.025em;
+    
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }

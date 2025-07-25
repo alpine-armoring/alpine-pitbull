@@ -1152,16 +1152,24 @@ $shapeColor: var(--color-background);
 }
 
 .textSection {
-  padding-top: rem(24);
-  padding-bottom: rem(24);
-  // text-align: center;
+  padding: rem(12);
   font-size: rem(20);
   margin: auto;
 
   @include breakpoint(large) {
-    padding: rem(150) rem(50);
+    padding: rem(24);
+    max-width: 1500px;
     font-size: rem(28);
-    max-width: 1024px;
+
+    &.primary{
+      padding: rem(150) rem(24);
+    }
+  }
+
+  &.centered{
+    @include breakpoint(large) {
+      max-width: 1024px;
+    }    
   }
 
   p {
@@ -1172,9 +1180,11 @@ $shapeColor: var(--color-background);
 .imageRight {
   // position: relative;
   // aspect-ratio: 4 / 3;
-  margin: rem(24) auto;
+  padding: 12px;
+  margin: auto;
 
   @include breakpoint(large) {
+    padding: 24px;
     max-width: 1500px;
   }
 
@@ -1192,9 +1202,11 @@ $shapeColor: var(--color-background);
   }
 }
 .imageLeft {
-  margin: rem(24) auto;
+  padding: 12px;
+  margin: auto;
 
   @include breakpoint(large) {
+    padding: 24px;
     max-width: 1500px;
   }
 
