@@ -1161,15 +1161,15 @@ $shapeColor: var(--color-background);
     max-width: 1500px;
     font-size: rem(28);
 
-    &.primary{
+    &.primary {
       padding: rem(150) rem(24);
     }
   }
 
-  &.centered{
+  &.centered {
     @include breakpoint(large) {
       max-width: 1024px;
-    }    
+    }
   }
 
   p {

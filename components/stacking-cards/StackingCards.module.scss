@@ -1,5 +1,4 @@
 .stackingCards {
-
   &_section {
     // background-color: var(--color-background);
     margin-top: rem(40);
@@ -11,12 +10,12 @@
       position: relative;
       width: 100vw;
     }
-  
+
     :global(.char) {
       position: relative;
       overflow: hidden;
       display: inline-block;
-    
+
       span {
         transform: translateX(100%);
         display: inline-block;
@@ -80,12 +79,16 @@
       height: 100%;
       border-radius: 64px !important;
 
-      &:before{
+      &:before {
         position: absolute;
         content: '';
         inset: 0;
         background: rgba(0, 0, 0, 5.3);
-        background: linear-gradient(0deg,rgba(0, 0, 0, 0.53) 0%, rgba(0, 0, 0, 0) 60%);
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.53) 0%,
+          rgba(0, 0, 0, 0) 60%
+        );
         z-index: 1;
       }
     }
