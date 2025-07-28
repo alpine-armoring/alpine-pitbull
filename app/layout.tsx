@@ -3,6 +3,7 @@ import { ReactLenis } from 'lenis/react';
 import '../styles/globals.scss';
 import { ViewTransitions } from 'next-view-transitions';
 import Header from '@/components/header/Header';
+import Footer from '@/components/footer/Footer';
 
 import localFont from 'next/font/local';
 const terminaFont = localFont({
@@ -76,6 +77,8 @@ export default function RootLayout({
             <Header />
 
             {children}
+
+            <Footer />
           </ReactLenis>
         </body>
       </html>

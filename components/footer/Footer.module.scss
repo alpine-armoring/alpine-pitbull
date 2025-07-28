@@ -1,0 +1,28 @@
+.footer{
+    $padding: 12px;
+    @include breakpoint(large) {
+        $padding: 36px;
+    }
+    padding-top: $padding !important;
+    padding-bottom: $padding !important;
+
+    &_logo{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    &_socials{
+        display: flex;
+        justify-content: center;
+
+        &_item{
+            margin: 0 6px;
+            transition: transform .2s ease-in-out;
+
+            &:hover{
+                transform: translateY(-3px);
+            }
+        }
+    }
+}

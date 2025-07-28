@@ -436,11 +436,11 @@ const VehicleBuilder: React.FC = () => {
       </nav>
 
       {/* Main Content */}
-      <div className={styles.mainContent}>
+      <div className={styles.vehicleConfigurator_mainContent}>
         {/* Slider with Images */}
         <div className={styles.vehicleConfigurator_slider}>
           <Image
-            src="https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_Armored_PITBULL_VXT_SWAT_Truck_e3eb28c07b.png&w=2200&q=100"
+            src="https://d102sycao8uwt8.cloudfront.net/large_armored_swat_truck_apc_tactical_pitbull_vx_a9_01_2e7fc1f92e.png"
             width={1500}
             height={750}
             alt="Alpineco"
