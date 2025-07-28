@@ -713,7 +713,7 @@ const VehicleBuilder: React.FC = () => {
                             <Image
                               src={
                                 option.image ||
-                                'https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Fthumbnail_PA_Multi_Siren_System_0c05e10790.jpg&w=640&q=75'
+                                'https://d102sycao8uwt8.cloudfront.net/Battery_kill_switch_4a364fe17c.jpg'
                               }
                               alt={option.title}
                               layout="fill"
