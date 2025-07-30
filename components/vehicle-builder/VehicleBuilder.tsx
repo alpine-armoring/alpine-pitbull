@@ -36,6 +36,7 @@ const VehicleBuilder: React.FC = () => {
   const [selections, setSelections] = useState<
     Record<string, string | string[]>
   >({});
+  const [selectionOrder, setSelectionOrder] = useState<string[]>([]);
   const [showSummary, setShowSummary] = useState<boolean>(false);
 
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -256,6 +257,14 @@ const VehicleBuilder: React.FC = () => {
   // Load selections from URL query parameters
   useEffect(() => {
     const newSelections: Record<string, string | string[]> = {};
+    const orderFromURL: string[] = [];
+
+    // Get all parameter names in the order they appear in the URL
+    for (const [key] of searchParams.entries()) {
+      if (!orderFromURL.includes(key)) {
+        orderFromURL.push(key);
+      }
+    }
 
     // Process regular sections
     sections.forEach((section) => {
@@ -292,13 +301,16 @@ const VehicleBuilder: React.FC = () => {
     });
 
     setSelections(newSelections);
+    setSelectionOrder(orderFromURL);
   }, [searchParams]);
 
   // Update URL when selections change
   useEffect(() => {
     const params = new URLSearchParams();
 
-    Object.entries(selections).forEach(([key, value]) => {
+    // First, add parameters in chronological order
+    selectionOrder.forEach((key) => {
+      const value = selections[key];
       if (value) {
         if (Array.isArray(value)) {
           value.forEach((item) => {
@@ -310,8 +322,21 @@ const VehicleBuilder: React.FC = () => {
       }
     });
 
-    router.push(`${pathname}?${params.toString()}`);
-  }, [selections, pathname, router]);
+    // Then add any new parameters that aren't in selectionOrder yet
+    Object.entries(selections).forEach(([key, value]) => {
+      if (!selectionOrder.includes(key) && value) {
+        if (Array.isArray(value)) {
+          value.forEach((item) => {
+            if (item) params.append(key, item);
+          });
+        } else {
+          params.append(key, value);
+        }
+      }
+    });
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [selections, selectionOrder, pathname, router]);
 
   // Update active section when scrolling
   useEffect(() => {
@@ -391,20 +416,41 @@ const VehicleBuilder: React.FC = () => {
         return { ...prev, [sectionId]: checked ? optionId : '' };
       }
     });
+
+    // Update selection order
+    setSelectionOrder((prevOrder) => {
+      if (!prevOrder.includes(sectionId)) {
+        return [...prevOrder, sectionId];
+      }
+      return prevOrder;
+    });
+  };
+
+  // SIMPLIFIED RADIO BUTTON HANDLER
+  const handleRadioClick = (sectionId: string, optionId: string) => {
+    setSelections((prev) => {
+      const currentSelection = prev[sectionId];
+
+      if (currentSelection === optionId) {
+        return { ...prev, [sectionId]: '' };
+      } else {
+        return { ...prev, [sectionId]: optionId };
+      }
+    });
+
+    // Update selection order
+    setSelectionOrder((prevOrder) => {
+      if (!prevOrder.includes(sectionId)) {
+        return [...prevOrder, sectionId];
+      }
+      return prevOrder;
+    });
   };
 
   // Handle card expansion
   const handleCardClick = (optionId: string) => {
     setExpandedCard((prev) => (prev === optionId ? null : optionId));
   };
-
-  // Show info popup
-  // const [activeInfoPopup, setActiveInfoPopup] = useState<string | null>(null);
-
-  // const handleInfoClick = (e: React.MouseEvent, optionId: string) => {
-  //   e.stopPropagation();
-  //   setActiveInfoPopup(prev => prev === optionId ? null : optionId);
-  // };
 
   // Check if option is selected
   const isOptionSelected = (sectionId: string, optionId: string): boolean => {
@@ -487,8 +533,8 @@ const VehicleBuilder: React.FC = () => {
                   data-di-rand="1747483320629"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M0.876364 10L0.00363632 9.11909L4.09273 5.00091L0 0.881818L0.874545 0L5.83091 4.99182L0.876364 10Z"
                     fill="currentColor"
                   ></path>
@@ -515,8 +561,8 @@ const VehicleBuilder: React.FC = () => {
                   data-di-rand="1747483320629"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M0.876364 10L0.00363632 9.11909L4.09273 5.00091L0 0.881818L0.874545 0L5.83091 4.99182L0.876364 10Z"
                     fill="currentColor"
                   ></path>
@@ -598,37 +644,27 @@ const VehicleBuilder: React.FC = () => {
               {section.type === 'radio' && (
                 <div className={styles.vehicleConfigurator_radioGroup}>
                   {section.options.map((option) => (
-                    <div
-                      key={option.id}
-                      className={`radioCustom`}
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <div key={option.id} className={`radioCustom`}>
                       <input
                         type="radio"
                         id={option.id}
                         name={section.id}
                         checked={isOptionSelected(section.id, option.id)}
-                        onChange={(e) =>
-                          handleOptionChange(
-                            section.id,
-                            option.id,
-                            e.target.checked
-                          )
-                        }
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleRadioClick(section.id, option.id);
+                        }}
                       />
-                      <label htmlFor={option.id}>{option.title}</label>
+                      <label
+                        htmlFor={option.id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleRadioClick(section.id, option.id);
+                        }}
+                      >
+                        {option.title}
+                      </label>
                     </div>
-                    // <div key={option.id} className={styles.vehicleConfigurator_radioGroup_item}>
-                    //   <input
-                    //     type="radio"
-                    //     id={option.id}
-                    //     name={section.id}
-                    //     checked={isOptionSelected(section.id, option.id)}
-                    //     onChange={e => handleOptionChange(section.id, option.id, e.target.checked)}
-                    //     className={styles.radioInput}
-                    //   />
-                    //   <label htmlFor={option.id} className={styles.radioLabel}>{option.title}</label>
-                    // </div>
                   ))}
                 </div>
               )}
@@ -638,7 +674,6 @@ const VehicleBuilder: React.FC = () => {
                   {section.options.map((option) => (
                     <div
                       key={option.id}
-                      // className={`${styles.vehicleConfigurator_card_wrap} ${expandedCard === option.id ? styles.vehicleConfigurator_card_wrap_expanded : ''}`}
                       className={`${styles.vehicleConfigurator_card_wrap} 
                                 ${expandedCard === option.id ? styles.vehicleConfigurator_card_wrap_expanded : ''} 
                                 ${isOptionSelected(section.id, option.id) ? styles.vehicleConfigurator_card_wrap_active : ''}`}
@@ -672,10 +707,7 @@ const VehicleBuilder: React.FC = () => {
                           {option.title}
                         </span>
 
-                        <span
-                          className={styles.vehicleConfigurator_card_info}
-                          // onClick={e => handleInfoClick(e, option.id)}
-                        >
+                        <span className={styles.vehicleConfigurator_card_info}>
                           <svg
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
@@ -692,13 +724,6 @@ const VehicleBuilder: React.FC = () => {
                           </svg>
                         </span>
                       </div>
-
-                      {/* Info Popup */}
-                      {/* {activeInfoPopup === option.id && (
-                        <div className={styles.infoPopup}>
-                          <p>{option.info}</p>
-                        </div>
-                      )} */}
 
                       {/* Expanded Content */}
                       {expandedCard === option.id && (
