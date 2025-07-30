@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { ReactLenis } from 'lenis/react';
 import '../styles/globals.scss';
-import { ViewTransitions } from 'next-view-transitions';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 
@@ -45,43 +44,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en" className={terminaFont.variable}>
-        <head>
-          {/* Preconnect to external domains for better performance */}
-          <link rel="preconnect" href="https://d102sycao8uwt8.cloudfront.net" />
-          <link
-            rel="preconnect"
-            href="https://alpine-backend-992382787275.s3.us-east-1.amazonaws.com"
-          />
+    <html lang="en" className={terminaFont.variable}>
+      <head>
+        {/* Preconnect to external domains for better performance */}
+        <link rel="preconnect" href="https://d102sycao8uwt8.cloudfront.net" />
+        <link
+          rel="preconnect"
+          href="https://alpine-backend-992382787275.s3.us-east-1.amazonaws.com"
+        />
 
-          {/* Preload critical resources */}
-          <link
-            rel="preload"
-            href="/fonts/Termina-Medium.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/fonts/Termina-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
 
-          {/* Critical CSS hint */}
-          <link
-            rel="preload"
-            href="/images/alpine-pitbull-logo.svg"
-            as="image"
-          />
-        </head>
+        {/* Critical CSS hint */}
+        <link rel="preload" href="/images/alpine-pitbull-logo.svg" as="image" />
+      </head>
 
-        <body className={`${terminaFont.className}`}>
-          <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
-            <Header />
+      <body className={`${terminaFont.className}`}>
+        <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
+          <Header />
 
-            {children}
+          {children}
 
-            <Footer />
-          </ReactLenis>
-        </body>
-      </html>
-    </ViewTransitions>
+          <Footer />
+        </ReactLenis>
+      </body>
+    </html>
   );
 }

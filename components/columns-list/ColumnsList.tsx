@@ -1,5 +1,5 @@
 'use client';
-import TransitionLink from '@/components/TransitionLink';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './ColumnsList.module.scss';
 
@@ -22,7 +22,7 @@ const ColumnsList = (props) => {
 
       <div className={`${styles.columnsList_container} ${moduleClasses}`}>
         {items?.map((item, index) => (
-          <TransitionLink
+          <Link
             href={`/${item.link}`}
             className={`${styles.columnsList_item}`}
             key={index}
@@ -64,7 +64,7 @@ const ColumnsList = (props) => {
                 )}
               </div>
             </div>
-          </TransitionLink>
+          </Link>
         ))}
       </div>
     </div>

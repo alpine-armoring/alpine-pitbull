@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import styles from './Menu.module.scss';
-import TransitionLink from '@/components/TransitionLink';
+import Link from 'next/link';
 import FacebookIcon from 'components/icons/Facebook';
 import TiktokIcon from 'components/icons/Tiktok';
 import XIcon from 'components/icons/X';
@@ -316,22 +316,22 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
 
         <div className={`${styles.menuContent_info}`}>
           <div className={`${styles.menuContent_contact}`}>
-            <TransitionLink
+            <Link
               href="tel:+17034710002"
               className={`${styles.menuContent_contact_item}`}
               rel="nofollow noreferrer noopener"
             >
               <PhoneIcon />
               1.703.471.0002
-            </TransitionLink>
-            <TransitionLink
+            </Link>
+            <Link
               href="mailto:info@alpineco.com"
               className={`${styles.menuContent_contact_item}`}
               rel="nofollow noreferrer noopener"
             >
               <MailIcon />
               info@AlpineCo.com
-            </TransitionLink>
+            </Link>
 
             <div className={`${styles.menuContent_contact_item}`}>
               <MapIcon />
@@ -341,73 +341,73 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
 
           <ul className={`${styles.menuContent_socials}`}>
             <li className={`${styles.menuContent_socials_item}`}>
-              <TransitionLink
+              <Link
                 href="https://www.youtube.com/c/AlpineArmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <YoutubeIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li className={`${styles.menuContent_socials_item}`}>
-              <TransitionLink
+              <Link
                 href="https://www.instagram.com/alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <InstagramIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li
               className={`${styles.menuContent_socials_item} ${styles.menuContent_socials_item_x}`}
             >
-              <TransitionLink
+              <Link
                 href="https://x.com/AlpineArmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <XIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li className={`${styles.menuContent_socials_item}`}>
-              <TransitionLink
+              <Link
                 href="https://www.facebook.com/AlpineArmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <FacebookIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li
               className={`${styles.menuContent_socials_item} ${styles.menuContent_socials_item_tiktok}`}
             >
-              <TransitionLink
+              <Link
                 href="https://www.tiktok.com/@alpinearmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <TiktokIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li className={`${styles.menuContent_socials_item}`}>
-              <TransitionLink
+              <Link
                 href="https://www.linkedin.com/company/alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <LinkedinIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
             <li
               className={`${styles.menuContent_socials_item} ${styles.menuContent_socials_item_threads}`}
             >
-              <TransitionLink
+              <Link
                 href="https://www.threads.net/@alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
               >
                 <ThreadsIcon color="white" />
-              </TransitionLink>
+              </Link>
             </li>
           </ul>
         </div>

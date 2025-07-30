@@ -5,7 +5,6 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { useNavigationState } from '@/utils/navigationState';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -21,9 +20,6 @@ export default function TextReveal({
   const splitRefs = useRef([]);
   const tl = useRef(null);
 
-  // Use the global navigation-based ready state
-  const { isReady } = useNavigationState(transitionDuration);
-
   // Memoize animation config to prevent unnecessary re-renders
   const animationConfig = useMemo(
     () => ({
@@ -38,9 +34,6 @@ export default function TextReveal({
 
   useGSAP(
     () => {
-      // Only run animation when transition is ready
-      if (!isReady || !containerRef.current) return;
-
       let elements = [];
       if (containerRef.current.hasAttribute('data-copy-wrapper')) {
         elements = Array.from(containerRef.current.children);
@@ -130,14 +123,7 @@ export default function TextReveal({
     },
     {
       scope: containerRef,
-      dependencies: [
-        isReady,
-        animateOnScroll,
-        delay,
-        word,
-        line,
-        transitionDuration,
-      ],
+      dependencies: [animateOnScroll, delay, word, line, transitionDuration],
     }
   );
 

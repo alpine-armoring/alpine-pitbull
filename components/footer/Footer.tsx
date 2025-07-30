@@ -1,5 +1,5 @@
 'use client';
-import TransitionLink from '@/components/TransitionLink';
+import Link from 'next/link';
 import styles from './Footer.module.scss';
 import Image from 'next/image';
 import FacebookIcon from 'components/icons/Facebook';
@@ -13,7 +13,7 @@ import ThreadsIcon from 'components/icons/Threads';
 const Footer = () => {
   return (
     <footer className={`${styles.footer} container`}>
-      <TransitionLink href="/" className={`${styles.footer_logo}`}>
+      <Link href="/" className={`${styles.footer_logo}`}>
         <Image
           src="/images/alpine-pitbull-logo.svg"
           alt="Alpine Armoring Pitbull Logo"
@@ -21,77 +21,77 @@ const Footer = () => {
           height={60}
           quality={100}
         ></Image>
-      </TransitionLink>
+      </Link>
 
       <ul className={`${styles.footer_socials}`}>
         <li className={`${styles.footer_socials_item}`}>
-          <TransitionLink
+          <Link
             href="https://www.youtube.com/c/AlpineArmoring"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <YoutubeIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li className={`${styles.footer_socials_item}`}>
-          <TransitionLink
+          <Link
             href="https://www.instagram.com/alpinearmoring/"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <InstagramIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li
           className={`${styles.footer_socials_item} ${styles.footer_socials_item_x}`}
         >
-          <TransitionLink
+          <Link
             href="https://x.com/AlpineArmoring"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <XIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li className={`${styles.footer_socials_item}`}>
-          <TransitionLink
+          <Link
             href="https://www.facebook.com/AlpineArmoring/"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <FacebookIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li
           className={`${styles.footer_socials_item} ${styles.footer_socials_item_tiktok}`}
         >
-          <TransitionLink
+          <Link
             href="https://www.tiktok.com/@alpinearmoring"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <TiktokIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li className={`${styles.footer_socials_item}`}>
-          <TransitionLink
+          <Link
             href="https://www.linkedin.com/company/alpinearmoring/"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <LinkedinIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
         <li
           className={`${styles.footer_socials_item} ${styles.footer_socials_item_threads}`}
         >
-          <TransitionLink
+          <Link
             href="https://www.threads.net/@alpinearmoring/"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >
             <ThreadsIcon color="white" />
-          </TransitionLink>
+          </Link>
         </li>
       </ul>
     </footer>

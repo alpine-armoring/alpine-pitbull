@@ -4,11 +4,10 @@ import React, { useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './BannerHero.module.scss';
 import { BannerHeroProps } from 'types';
-import TransitionLink from '@/components/TransitionLink';
+import Link from 'next/link';
 import TextReveal from '@/components/text-reveal/TextReveal';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { useNavigationState } from '@/utils/navigationState';
 
 const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
   ssr: false,
@@ -27,23 +26,16 @@ interface BannerHeroComponentProps {
 
 const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
-  const { isReady, wasNavigating } = useNavigationState(600);
 
   useEffect(() => {
-    if (!isReady || !buttonRef.current) {
-      return;
-    }
-
-    const animationDelay = wasNavigating ? delay + 0.4 : delay + 0.3;
-
     gsap.to(buttonRef.current, {
       opacity: 1,
       y: 0,
       duration: 0.8,
-      delay: animationDelay,
+      delay: delay + 0.4,
       ease: 'power2.out',
     });
-  }, [delay, isReady, wasNavigating]);
+  }, [delay]);
 
   return (
     <div className={`${styles.hp_banner}`}>
@@ -89,13 +81,13 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
           ) : null}
 
           {props.Button && (
-            <TransitionLink
+            <Link
               ref={buttonRef}
               href={props.Button.URL}
               className={`${styles.hp_banner_button}`}
             >
               {props.Button.Title}
-            </TransitionLink>
+            </Link>
           )}
 
           {props.Description && (
