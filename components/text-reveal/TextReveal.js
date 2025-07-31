@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+// Remove ScrollTrigger import since we're using Intersection Observer
+// gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
 export default function TextReveal({
   children,
@@ -19,6 +20,8 @@ export default function TextReveal({
   const containerRef = useRef(null);
   const splitRefs = useRef([]);
   const tl = useRef(null);
+  const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   // Memoize animation config to prevent unnecessary re-renders
   const animationConfig = useMemo(
@@ -31,6 +34,31 @@ export default function TextReveal({
     }),
     [delay]
   );
+
+  // Intersection Observer setup - replaces ScrollTrigger
+  useEffect(() => {
+    if (!animateOnScroll || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsInView(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of element is visible
+        rootMargin: '0px 0px -20% 0px', // Similar to ScrollTrigger's "top 80%"
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [animateOnScroll, hasAnimated]);
 
   useGSAP(
     () => {
@@ -96,16 +124,8 @@ export default function TextReveal({
       // Create timeline for better performance
       tl.current = gsap.timeline();
 
-      if (animateOnScroll) {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: 'top 80%', // Slightly adjusted for better timing
-          once: true,
-          onEnter: () => {
-            tl.current.to(allTargets, animationConfig);
-          },
-        });
-      } else {
+      // Handle immediate animation (when animateOnScroll is false)
+      if (!animateOnScroll) {
         tl.current.to(allTargets, animationConfig);
       }
 
@@ -126,6 +146,26 @@ export default function TextReveal({
       dependencies: [animateOnScroll, delay, word, line, transitionDuration],
     }
   );
+
+  // Trigger animation when element comes into view (replaces ScrollTrigger onEnter)
+  useEffect(() => {
+    if (isInView && !hasAnimated && tl.current) {
+      const allTargets = [];
+      splitRefs.current.forEach((split) => {
+        const elementsToAnimate = word ? split.words : split.lines;
+        allTargets.push(...elementsToAnimate);
+      });
+
+      if (allTargets.length > 0) {
+        tl.current.to(allTargets, {
+          ...animationConfig,
+          onComplete: () => {
+            setHasAnimated(true);
+          },
+        });
+      }
+    }
+  }, [isInView, hasAnimated, animationConfig, word]);
 
   if (React.Children.count(children) === 1) {
     return React.cloneElement(children, { ref: containerRef });

@@ -1,12 +1,13 @@
 .stackingCards {
   &_section {
     // background-color: var(--color-background);
-    margin-top: rem(40);
+    // margin-top: rem(40);
     color: #fff;
     overflow: hidden;
     max-width: 100%;
 
     @include breakpoint(medium) {
+      margin-top: -24vh;
       position: relative;
       width: 100vw;
     }

@@ -7,47 +7,6 @@ import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
 import styles from './StackingCards.module.scss';
 
-const cardData: CardData[] = [
-  {
-    id: 1,
-    title: 'F-600 chassis',
-    description:
-      'Built upon the robust and reliable heavy-duty F-600 chassis, this formidable vehicle is designed to withstand the most demanding environments and hostile encounters. Its foundation ensures superior structural integrity and a stable platform, critical for both defensive capabilities and sustained performance in challenging terrains.',
-    video: 'https://d102sycao8uwt8.cloudfront.net/7018_web_vid_db1c365a40.mp4',
-    mediaType: 'video',
-  },
-  {
-    id: 2,
-    title: 'V8 turbo diesel engine',
-    description:
-      'At the heart of the Pit-Bull VX® lies a powerful V8 turbo diesel engine, a true workhorse engineered for immense torque and enduring power. This advanced powertrain not only ensures swift and decisive maneuverability, even under heavy loads, but also provides the critical acceleration needed to extract personnel from high-threat areas. The turbo diesel configuration enhances fuel efficiency while delivering consistent, reliable power, crucial for extended missions and reducing the logistical burden in remote operational zones.',
-    image:
-      'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_Armored_SWAT_Pit_Bull_VX_A12_30_9dca216ace.JPG',
-    mediaType: 'image',
-  },
-  {
-    id: 3,
-    title: "Team's Safety",
-    description: `The primary mission of the Pit-Bull VX® is to ensure your team's safety. Every aspect of its design, from the ballistic-rated steel armor to the reinforced windows, is meticulously engineered to provide comprehensive protection against a wide array of threats. This unwavering commitment to safety means that even when confronted with direct engagement "in the line of fire," your personnel are shielded within a fortress of cutting-edge defensive technology. The vehicle's advanced armor system is designed to defeat multiple rounds of high-caliber ammunition, shrapnel, and other ballistic threats, allowing your team to focus on their mission objectives with confidence, knowing they are enveloped in an exceptionally resilient mobile sanctuary.`,
-    image:
-      'https://d102sycao8uwt8.cloudfront.net/armored_swat_truck_apc_pitbull_vxt_50cal_7018_20_cb46b2b4e2.jpg',
-    mediaType: 'image',
-  },
-];
-
-type CardData = {
-  id: number;
-  title: string;
-  description: string;
-  image?: string;
-  video?: string;
-  mediaType?: 'image' | 'video';
-};
-
-type CardComponentProps = {
-  cards?: CardData[];
-};
-
 interface ExtendedHTMLElement extends HTMLElement {
   contentRevealed?: boolean;
 }
@@ -58,8 +17,6 @@ const useIsDesktop = () => {
 
   useEffect(() => {
     const checkIsDesktop = () => {
-      // You can adjust this breakpoint to match your design requirements
-      // Common desktop breakpoint is 1024px or 768px
       setIsDesktop(window.innerWidth >= 768);
     };
 
@@ -75,10 +32,25 @@ const useIsDesktop = () => {
   return isDesktop;
 };
 
-const StackingCards = ({ cards = cardData }: CardComponentProps) => {
+const StackingCards = ({ data }) => {
   const containerRef = useRef<HTMLElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const isDesktop = useIsDesktop();
+
+  // Helper function to determine media type from mime
+  const getMediaType = (mime: string): 'image' | 'video' => {
+    return mime.startsWith('video/') ? 'video' : 'image';
+  };
+
+  // Helper function to get media URL from Strapi data
+  const getMediaUrl = (card): string => {
+    return card.image?.data?.[0]?.attributes?.url || '';
+  };
+
+  // Helper function to get media mime type
+  const getMediaMime = (card): string => {
+    return card.image?.data?.[0]?.attributes?.mime || '';
+  };
 
   useEffect(() => {
     // Only run GSAP animations on desktop
@@ -102,6 +74,11 @@ const StackingCards = ({ cards = cardData }: CardComponentProps) => {
       `.${styles.stackingCards_card}`
     );
     const introCard = cardElements[0];
+
+    // Only proceed if we have cards
+    if (cardElements.length === 0) {
+      return;
+    }
 
     // Split text animation setup
     const titles = gsap.utils.toArray<HTMLElement>(
@@ -272,40 +249,46 @@ const StackingCards = ({ cards = cardData }: CardComponentProps) => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
-  }, [isDesktop]); // Add isDesktop as dependency
+  }, [isDesktop, data]);
 
   return (
     <section ref={containerRef} className={styles.stackingCards_section}>
       <div className={styles.stackingCards_cards}>
-        {cards.map((card) => (
-          <div key={card.id} className={styles.stackingCards_card}>
-            <div className={styles.stackingCards_cardWrapper}>
-              <div className={styles.stackingCards_cardImg}>
-                {card.mediaType === 'video' && card.video ? (
-                  <video
-                    src={card.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    style={{ pointerEvents: 'none' }}
-                  />
-                ) : (
-                  <img src={card.image} alt={card.title} />
-                )}
-              </div>
+        {data.map((card) => {
+          const mediaUrl = getMediaUrl(card);
+          const mediaMime = getMediaMime(card);
+          const mediaType = getMediaType(mediaMime);
 
-              <div className={styles.stackingCards_cardContent}>
-                <div className={styles.stackingCards_cardTitle}>
-                  <h1>{card.title}</h1>
+          return (
+            <div key={card.id} className={styles.stackingCards_card}>
+              <div className={styles.stackingCards_cardWrapper}>
+                <div className={styles.stackingCards_cardImg}>
+                  {mediaType === 'video' ? (
+                    <video
+                      src={mediaUrl}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ pointerEvents: 'none' }}
+                    />
+                  ) : (
+                    <img src={mediaUrl} alt={card.title} />
+                  )}
                 </div>
-                <div className={styles.stackingCards_cardDescription}>
-                  <p>{card.description}</p>
+
+                <div className={styles.stackingCards_cardContent}>
+                  <div className={styles.stackingCards_cardTitle}>
+                    <h1>{card.title}</h1>
+                  </div>
+                  <div className={styles.stackingCards_cardDescription}>
+                    <p>{card.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

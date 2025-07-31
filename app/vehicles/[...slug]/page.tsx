@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import VehicleBuilder from '@/components/vehicle-builder/VehicleBuilder';
 import TextReveal from '@/components/text-reveal/TextReveal';
 // import StickyVideoSection from '@/components/sticky-video-section/StickyVideoSection';
-import StackingCards from '@/components/stacking-cards/StackingCards';
+import Content from '@/components/content/Content';
 
 async function getVehicleData(slug: string) {
   try {
@@ -38,6 +38,10 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
   const { slug } = await params;
   const { vehicleData } = await getVehicleData(slug);
 
+  const contentData = {
+    dynamicZone: vehicleData.dynamicZone || [],
+  };
+
   if (!vehicleData) {
     return (
       <>
@@ -50,17 +54,7 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
     <>
       {vehicleData.banner && <BannerHero props={vehicleData.banner} />}
 
-      <StackingCards />
-
-      <div className="textSection centered primary">
-        <TextReveal line>
-          <p>
-            The Pit-Bull VX® combines cutting-edge ballistic protection with
-            advanced technology and superior maneuverability, capable of
-            navigating urban environments, off-road areas, and highways.
-          </p>
-        </TextReveal>
-      </div>
+      <Content data={contentData} />
 
       <div className="imageRight">
         <img
