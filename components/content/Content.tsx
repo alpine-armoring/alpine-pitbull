@@ -99,7 +99,13 @@ function Content(props) {
             if (component.media.data) {
               if (component.media.data?.attributes.mime.startsWith('video/')) {
                 return (
-                  <video autoPlay muted loop key={index}>
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    key={index}
+                    className={`staticVideo`}
+                  >
                     <source
                       src={component.media.data.attributes.url}
                       type={component.media.data.attributes.mime}
@@ -124,6 +130,7 @@ function Content(props) {
                       component.media.data?.attributes.height
                     }
                     quality={100}
+                    className={`staticImage`}
                   />
                 );
               }

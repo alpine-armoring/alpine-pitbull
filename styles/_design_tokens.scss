@@ -202,6 +202,16 @@ small {
     }
   }
 }
+.staticImage {
+  margin: rem(24) auto;
+  max-width: 100%;
+  @include breakpoint(medium) {
+    max-width: 875px;
+  }
+}
+.staticVideo {
+  max-width: 100%;
+}
 
 .c-content {
   text-align: center;
