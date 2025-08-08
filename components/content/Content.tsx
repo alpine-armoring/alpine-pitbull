@@ -11,11 +11,12 @@ function Content(props) {
       {dynamicZone?.map((component, index) => {
         switch (component.__component) {
           case 'slices.text': {
+            const classes = component.class
+              ? component.class.split(' ').join(' ')
+              : '';
+
             return (
-              <div
-                className={`textSection ${component.class} primary`}
-                key={index}
-              >
+              <div className={`textSection ${classes}`} key={index}>
                 <TextReveal line>
                   <CustomMarkdown key={index}>
                     {component.Content}
@@ -113,25 +114,31 @@ function Content(props) {
                   </video>
                 );
               } else {
+                const classes = component.class
+                  ? component.class.split(' ').join(' ')
+                  : '';
+
                 return (
-                  <Image
-                    key={index}
-                    src={
-                      component.media.data?.attributes.formats.large?.url ||
-                      component.media.data?.attributes.url
-                    }
-                    alt={component.media.data?.attributes.alternativeText || ''}
-                    width={
-                      component.media.data?.attributes.formats.large?.width ||
-                      component.media.data?.attributes.width
-                    }
-                    height={
-                      component.media.data?.attributes.formats.large?.height ||
-                      component.media.data?.attributes.height
-                    }
-                    quality={100}
-                    className={`staticImage`}
-                  />
+                  <div key={index} className={`${classes} staticImage`}>
+                    <Image
+                      src={
+                        component.media.data?.attributes.formats.large?.url ||
+                        component.media.data?.attributes.url
+                      }
+                      alt={
+                        component.media.data?.attributes.alternativeText || ''
+                      }
+                      width={
+                        component.media.data?.attributes.formats.large?.width ||
+                        component.media.data?.attributes.width
+                      }
+                      height={
+                        component.media.data?.attributes.formats.large
+                          ?.height || component.media.data?.attributes.height
+                      }
+                      quality={100}
+                    />
+                  </div>
                 );
               }
             }

@@ -10,6 +10,8 @@ interface FetchOptions {
 export async function fetchAPI(path: string, options: FetchOptions = {}) {
   const requestUrl = `${STRAPI_URL}/api${path}`;
 
+  // console.log(requestUrl)
+
   try {
     const response = await fetch(requestUrl, {
       headers: {
