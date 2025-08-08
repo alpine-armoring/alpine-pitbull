@@ -211,19 +211,19 @@ small {
     max-width: 1500px;
   }
 
-  &.right{
-    img{
+  &.right {
+    img {
       width: 85%;
       max-width: 100%;
       margin-right: 0;
       border-radius: 6px;
-  
+
       @include breakpoint(large) {
         max-width: 1000px;
       }
     }
   }
-  
+
   &.left {
     padding: 12px;
 
@@ -244,7 +244,7 @@ small {
     }
   }
 
-  img{
+  img {
     display: block;
     margin: auto;
     max-width: 100%;
