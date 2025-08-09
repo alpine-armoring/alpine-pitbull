@@ -1150,7 +1150,7 @@ $shapeColor: var(--color-background);
   @include breakpoint(medium) {
     padding: rem(24);
     max-width: 1500px;
-    font-size: rem(28);
+    font-size: rem(24);
 
     &.primary {
       padding: rem(150) rem(24);
@@ -1165,6 +1165,22 @@ $shapeColor: var(--color-background);
 
   p {
     line-height: 1.2;
+  }
+
+  &.heading2{
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(30px);
+    font-size: rem(22);
+
+    &[data-gsap-ready='true'] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @include breakpoint(medium) {
+      font-size: rem(36);
+    }
   }
 }
 

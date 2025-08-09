@@ -92,7 +92,7 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
 
           {props.Description && (
             <TextReveal word delay={0.3}>
-              <h1
+              <h2
                 dangerouslySetInnerHTML={{
                   __html: props.Description,
                 }}

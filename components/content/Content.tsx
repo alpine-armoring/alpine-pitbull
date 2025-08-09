@@ -15,13 +15,53 @@ function Content(props) {
               ? component.class.split(' ').join(' ')
               : '';
 
+            const hasAnimateClass =
+              component.class && component.class.includes('animate');
+
+            const renderHeading = (content) => {
+              if (!component.class) return null;
+
+              if (component.class.includes('heading1')) {
+                return <h1 dangerouslySetInnerHTML={{ __html: content }} />;
+              } else if (component.class.includes('heading2')) {
+                return <h2 dangerouslySetInnerHTML={{ __html: content }} />;
+              } else if (component.class.includes('heading3')) {
+                return <h3 dangerouslySetInnerHTML={{ __html: content }} />;
+              }
+
+              return null;
+            };
+
+            const headingElement = renderHeading(component.Content);
+
+            if (headingElement) {
+              const headingContent = (
+                <div className={`textSection ${classes}`}>{headingElement}</div>
+              );
+
+              return hasAnimateClass ? (
+                <TextReveal line key={index}>
+                  {headingContent}
+                </TextReveal>
+              ) : (
+                <div key={index}>{headingContent}</div>
+              );
+            }
+
+            // For non-heading content
+            const content = hasAnimateClass ? (
+              <TextReveal line>
+                <CustomMarkdown key={index}>{component.Content}</CustomMarkdown>
+              </TextReveal>
+            ) : (
+              <div className="static" key={index}>
+                <CustomMarkdown>{component.Content}</CustomMarkdown>
+              </div>
+            );
+
             return (
               <div className={`textSection ${classes}`} key={index}>
-                <TextReveal line>
-                  <CustomMarkdown key={index}>
-                    {component.Content}
-                  </CustomMarkdown>
-                </TextReveal>
+                {content}
               </div>
             );
           }
