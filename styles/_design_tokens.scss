@@ -199,7 +199,7 @@ small {
     }
   }
 
-  &.centered{
+  &.centered {
     margin: auto;
     text-align: center;
 
@@ -208,38 +208,42 @@ small {
     }
   }
 
-  &.big{
-    p{
+  &.big {
+    p {
       @include breakpoint(large) {
         font-size: rem(26);
-      }      
+      }
     }
   }
 
-  &.spacing{
+  &.spacing {
     height: 50px;
 
-    &.big{
+    &.big {
       height: 100px;
     }
 
-    &.huge{
+    &.huge {
       height: 200px;
     }
   }
 
-  &.specs{
-    margin: rem(24) auto;  
+  &.specs {
+    margin: rem(24) auto;
 
-    ul{
+    ul {
       margin: 0;
       padding: 0;
       list-style: none;
       border-radius: 6px;
       border: 1px solid #fff3;
-      background: linear-gradient(180deg,rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);      
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(0, 0, 0, 0) 70%
+      );
 
-      li{
+      li {
         display: flex;
         padding: rem(12);
         margin: 0;
@@ -252,7 +256,7 @@ small {
           font-size: rem(26);
         }
 
-        span{
+        span {
           margin-right: rem(20);
           min-width: 75px;
           color: rgb(153, 153, 153);
@@ -265,7 +269,7 @@ small {
           }
         }
 
-        &:last-child{
+        &:last-child {
           border-bottom: 0;
         }
       }

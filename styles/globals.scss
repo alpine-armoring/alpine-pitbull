@@ -1141,7 +1141,7 @@ $shapeColor: var(--color-background);
     }
   }
 }
-.fadeInText{
+.fadeInText {
   opacity: 0;
   filter: blur(40px);
 }
@@ -1170,13 +1170,12 @@ $shapeColor: var(--color-background);
     line-height: 1.2;
   }
 
-  h2{
+  h2 {
     font-size: rem(22);
 
     @include breakpoint(medium) {
       font-size: rem(36);
     }
-
   }
 }
 

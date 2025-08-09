@@ -83,11 +83,9 @@
     }
 
     .hp_banner_big & {
-
       @include breakpoint(large) {
         font-size: 13vw;
       }
-
     }
   }
 
@@ -108,7 +106,7 @@
     margin: 0 auto;
     padding: 14px;
     text-transform: uppercase;
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, 0.2);
     font-size: 13px;
     font-weight: 500;
     border-radius: 15px;
@@ -132,12 +130,12 @@
     }
   }
 
-  &_shape{
+  &_shape {
     @include breakpoint(large) {
       height: 150px;
 
-      &:after{
-        box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, .5);
+      &:after {
+        box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
         left: -150px;
         right: -150px;
       }
