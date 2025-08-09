@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Header = () => {
   return (
-    <header className={`${styles.header} container`}>
+    <header className={`${styles.header}`}>
       {/* <nav className={`${styles.navigation}`}>
         <Link href="/configurator">Vehicle Configurator</Link>
       </nav> */}

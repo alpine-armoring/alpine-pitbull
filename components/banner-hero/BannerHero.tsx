@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './BannerHero.module.scss';
 import { BannerHeroProps } from 'types';
 import Link from 'next/link';
-import TextReveal from '@/components/text-reveal/TextReveal';
+import FadeInContent from '@/components/FadeInContent';
 import Image from 'next/image';
-import { gsap } from 'gsap';
 
 const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
   ssr: false,
@@ -21,24 +19,12 @@ const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
 
 interface BannerHeroComponentProps {
   props: BannerHeroProps['props'];
-  delay?: number;
+  big?: boolean;
 }
 
-const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    gsap.to(buttonRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: delay + 0.4,
-      ease: 'power2.out',
-    });
-  }, [delay]);
-
+const BannerHero = ({ props, big }: BannerHeroComponentProps) => {
   return (
-    <div className={`${styles.hp_banner}`}>
+    <div className={`${styles.hp_banner} ${big ? styles.hp_banner_big : ''}`}>
       <div className={`${styles.hp_banner_inner}`}>
         {props.media?.data?.attributes?.mime?.split('/')[0] === 'video' ||
         props.mediaMP4?.data?.attributes?.mime?.split('/')[0] === 'video' ? (
@@ -59,49 +45,51 @@ const BannerHero = ({ props, delay = 0 }: BannerHeroComponentProps) => {
 
         <div className={`${styles.hp_banner_content}`}>
           {props.subtitle && (
-            <TextReveal line>
+            <FadeInContent>
               <h4
                 dangerouslySetInnerHTML={{
                   __html: props.subtitle,
                 }}
                 className={`${styles.hp_banner_subTitle}`}
               />
-            </TextReveal>
+            </FadeInContent>
           )}
 
           {props.title ? (
-            <TextReveal word delay={delay}>
+            <FadeInContent delay={0.2}>
               <h1
                 dangerouslySetInnerHTML={{
                   __html: props.title,
                 }}
                 className={`${styles.hp_banner_title}`}
               />
-            </TextReveal>
+            </FadeInContent>
           ) : null}
 
           {props.Button && (
-            <Link
-              ref={buttonRef}
-              href={props.Button.URL}
-              className={`${styles.hp_banner_button}`}
-            >
-              {props.Button.Title}
-            </Link>
+            <FadeInContent delay={0.3}>
+              <Link
+                href={props.Button.URL}
+                className={`${styles.hp_banner_button}`}
+              >
+                {props.Button.Title}
+              </Link>
+            </FadeInContent>
           )}
 
           {props.Description && (
-            <TextReveal word delay={0.3}>
+            <FadeInContent delay={0.3}>
               <h2
                 dangerouslySetInnerHTML={{
                   __html: props.Description,
                 }}
                 className={`${styles.hp_banner_text}`}
               />
-            </TextReveal>
+            </FadeInContent>
           )}
         </div>
       </div>
+      <div className={`${styles.hp_banner_shape} shape-before`}></div>
     </div>
   );
 };

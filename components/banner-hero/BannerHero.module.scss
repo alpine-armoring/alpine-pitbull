@@ -38,9 +38,9 @@
 
   &_content {
     position: relative;
-    z-index: 3;
+    padding: 0 rem(10);
     text-align: center;
-    will-change: transform, opacity;
+    z-index: 3;
 
     @include breakpoint(large) {
       padding-bottom: 20vh;
@@ -64,17 +64,9 @@
     text-transform: uppercase;
     letter-spacing: 0.4px;
     font-weight: var(--font-medium);
-    opacity: 0;
-    will-change: transform, opacity;
-    transform: translateY(20px);
-
-    &[data-gsap-ready='true'] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     @include breakpoint(large) {
-      font-size: rem(20);
+      font-size: rem(26);
     }
   }
 
@@ -85,17 +77,17 @@
     line-height: 1em;
     text-transform: uppercase;
     text-align: center;
-    will-change: transform, opacity;
-    opacity: 0;
-    transform: translateY(30px);
-
-    &[data-gsap-ready='true'] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     @include breakpoint(large) {
       font-size: 7vw;
+    }
+
+    .hp_banner_big & {
+
+      @include breakpoint(large) {
+        font-size: 13vw;
+      }
+
     }
   }
 
@@ -103,49 +95,52 @@
     max-width: 800px;
     font-size: rem(17);
     line-height: 1.4;
-    will-change: transform, opacity;
-    opacity: 0;
-    transform: translateY(30px);
-
-    &[data-gsap-ready='true'] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     @include breakpoint(large) {
       text-transform: uppercase;
       font-weight: var(--font-medium);
+      font-size: rem(26);
     }
   }
 
   &_button {
     display: inline-block;
     margin: 0 auto;
-    padding: 18px 24px;
+    padding: 14px;
     text-transform: uppercase;
+    background: rgba(0,0,0,.2);
     font-size: 13px;
     font-weight: 500;
-    border-radius: 25px;
-    background: #fff;
+    border-radius: 15px;
     border: 1px solid #fff;
     cursor: pointer;
-    color: var(--color-background);
-    transform: translateY(30px);
-    opacity: 0;
-    will-change: transform, opacity;
+    color: white;
 
-    &:hover {
-      background: var(--color-background);
-      color: white;
-      transform: translateY(-2px) !important;
+    @include breakpoint(large) {
+      padding: 18px 32px;
+      font-size: rem(16);
       transition:
         transform 0.2s ease-in-out,
         background-color 0.2s ease-in-out,
         color 0.2s ease-in-out;
-    }
 
-    &:active {
-      transform: translateY(0);
+      &:hover {
+        color: var(--color-background);
+        background: #fff;
+        transform: translateY(-2px) !important;
+      }
+    }
+  }
+
+  &_shape{
+    @include breakpoint(large) {
+      height: 150px;
+
+      &:after{
+        box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, .5);
+        left: -150px;
+        right: -150px;
+      }
     }
   }
 }
@@ -162,7 +157,6 @@
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .hp_banner_video {
-    // Higher quality settings for retina displays
     image-rendering: -webkit-optimize-contrast;
   }
 }

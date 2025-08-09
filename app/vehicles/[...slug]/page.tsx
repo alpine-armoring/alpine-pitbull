@@ -51,9 +51,11 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
 
   return (
     <>
-      {vehicleData.banner && <BannerHero props={vehicleData.banner} />}
+      {vehicleData.banner && <BannerHero props={vehicleData.banner} big />}
 
-      <Content data={contentData} />
+      <div className="container_small">
+        <Content data={contentData} />
+      </div>
 
       {/* <StickyVideoSection /> */}
 

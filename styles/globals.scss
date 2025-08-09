@@ -114,13 +114,13 @@ select {
 
 .background-dark {
   color: var(--color-white);
-  background: #101010 url(/assets/noise4.png);
+  background: #101010 url(/images/noise4.png);
   background-size: 30px;
 }
 
 .shape-before,
 .shape-after {
-  --background: #101010 url('/assets/noise4.png');
+  --background: #101010 url('/images/noise4.png');
   position: relative;
   overflow-x: clip;
   height: 50px;
@@ -152,11 +152,11 @@ select {
   }
 }
 
-@supports (-webkit-appearance: none) {
-  .shape-before {
-    overflow-x: hidden;
-  }
-}
+// @supports (-webkit-appearance: none) {
+//   .shape-before {
+//     overflow-x: hidden;
+//   }
+// }
 
 .shape-before-white {
   --background: var(--color-background);
@@ -1141,7 +1141,10 @@ $shapeColor: var(--color-background);
     }
   }
 }
-
+.fadeInText{
+  opacity: 0;
+  filter: blur(40px);
+}
 .textSection {
   padding: rem(48) rem(12);
   font-size: rem(18);
@@ -1167,20 +1170,13 @@ $shapeColor: var(--color-background);
     line-height: 1.2;
   }
 
-  &.heading2 {
-    will-change: transform, opacity;
-    opacity: 0;
-    transform: translateY(30px);
+  h2{
     font-size: rem(22);
-
-    &[data-gsap-ready='true'] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     @include breakpoint(medium) {
       font-size: rem(36);
     }
+
   }
 }
 
