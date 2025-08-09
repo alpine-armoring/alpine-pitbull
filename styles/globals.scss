@@ -1167,7 +1167,7 @@ $shapeColor: var(--color-background);
     line-height: 1.2;
   }
 
-  &.heading2{
+  &.heading2 {
     will-change: transform, opacity;
     opacity: 0;
     transform: translateY(30px);
