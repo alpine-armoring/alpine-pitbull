@@ -32,7 +32,7 @@ export default async function AboutPage() {
   const { pageData } = await getpageData();
 
   const contentData = {
-    dynamicZone: pageData.dynamicZone || [],
+    dynamicZone: pageData?.dynamicZone || [],
   };
 
   // console.log(pageData);
@@ -49,9 +49,11 @@ export default async function AboutPage() {
       <main>
         {pageData?.banner && <BannerHero props={pageData.banner} small />}
 
-        <div className="container_small">
-          <Content data={contentData} />
-        </div>
+        {contentData && (
+          <div className="container_small">
+            <Content data={contentData} />
+          </div>
+        )}
       </main>
     </div>
   );
