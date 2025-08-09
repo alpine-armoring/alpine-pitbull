@@ -1,13 +1,13 @@
 .columnsList {
   &_wrapper {
-    margin: 64px auto;
+    margin: 24px auto 64px auto;
 
     @include breakpoint(large) {
-      margin: 128px auto;
+      margin: 48px auto 128px auto;
     }
 
     @include breakpoint(huge) {
-      margin: 160px auto;
+      margin: 64px auto 160px auto;
     }
   }
 

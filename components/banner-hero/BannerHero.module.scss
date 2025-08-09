@@ -87,6 +87,12 @@
         font-size: 13vw;
       }
     }
+
+    .hp_banner_small & {
+      @include breakpoint(large) {
+        font-size: 5vw;
+      }
+    }
   }
 
   &_text {

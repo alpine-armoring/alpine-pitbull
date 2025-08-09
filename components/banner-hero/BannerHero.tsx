@@ -20,11 +20,14 @@ const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
 interface BannerHeroComponentProps {
   props: BannerHeroProps['props'];
   big?: boolean;
+  small?: boolean;
 }
 
-const BannerHero = ({ props, big }: BannerHeroComponentProps) => {
+const BannerHero = ({ props, big, small }: BannerHeroComponentProps) => {
   return (
-    <div className={`${styles.hp_banner} ${big ? styles.hp_banner_big : ''}`}>
+    <div
+      className={`${styles.hp_banner} ${big ? styles.hp_banner_big : ''} ${small ? styles.hp_banner_small : ''}`}
+    >
       <div className={`${styles.hp_banner_inner}`}>
         {props.media?.data?.attributes?.mime?.split('/')[0] === 'video' ||
         props.mediaMP4?.data?.attributes?.mime?.split('/')[0] === 'video' ? (

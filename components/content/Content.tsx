@@ -32,7 +32,11 @@ function Content(props) {
 
           case 'slices.spacing': {
             return (
-              <div className={`spacing static ${classes}`} key={index}>
+              <div
+                className={`spacing static ${classes}`}
+                key={index}
+                id={`${component.anchor ? component.anchor : ''}`}
+              >
                 {' '}
               </div>
             );
