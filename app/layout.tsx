@@ -67,7 +67,10 @@ export default function RootLayout({
       </head>
 
       <body className={`${terminaFont.className}`}>
-        <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
+        <ReactLenis
+          root
+          options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}
+        >
           <Header />
 
           {children}
