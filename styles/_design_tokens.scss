@@ -169,7 +169,7 @@ small {
     max-width: 100%;
   }
 
-  iframe{
+  iframe {
     max-width: 100%;
     margin: 20px 0;
   }
@@ -214,16 +214,16 @@ small {
     }
   }
 
-  &.primary{
-    p{
+  &.primary {
+    p {
       font-size: rem(30);
     }
   }
 
-  &.left{
+  &.left {
     max-width: 780px;
 
-    h2{
+    h2 {
       font-size: 24px;
       text-transform: uppercase;
 
@@ -241,21 +241,20 @@ small {
     }
   }
 
-  &.parallax{
-  
-    &.left{
-      margin-left: 10vW;
+  &.parallax {
+    &.left {
+      margin-left: 10vw;
     }
 
-    &.right{
-      margin-right: 10vW;
+    &.right {
+      margin-right: 10vw;
       margin-left: auto;
     }
 
-    &.small{
+    &.small {
       max-width: 500px;
 
-      p{
+      p {
         font-size: rem(21);
       }
     }
@@ -322,7 +321,7 @@ small {
   }
 }
 
-.staticIframe{
+.staticIframe {
   display: block;
   max-width: 100%;
   margin: rem(30) auto;
@@ -340,13 +339,13 @@ small {
     max-width: 1000px;
   }
 
-  &.big{
+  &.big {
     @include breakpoint(large) {
       max-width: 1500px;
     }
   }
 
-  &.parallax{
+  &.parallax {
     @include breakpoint(large) {
       padding: 48px 0;
     }
@@ -365,7 +364,6 @@ small {
   }
 
   &.left {
-
     img {
       max-width: 100%;
       border-radius: 6px;
