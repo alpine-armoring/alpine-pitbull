@@ -218,7 +218,7 @@ small {
 
   &.primary {
     p {
-      font-size: clamp(1.125rem, 1.0188rem + 0.4531vw, 1.5625rem);  // 18 - 25
+      font-size: clamp(1.125rem, 1.0188rem + 0.4531vw, 1.5625rem); // 18 - 25
     }
   }
   &.left {
@@ -331,7 +331,7 @@ small {
   aspect-ratio: 16 / 9;
   border-radius: 6px;
 
-  &.right{
+  &.right {
     margin-right: 0;
   }
 }
@@ -399,7 +399,7 @@ small {
     max-width: 1500px;
   }
 
-  video{
+  video {
     width: 100%;
   }
 }
