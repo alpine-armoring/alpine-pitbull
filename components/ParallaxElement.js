@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsDesktop } from '@/utils/useIsDesktop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,8 +13,14 @@ export default function ParallaxElement({
   speed = 0.3,
 }) {
   const elementRef = useRef(null);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
+    // Only run parallax animations on desktop
+    if (!isDesktop) {
+      return;
+    }
+
     const element = elementRef.current;
 
     if (!element) return;
@@ -34,7 +41,7 @@ export default function ParallaxElement({
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [speed]);
+  }, [speed, isDesktop]);
 
   return (
     <div ref={elementRef} className={className}>

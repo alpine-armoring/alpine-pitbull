@@ -1,36 +1,16 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
+import { useIsDesktop } from '@/utils/useIsDesktop';
 import styles from './StackingCards.module.scss';
 
 interface ExtendedHTMLElement extends HTMLElement {
   contentRevealed?: boolean;
 }
-
-// Hook to detect if device is desktop
-const useIsDesktop = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkIsDesktop = () => {
-      setIsDesktop(window.innerWidth >= 768);
-    };
-
-    // Check on mount
-    checkIsDesktop();
-
-    // Listen for resize events
-    window.addEventListener('resize', checkIsDesktop);
-
-    return () => window.removeEventListener('resize', checkIsDesktop);
-  }, []);
-
-  return isDesktop;
-};
 
 const StackingCards = ({ data }) => {
   const containerRef = useRef<HTMLElement>(null);

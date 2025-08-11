@@ -1,6 +1,7 @@
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
+import FadeInContent from '@/components/FadeInContent';
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -87,21 +88,25 @@ export default async function Home() {
     <>
       {pageData?.banner && <BannerHero props={pageData.banner} />}
 
-      {pageData?.otherPages && (
-        <ColumnsList
-          items={normalizedOtherPages}
-          title={pageData.otherPagesTitle}
-          description={pageData.otherPagesText}
-        />
-      )}
+      <FadeInContent>
+        {pageData?.otherPages && (
+          <ColumnsList
+            items={normalizedOtherPages}
+            title={pageData.otherPagesTitle}
+            description={pageData.otherPagesText}
+          />
+        )}
+      </FadeInContent>
 
-      <ColumnsList
-        className="vehicles_item col-2"
-        title={pageData.vehiclesTitle}
-        description={pageData.vehiclesText}
-        items={normalizedVehicles}
-        configurator
-      />
+      <FadeInContent>
+        <ColumnsList
+          className="vehicles_item col-2"
+          title={pageData.vehiclesTitle}
+          description={pageData.vehiclesText}
+          items={normalizedVehicles}
+          configurator
+        />
+      </FadeInContent>
     </>
   );
 }

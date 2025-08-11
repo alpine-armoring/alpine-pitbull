@@ -1,4 +1,3 @@
-// lib/strapi.ts
 const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
 const SILENT_MODE = process.env.NEXT_PUBLIC_STRAPI_SILENT === 'true';
 

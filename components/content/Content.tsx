@@ -170,7 +170,7 @@ function Content(props) {
                 allow="autoplay"
                 allowFullScreen
                 key={index}
-                className={`staticIframe`}
+                className={`staticIframe ${classes}`}
               ></iframe>
             );
           }
