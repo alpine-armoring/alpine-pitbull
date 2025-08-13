@@ -193,16 +193,16 @@ function Content(props) {
               const imageContent = (
                 <Image
                   src={
-                    component.media.data?.attributes.formats.large?.url ||
+                    component.media.data?.attributes?.formats?.large?.url ||
                     component.media.data?.attributes.url
                   }
                   alt={component.media.data?.attributes.alternativeText || ''}
                   width={
-                    component.media.data?.attributes.formats.large?.width ||
+                    component.media.data?.attributes?.formats?.large?.width ||
                     component.media.data?.attributes.width
                   }
                   height={
-                    component.media.data?.attributes.formats.large?.height ||
+                    component.media.data?.attributes?.formats?.large?.height ||
                     component.media.data?.attributes.height
                   }
                   quality={100}
