@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useRef, useEffect } from 'react';
 import styles from './Form.module.scss';
 import ChevronIcon from 'components/icons/Chevron';
@@ -15,12 +16,8 @@ const Dropdown = ({
   useEffect(() => {
     if (!isActive) return;
     function handleClickOutside(event) {
-      // @ts-expect-error no need
-      if (
-        dropdownRef.current &&
-        event.target &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      // @ts-ignore
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsActive(false);
       }
     }
