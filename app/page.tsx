@@ -2,6 +2,7 @@ import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
 import FadeInContent from '@/components/FadeInContent';
+import Featured from '@/components/featured/Featured';
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -55,7 +56,7 @@ async function getpageData() {
       getStrapiData({
         route: 'pitbull-homepage',
         custom:
-          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage',
+          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage&populate[featured][populate]=image',
         revalidate: 3600,
       }),
     ]);
@@ -107,6 +108,12 @@ export default async function Home() {
           configurator
         />
       </FadeInContent>
+
+      {pageData?.featured && (
+        <FadeInContent>
+          <Featured props={pageData?.featured} />
+        </FadeInContent>
+      )}
     </>
   );
 }

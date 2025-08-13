@@ -34,7 +34,7 @@ const ColumnsList = (props) => {
                 width={item.image.formats?.large?.width || item.image.width}
                 height={item.image.formats?.large?.height || item.image.height}
                 className={`${styles.columnsList_item_image}`}
-                quality={90}
+                quality={100}
               ></Image>
             )}
 
