@@ -250,8 +250,30 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
           ref={menuToggleRef}
           onClick={handleMenuToggle}
         >
-          <p ref={menuOpenRef}>Menu</p>
-          <p ref={menuCloseRef} className={styles.menuToggle_close}>
+          <p
+            ref={menuOpenRef}
+            className={`${styles.menuToggle_open} ${styles.menuToggle_button}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+              strokeWidth="2"
+            >
+              <path d="M38.09 26H1.91M1.91 14h36.18"></path>
+            </svg>
+            Menu
+          </p>
+          <p
+            ref={menuCloseRef}
+            className={`${styles.menuToggle_close} ${styles.menuToggle_button}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+              strokeWidth="2"
+            >
+              <path d="M32.79 7.15 7.21 32.74M7.21 7.15l25.58 25.59"></path>
+            </svg>
             Close
           </p>
         </div>

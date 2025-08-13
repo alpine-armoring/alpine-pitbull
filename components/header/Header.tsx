@@ -52,19 +52,19 @@ const Header = () => {
         ]}
         socialLinks={[
           {
-            href: '/vehicles/armored-vx',
+            href: '/about#features',
             text: 'Tactical Features and Customizations',
           },
           {
-            href: '/vehicles/armored-vxt',
+            href: '/about#history',
             text: 'History of Alpine Armoring Pit-Bull',
           },
           {
-            href: '/vehicles/armored-vxt',
+            href: '/about#testing',
             text: 'Testing and Certification',
           },
           {
-            href: '/vehicles/armored-vxt',
+            href: '/contact',
             text: 'Contact Us',
           },
         ]}

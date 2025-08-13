@@ -1,0 +1,191 @@
+.form {
+  @include breakpoint(medium) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  &_group {
+    @include breakpoint(medium) {
+      width: 49%;
+      &_full {
+        width: 100%;
+      }
+    }
+  }
+
+  &_input {
+    position: relative;
+    padding: rem(14) rem(8) rem(14) rem(16);
+    width: 100%;
+    border-radius: 8px;
+    background: var(--color-white);
+    font-weight: var(--font-medium);
+    border: 1px solid transparent;
+    font-size: rem(13);
+    font-family: Termina, sans-serif;
+
+    @supports (-webkit-touch-callout: none) {
+      @include breakpoint(small) {
+        font-size: rem(16);
+      }
+    }
+
+    &::placeholder {
+      font-weight: var(--font-regular);
+      color: var(--color-dark);
+    }
+
+    .form_group.error & {
+      border-color: #e74c3c;
+    }
+
+    &_error {
+      color: #e74c3c;
+      visibility: hidden;
+      min-height: 15px;
+      padding-top: 3px;
+      padding-bottom: 8px;
+      .form_group.error & {
+        visibility: visible;
+      }
+    }
+  }
+
+  &_textarea {
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+
+  &_select {
+    cursor: pointer;
+
+    &_selected {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      color: var(--color-dark);
+      background: transparent;
+      border: 0;
+      font-size: rem(13);
+      padding: 0;
+
+      @supports (-webkit-touch-callout: none) {
+        @include breakpoint(small) {
+          font-size: rem(16);
+        }
+      }
+
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 24px;
+      }
+
+      svg {
+        transform: rotate(90deg);
+        position: absolute;
+        right: 0;
+        transition: transform 0.3s ease-in-out;
+
+        path {
+          fill: var(--color-dark);
+        }
+      }
+    }
+
+    &_placeholder {
+      font-weight: var(--font-regular);
+      color: var(--color-dark);
+    }
+
+    &_active {
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &_list {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      margin-top: 26px;
+      padding: 0 20px;
+      max-height: 330px;
+      overflow-y: auto;
+      transition: 0.2s ease-in-out;
+      height: 0;
+      z-index: 1;
+
+      &_active {
+        height: fit-content;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        background-color: #eee;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--color-primary);
+      }
+    }
+
+    &_option {
+      padding: 8px 0;
+      font-weight: var(--font-medium);
+      border: none;
+      font-size: 13px;
+      background: none;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover,
+      &.selected {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &_submit {
+    margin: 0 auto;
+    padding: 14px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+    background: var(--color-primary);
+    
+    @include breakpoint(large) {
+      padding: 18px 32px;
+      transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background: #3b3427;
+        transform: translateY(-2px) !important;
+      }
+    }
+  }
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.disabled .form_select_selected {
+  cursor: not-allowed;
+}
