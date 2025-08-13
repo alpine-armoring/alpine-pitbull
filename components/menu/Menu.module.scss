@@ -10,8 +10,8 @@
   cursor: pointer;
   text-transform: uppercase;
 
-  &:hover{
-    .menuToggle_button{
+  &:hover {
+    .menuToggle_button {
       background-color: #fff3;
     }
   }
@@ -26,11 +26,11 @@
     font-size: 13px;
     border-radius: 4px;
 
-    svg{
+    svg {
       width: 20px;
       margin-right: 10px;
 
-      path{
+      path {
         stroke: white;
       }
     }
