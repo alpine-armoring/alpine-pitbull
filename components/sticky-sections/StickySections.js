@@ -5,12 +5,13 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLenis } from 'lenis/react';
 import Image from 'next/image';
+import CustomMarkdown from 'components/CustomMarkdown';
 import styles from './StickySections.module.scss';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const StickySections = ({ data, media }) => {
+const StickySections = ({ data, media, text }) => {
   const lenis = useLenis();
   const contentRefs = useRef([]);
 
@@ -87,23 +88,57 @@ const StickySections = ({ data, media }) => {
 
   return (
     <div className={styles.stickySections_wrap}>
-      {media && (
-        <div className={styles.stickySections_wrap_image}>
-          <Image
-            src={
-              media.data?.attributes.formats.large?.url ||
-              component.secondImage.data?.attributes.url
-            }
-            alt={media.data?.attributes.alternativeText || ''}
-            width={
-              media.data?.attributes.formats.large?.width ||
-              media.data?.attributes.width
-            }
-            height={
-              media.data?.attributes.formats.large?.height ||
-              media.data?.attributes.height
-            }
-          />
+      {(text || media.data) && (
+        <div className={styles.stickySections_wrap_left}>
+          {text && (
+            <div className={`static ${styles.stickySections_wrap_text}`}>
+              <CustomMarkdown>{text}</CustomMarkdown>
+            </div>
+          )}
+
+          {media.data && (
+            <div className={styles.stickySections_wrap_image}>
+              {media.data?.attributes?.mime?.startsWith('video/') ? (
+                <video
+                  src={
+                    media.data?.attributes?.formats?.large?.url ||
+                    media.data?.attributes?.url
+                  }
+                  width={
+                    media.data?.attributes?.formats?.large?.width ||
+                    media.data?.attributes?.width
+                  }
+                  height={
+                    media.data?.attributes?.formats?.large?.height ||
+                    media.data?.attributes?.height
+                  }
+                  muted
+                  autoPlay
+                  playsInline
+                  loop
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <Image
+                  src={
+                    media.data?.attributes?.formats?.large?.url ||
+                    media.data?.attributes?.url
+                  }
+                  alt={media.data?.attributes?.alternativeText || ''}
+                  width={
+                    media.data?.attributes?.formats?.large?.width ||
+                    media.data?.attributes?.width
+                  }
+                  height={
+                    media.data?.attributes?.formats?.large?.height ||
+                    media.data?.attributes?.height
+                  }
+                />
+              )}
+            </div>
+          )}
         </div>
       )}
 

@@ -88,6 +88,7 @@ function Content(props) {
               <StickySections
                 data={component.item}
                 media={component.media}
+                text={component.text}
                 key={index}
               />
             );

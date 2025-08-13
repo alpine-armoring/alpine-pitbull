@@ -1,7 +1,5 @@
 .stickySections {
   &_wrap {
-    margin: rem(40) 0 0 0;
-
     @include breakpoint(small) {
       margin-bottom: rem(-30);
     }
@@ -10,28 +8,40 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-items: baseline;
     }
 
-    &_image {
+    &_left {
       @include breakpoint(small) {
         margin-bottom: rem(12);
       }
 
       @include breakpoint(large) {
         width: 68%;
+        position: sticky;
+        top: 70px;
 
-        img {
-          position: sticky;
-          top: 19%;
+        img, video {
           border-radius: 6px;
+          max-width: 100%;
         }
+      }      
+
+      img, video {
+        border-radius: 14px;
+        max-width: 100%;
       }
+    }
+
+    &_text{
+      margin-bottom: rem(20);
     }
   }
 
   &_list {
     @include breakpoint(large) {
       width: 30%;
+      margin: auto;
     }
   }
 
@@ -41,14 +51,13 @@
     position: sticky;
     display: flex;
     flex-direction: column;
-    gap: 3vh;
-    height: 80vh;
-    max-height: 400px;
+    gap: 20px;
     max-width: 500px;
     top: 80px;
+    height: 350px;
     margin: auto;
     margin-bottom: rem(12);
-    padding: rem(24);
+    padding: rem(40) rem(15);
     border-radius: 14px;
     // background: #656565;
     background: var(--color-primary);
@@ -56,25 +65,26 @@
 
     @include breakpoint(large) {
       padding: rem(32);
+      height: 400px;
     }
 
     &:nth-child(2) {
-      background: #675a41;
-    }
-    &:nth-child(3) {
-      background: #5e533e;
-    }
-    &:nth-child(4) {
       background: #4d4638;
     }
+    &:nth-child(3) {
+      background: #3d382d;
+    }
+    &:nth-child(4) {
+      background: #3c3932; 
+    }
     &:nth-child(5) {
-      background: #3c3932;
+      background: #34322f; 
     }
     &:nth-child(6) {
-      background: #34322f;
+      background: #2b2b2b; 
     }
     &:nth-child(7) {
-      background: #2b2b2b;
+      background: #1f1f1f; 
     }
 
     &_title {
