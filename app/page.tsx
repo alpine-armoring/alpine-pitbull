@@ -180,13 +180,15 @@ export default async function Home() {
       </FadeInContent>
 
       <FadeInContent>
-        <ColumnsList
-          className="vehicles_item col-2"
-          title={pageData.vehiclesTitle}
-          description={pageData.vehiclesText}
-          items={normalizedVehicles}
-          configurator
-        />
+        {pageData?.vehicles?.data && (
+          <ColumnsList
+            className="vehicles_item col-2"
+            title={pageData.vehiclesTitle}
+            description={pageData.vehiclesText}
+            items={normalizedVehicles}
+            configurator
+          />
+        )}
       </FadeInContent>
 
       {pageData?.featured && (
