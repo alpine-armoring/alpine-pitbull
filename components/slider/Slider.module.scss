@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  
+
   &_container {
     position: relative;
     width: 100%;
@@ -28,13 +28,13 @@
     object-fit: cover;
     display: block;
 
-    &_transparent{
-        height: auto;
+    &_transparent {
+      height: auto;
 
-        @include breakpoint(large) {
-            max-width: 97%;
-            max-width: 1100px;
-        }
+      @include breakpoint(large) {
+        max-width: 97%;
+        max-width: 1100px;
+      }
     }
   }
 
@@ -45,31 +45,31 @@
 
   &_expand {
     position: absolute;
-      top: 16px;
-      right: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border: none;
-      border-radius: 10px;
-      transition: background-color 0.3s ease-in-out;
-      background-color: #ffffff80;
-      backdrop-filter: blur(20px);
-      cursor: pointer;
-      transition: background 0.2s ease-in-out;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #ffffff80;
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
 
-      &:hover {
-        background: white;
-      }
+    &:hover {
+      background: white;
+    }
 
-      &_img,
-      &_icon {
-        width: 20px;
-        height: 20px;
-        margin: 0;
-      }
+    &_img,
+    &_icon {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
   }
 
   &_controls {
@@ -85,44 +85,44 @@
     backdrop-filter: blur(20px);
 
     &_arrow {
-        width: 42px;
-        height: 42px;
-        color: #08090b;
-        background: none;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background 0.2s ease-in-out;
+      width: 42px;
+      height: 42px;
+      color: #08090b;
+      background: none;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
 
-        &_prev {
-            transform: rotate(180deg);
-        }
+      &_prev {
+        transform: rotate(180deg);
+      }
 
-        &:hover {
-            background: white;
-        }
+      &:hover {
+        background: white;
+      }
     }
 
     &_icon {
-        display: block;
-        width: auto;
-        height: 13px;
-        color: #08090b;
+      display: block;
+      width: auto;
+      height: 13px;
+      color: #08090b;
 
-        svg {
-          display: block;
-          height: 100%;
-          width: 100%;
-        }
+      svg {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
     }
 
     &_count {
-        padding: 0 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: 600;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
     }
   }
 
@@ -216,117 +216,117 @@
     }
   }
 
-//   &_thumbnails {
-//     position: absolute;
-//     bottom: 80px;
-//     left: 20px;
-//     right: 20px;
-//     display: flex;
-//     gap: 8px;
-//     overflow-x: auto;
-//     padding: 8px 0;
-//     scrollbar-width: thin;
-//     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  //   &_thumbnails {
+  //     position: absolute;
+  //     bottom: 80px;
+  //     left: 20px;
+  //     right: 20px;
+  //     display: flex;
+  //     gap: 8px;
+  //     overflow-x: auto;
+  //     padding: 8px 0;
+  //     scrollbar-width: thin;
+  //     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 
-//     @include breakpoint(small) {
-//         bottom: 70px;
-//         left: 16px;
-//         right: 16px;
-//     }
+  //     @include breakpoint(small) {
+  //         bottom: 70px;
+  //         left: 16px;
+  //         right: 16px;
+  //     }
 
-//     @include breakpoint(medium) {
-//       bottom: 90px;
-//       left: 24px;
-//       right: 24px;
-//       gap: 12px;
-//     }
+  //     @include breakpoint(medium) {
+  //       bottom: 90px;
+  //       left: 24px;
+  //       right: 24px;
+  //       gap: 12px;
+  //     }
 
-//     &::-webkit-scrollbar {
-//       height: 4px;
-//     }
+  //     &::-webkit-scrollbar {
+  //       height: 4px;
+  //     }
 
-//     &::-webkit-scrollbar-track {
-//       background: rgba(255, 255, 255, 0.1);
-//       border-radius: 2px;
-//     }
+  //     &::-webkit-scrollbar-track {
+  //       background: rgba(255, 255, 255, 0.1);
+  //       border-radius: 2px;
+  //     }
 
-//     &::-webkit-scrollbar-thumb {
-//       background: rgba(255, 255, 255, 0.3);
-//       border-radius: 2px;
+  //     &::-webkit-scrollbar-thumb {
+  //       background: rgba(255, 255, 255, 0.3);
+  //       border-radius: 2px;
 
-//       &:hover {
-//         background: rgba(255, 255, 255, 0.5);
-//       }
-//     }
+  //       &:hover {
+  //         background: rgba(255, 255, 255, 0.5);
+  //       }
+  //     }
 
-//     &_item {
-//       flex-shrink: 0;
-//       background: none;
-//       border: 2px solid transparent;
-//       border-radius: 8px;
-//       cursor: pointer;
-//       padding: 0;
-//       transition: all 0.3s ease;
-//       overflow: hidden;
+  //     &_item {
+  //       flex-shrink: 0;
+  //       background: none;
+  //       border: 2px solid transparent;
+  //       border-radius: 8px;
+  //       cursor: pointer;
+  //       padding: 0;
+  //       transition: all 0.3s ease;
+  //       overflow: hidden;
 
-//       &:hover {
-//         border-color: rgba(255, 255, 255, 0.5);
-//         transform: scale(1.05);
-//       }
+  //       &:hover {
+  //         border-color: rgba(255, 255, 255, 0.5);
+  //         transform: scale(1.05);
+  //       }
 
-//       &_active {
-//         border-color: white;
-//         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-//       }
-//     }
+  //       &_active {
+  //         border-color: white;
+  //         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  //       }
+  //     }
 
-//     &_media {
-//       position: relative;
-//       width: 60px;
-//       height: 40px;
-//       overflow: hidden;
-//       border-radius: 6px;
+  //     &_media {
+  //       position: relative;
+  //       width: 60px;
+  //       height: 40px;
+  //       overflow: hidden;
+  //       border-radius: 6px;
 
-//       @include breakpoint(medium) {
-//         width: 80px;
-//         height: 54px;
-//       }
+  //       @include breakpoint(medium) {
+  //         width: 80px;
+  //         height: 54px;
+  //       }
 
-//       img {
-//         width: 100%;
-//         height: 100%;
-//         object-fit: cover;
-//       }
-//     }
+  //       img {
+  //         width: 100%;
+  //         height: 100%;
+  //         object-fit: cover;
+  //       }
+  //     }
 
-//     &_video {
-//       position: relative;
-//       width: 100%;
-//       height: 100%;
-//     }
+  //     &_video {
+  //       position: relative;
+  //       width: 100%;
+  //       height: 100%;
+  //     }
 
-//     &_playIcon {
-//       position: absolute;
-//       top: 50%;
-//       left: 50%;
-//       transform: translate(-50%, -50%);
-//       background: rgba(0, 0, 0, 0.7);
-//       border-radius: 50%;
-//       padding: 4px;
-//       color: white;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
+  //     &_playIcon {
+  //       position: absolute;
+  //       top: 50%;
+  //       left: 50%;
+  //       transform: translate(-50%, -50%);
+  //       background: rgba(0, 0, 0, 0.7);
+  //       border-radius: 50%;
+  //       padding: 4px;
+  //       color: white;
+  //       display: flex;
+  //       align-items: center;
+  //       justify-content: center;
 
-//       svg {
-//         width: 8px;
-//         height: 8px;
+  //       svg {
+  //         width: 8px;
+  //         height: 8px;
 
-//         @include breakpoint(medium) {
-//           width: 10px;
-//           height: 10px;
-//         }
-//       }
-//     }
-//   }
+  //         @include breakpoint(medium) {
+  //           width: 10px;
+  //           height: 10px;
+  //         }
+  //       }
+  //     }
+  //   }
 }

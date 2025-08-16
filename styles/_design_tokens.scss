@@ -273,14 +273,14 @@ small {
     }
   }
 
-  &.specs_text{
+  &.specs_text {
     @include breakpoint(large) {
       float: left;
       width: 50%;
       padding-top: 20px;
       padding-right: 20px;
 
-      p{
+      p {
         font-size: rem(16);
       }
     }
@@ -294,7 +294,7 @@ small {
     margin: rem(24) 0;
 
     @include breakpoint(medium) {
-      max-width: 800px;      
+      max-width: 800px;
     }
 
     @include breakpoint(large) {
