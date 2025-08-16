@@ -59,9 +59,9 @@ const ColumnsList = (props) => {
                 <path
                   d="M1 6.66667H13M13 6.66667L7.33333 1M13 6.66667L7.33333 12.3333"
                   stroke="#fff"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
             </Link>

@@ -103,6 +103,11 @@ const nextConfig: NextConfig = {
         hostname: 'scontent-bru2-1.cdninstagram.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'scontent-fra3-1.cdninstagram.com',
+        pathname: '**',
+      },
     ],
   },
 

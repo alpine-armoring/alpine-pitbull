@@ -14,6 +14,11 @@
     @include breakpoint(medium) {
       width: 50%;
     }
+
+    @include breakpoint(large) {
+      min-height: 650px;
+      object-fit: cover;
+    }
   }
 
   &_text {

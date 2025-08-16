@@ -37,6 +37,7 @@
       &_singleData {
         top: 30%;
         padding-top: 7vh;
+        padding-bottom: 5vh;
       }
     }
 
@@ -93,6 +94,8 @@
     &:nth-child(7) {
       background: #1f1f1f;
     }
+
+    &:last-child{margin-bottom: 0;}
 
     &_title {
       font-size: clamp(1.375rem, 1.2536rem + 0.5178vw, 1.875rem); // 22 - 30
