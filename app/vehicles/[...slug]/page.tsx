@@ -27,13 +27,7 @@ async function getVehicleData(slug: string) {
   }
 }
 
-interface VehiclePageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
-export default async function VehiclePage({ params }: VehiclePageProps) {
+export default async function VehiclePage({ params }) {
   const { slug } = await params;
   const { vehicleData } = await getVehicleData(slug);
 
@@ -53,14 +47,16 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
     <>
       {vehicleData.banner && <BannerHero props={vehicleData.banner} big />}
 
-      <div className="container_small">
+      <div className="container_small overflow m2">
         <Content data={contentData} />
       </div>
 
       {/* <StickyVideoSection /> */}
 
       <Suspense fallback={<div>Loading...</div>}>
-        <VehicleBuilder />
+        <div className="bg-white ">
+          <VehicleBuilder configuratorMedia={vehicleData.configuratorMedia} />
+        </div>
       </Suspense>
     </>
   );

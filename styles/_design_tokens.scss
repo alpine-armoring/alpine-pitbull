@@ -273,9 +273,34 @@ small {
     }
   }
 
+  &.specs_text{
+    @include breakpoint(large) {
+      float: left;
+      width: 50%;
+      padding-top: 20px;
+      padding-right: 20px;
+
+      p{
+        font-size: rem(16);
+      }
+    }
+    @include breakpoint(huge) {
+      padding-top: 30px;
+      padding-right: 40px;
+    }
+  }
+
   &.specs {
     margin: rem(24) 0;
-    max-width: 800px;
+
+    @include breakpoint(medium) {
+      max-width: 800px;      
+    }
+
+    @include breakpoint(large) {
+      float: right;
+      width: 50%;
+    }
 
     ul {
       margin: 0;
@@ -298,6 +323,10 @@ small {
         border-bottom: 1px solid #fff3;
 
         @include breakpoint(large) {
+          padding: rem(16) rem(28);
+          font-size: rem(15);
+        }
+        @include breakpoint(huge) {
           padding: rem(20) rem(40);
           font-size: rem(17);
         }
@@ -309,9 +338,14 @@ small {
           font-size: rem(11);
 
           @include breakpoint(large) {
+            margin-right: rem(50);
+            min-width: 102px;
+            font-size: rem(15);
+          }
+          @include breakpoint(huge) {
             margin-right: rem(100);
             min-width: 125px;
-            font-size: rem(18);
+            font-size: rem(17);
           }
         }
 

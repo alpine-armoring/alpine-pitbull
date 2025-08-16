@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import styles from './VehicleBuilder.module.scss';
+import Slider from '@/components/slider/Slider';
 
 interface Option {
   title: string;
@@ -38,7 +39,7 @@ const slugify = (text: string | undefined | null): string => {
     .trim();
 };
 
-const VehicleBuilder: React.FC = () => {
+const VehicleBuilder = ({ configuratorMedia }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -470,91 +471,12 @@ const VehicleBuilder: React.FC = () => {
 
         {/* Main Content */}
         <div className={styles.vehicleConfigurator_mainContent}>
-          {/* Slider with Images */}
+          {/* Slider */}
           <div className={styles.vehicleConfigurator_slider}>
-            <Image
-              src="https://d102sycao8uwt8.cloudfront.net/large_armored_swat_truck_apc_tactical_pitbull_vx_a9_01_2e7fc1f92e.png"
-              width={1500}
-              height={750}
-              alt="Alpineco"
-              className={styles.vehicleConfigurator_slider_featuredImage}
-              style={{ objectFit: 'cover' }}
+            <Slider
+              media={configuratorMedia?.data || []}
+              className={styles.vehicleConfigurator_mediaSlider}
             />
-
-            <button
-              className={styles.vehicleConfigurator_slider_expand}
-              aria-hidden="false"
-              aria-expanded="true"
-              aria-label="Maximise"
-            >
-              <i
-                aria-hidden="true"
-                className={styles.vehicleConfigurator_slider_expand_icon}
-              >
-                <Image
-                  src="data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='Maximise'%20clip-path='url(%23clip0_16559_57411)'%3e%3cpath%20id='Vector'%20d='M19.5043%200.0639532C19.6997%200.145074%2019.8549%200.300301%2019.936%200.495637C19.977%200.591744%2019.9987%200.694949%2020%200.799415L20%204.79649C20%205.23799%2019.642%205.5959%2019.2005%205.5959C18.7589%205.5959%2018.4009%205.23799%2018.4009%204.79649L18.4009%202.726L13.3718%207.76231C13.2217%207.91365%2013.0174%207.99878%2012.8042%207.99878C12.591%207.99878%2012.3866%207.91365%2012.2365%207.76231C12.0851%207.61221%2012%207.40788%2012%207.19473C12%206.98158%2012.0851%206.77725%2012.2365%206.62715L17.2736%201.59883L15.2028%201.59883C14.7612%201.59883%2014.4032%201.24092%2014.4032%200.799415C14.4032%200.35791%2014.7612%200%2015.2028%200L19.2005%200C19.3049%200.00126306%2019.4082%200.0229904%2019.5043%200.0639532Z'%20fill='%230C121C'/%3e%3cpath%20id='Vector_2'%20d='M0.495714%2019.936C0.300347%2019.8549%200.145096%2019.6997%200.0639629%2019.5044C0.022994%2019.4083%200.00126314%2019.3051%201.075e-09%2019.2006L6.44997e-09%2015.2035C7.04368e-09%2014.762%200.357965%2014.4041%200.799536%2014.4041C1.24111%2014.4041%201.59907%2014.762%201.59907%2015.2035L1.59907%2017.274L6.62816%2012.2377C6.77828%2012.0863%206.98264%2012.0012%207.19583%2012.0012C7.40901%2012.0012%207.61337%2012.0863%207.7635%2012.2377C7.91486%2012.3878%208%2012.5921%208%2012.8053C8%2013.0184%207.91486%2013.2228%207.7635%2013.3729L2.72642%2018.4012H4.79722C5.23879%2018.4012%205.59675%2018.7591%205.59675%2019.2006C5.59675%2019.6421%205.23879%2020%204.79722%2020H0.799536C0.695055%2019.9987%200.591835%2019.977%200.495714%2019.936Z'%20fill='%230C121C'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_16559_57411'%3e%3crect%20width='20'%20height='20'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e"
-                  className={styles.vehicleConfigurator_slider_expand_img}
-                  alt=""
-                  width="6"
-                  height="10"
-                  loading="lazy"
-                />
-              </i>
-            </button>
-
-            <div className={styles.vehicleConfigurator_slider_arrows}>
-              <button
-                className={`${styles.vehicleConfigurator_slider_arrows_arrow} ${styles.vehicleConfigurator_slider_arrows_arrow_prev}`}
-                aria-label="Go to the previous slide"
-              >
-                <i
-                  aria-hidden="true"
-                  className={styles.vehicleConfigurator_slider_arrows_icon}
-                >
-                  <svg
-                    width="6"
-                    height="10"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.876364 10L0.00363632 9.11909L4.09273 5.00091L0 0.881818L0.874545 0L5.83091 4.99182L0.876364 10Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </i>
-              </button>
-              <div className={styles.vehicleConfigurator_slider_arrows_count}>
-                1 / 7
-              </div>
-              <button
-                className={`${styles.vehicleConfigurator_slider_arrows_arrow} ${styles.vehicleConfigurator_slider_arrows_arrow_next}`}
-                aria-label="Go to the next slide"
-              >
-                <i
-                  aria-hidden="true"
-                  className={styles.vehicleConfigurator_slider_arrows_icon}
-                >
-                  <svg
-                    width="6"
-                    height="10"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.876364 10L0.00363632 9.11909L4.09273 5.00091L0 0.881818L0.874545 0L5.83091 4.99182L0.876364 10Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </i>
-              </button>
-            </div>
           </div>
 
           {/* Sidebar with Options */}

@@ -165,8 +165,6 @@ export default async function Home() {
     },
   ];
 
-  console.log(pageData?.socialFeed);
-
   return (
     <>
       {pageData?.banner && <BannerHero props={pageData.banner} />}
