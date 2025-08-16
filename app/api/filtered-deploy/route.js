@@ -14,8 +14,6 @@ export async function POST(request) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  console.log('a');
-
   const now = Date.now();
   const body = await request.json();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
