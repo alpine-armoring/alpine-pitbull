@@ -89,14 +89,20 @@ const StickySections = ({ data, media, text }) => {
   return (
     <div className={styles.stickySections_wrap}>
       {(text || media.data) && (
-        <div className={styles.stickySections_wrap_left}>
+        <div
+          className={`${styles.stickySections_wrap_left} ${
+            (text && !media?.data) || (!text && media?.data)
+              ? `${styles.stickySections_wrap_left_singleData}`
+              : ''
+          }`}
+        >
           {text && (
             <div className={`static ${styles.stickySections_wrap_text}`}>
               <CustomMarkdown>{text}</CustomMarkdown>
             </div>
           )}
 
-          {media.data && (
+          {media?.data && (
             <div className={styles.stickySections_wrap_image}>
               {media.data?.attributes?.mime?.startsWith('video/') ? (
                 <video

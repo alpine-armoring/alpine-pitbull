@@ -3,6 +3,7 @@ import BannerHero from '@/components/banner-hero/BannerHero';
 import ColumnsList from '@/components/columns-list/ColumnsList';
 import FadeInContent from '@/components/FadeInContent';
 import Featured from '@/components/featured/Featured';
+import StickySections from '@/components/sticky-sections/StickySections';
 
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
@@ -56,7 +57,7 @@ async function getpageData() {
       getStrapiData({
         route: 'pitbull-homepage',
         custom:
-          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage&populate[featured][populate]=image',
+          'populate[banner][populate]=media,mediaMP4,Button&populate[otherPages][populate]=image&populate[vehicles][fields][0]=featuredTitle&populate[vehicles][fields][1]=featuredSubtitle&populate[vehicles][fields][2]=slug&populate[vehicles][populate]=featuredImage&populate[featured][populate]=image&populate[stickySections][populate]=item',
         revalidate: 3600,
       }),
     ]);
@@ -84,6 +85,7 @@ export default async function Home() {
     pageData?.vehicles?.data,
     'vehicles'
   );
+  console.log(pageData);
 
   return (
     <>
@@ -114,6 +116,16 @@ export default async function Home() {
           <Featured props={pageData?.featured} />
         </FadeInContent>
       )}
+
+      <div className="container_small m4">
+        {pageData?.stickySections && (
+          <StickySections
+            data={pageData?.stickySections.item}
+            media={pageData?.stickySections.media}
+            text={pageData?.stickySections.text}
+          />
+        )}
+      </div>
     </>
   );
 }
