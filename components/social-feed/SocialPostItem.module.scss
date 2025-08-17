@@ -47,7 +47,7 @@
       z-index: 2;
 
       svg {
-        opacity: 0.6;
+        opacity: 0.7;
         transition:
           transform 0.3s ease,
           opacity 0.3s ease;
@@ -121,10 +121,7 @@
       display: flex;
       align-items: center;
       font-size: 13px;
-
-      &:nth-child(2) {
-        margin: 0 14px;
-      }
+      margin-right: 14px;
     }
 
     a {
@@ -134,7 +131,7 @@
     svg {
       height: 19px;
       width: 19px;
-      margin-right: 3px;
+      margin-right: 5px;
       pointer-events: none;
     }
   }

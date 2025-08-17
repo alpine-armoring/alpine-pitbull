@@ -98,7 +98,8 @@ export default async function Home() {
           },
         },
       },
-      link: 'instagram.com',
+      url: 'https://www.instagram.com/p/CjYXCa8sIvd/',
+      views: '160k',
     },
     {
       video: {
@@ -115,6 +116,7 @@ export default async function Home() {
           },
         },
       },
+      views: '890',
     },
     {
       youtubeURL: 'dQw4w9WgXcQ',
