@@ -34,7 +34,7 @@
         padding-top: 7vh;
         padding-bottom: 5vh;
       }
-      &_justMedia{
+      &_justMedia {
         top: 13vh;
       }
     }
@@ -43,7 +43,7 @@
       margin-bottom: rem(20);
 
       @include breakpoint(large) {
-      margin-bottom: rem(50);
+        margin-bottom: rem(50);
       }
     }
   }
