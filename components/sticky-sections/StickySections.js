@@ -90,11 +90,19 @@ const StickySections = ({ data, media, text }) => {
     <div className={styles.stickySections_wrap}>
       {(text || media.data) && (
         <div
-          className={`${styles.stickySections_wrap_left} ${
-            (text && !media?.data) || (!text && media?.data)
-              ? `${styles.stickySections_wrap_left_singleData}`
-              : ''
-          }`}
+          className={`
+            ${styles.stickySections_wrap_left} 
+            ${
+              text && !media?.data
+                ? `${styles.stickySections_wrap_left_justText}`
+                : ''
+            }
+            ${
+              !text && media?.data
+                ? `${styles.stickySections_wrap_left_justMedia}`
+                : ''
+            }
+          `}
         >
           {text && (
             <div className={`static ${styles.stickySections_wrap_text}`}>

@@ -4,32 +4,15 @@ import CustomMarkdown from 'components/CustomMarkdown';
 import Link from 'next/link';
 
 const ColumnsList = (props) => {
+  const isVideo = (mediaData) => {
+    return mediaData?.mime?.startsWith('video/');
+  };
+
+  const mediaData = props.props.image?.data?.[0].attributes;
+
   return (
     <div className={`${styles.featured} container_small`}>
       <div className={`${styles.featured_wrap}`}>
-        {props.props.image && (
-          <Image
-            src={
-              props.props.image.data[0].attributes.formats?.large?.url ||
-              props.props.image.data[0].attributes.url
-            }
-            alt={
-              props.props.image.data[0].attributes.alternativeText ||
-              'Alpine Armoring'
-            }
-            width={
-              props.props.image.data[0].attributes.formats?.large?.width ||
-              props.props.image.data[0].attributes.width
-            }
-            height={
-              props.props.image.data[0].attributes.formats?.large?.height ||
-              props.props.image.data[0].attributes.height
-            }
-            className={`${styles.featured_image}`}
-            quality={100}
-          ></Image>
-        )}
-
         <div className={`${styles.featured_text}`}>
           {props.props.title && (
             <h3 className={`${styles.featured_title}`}>{props.props.title}</h3>
@@ -67,6 +50,37 @@ const ColumnsList = (props) => {
             </Link>
           )}
         </div>
+
+        {mediaData && (
+          <>
+            {isVideo(mediaData) ? (
+              <video
+                src={mediaData.url}
+                className={`${styles.featured_image}`}
+                preload="metadata"
+                muted
+                autoPlay
+                loop
+                playsInline
+              >
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <Image
+                src={
+                  mediaData.formats?.medium?.url ||
+                  mediaData.formats?.large?.url ||
+                  mediaData.url
+                }
+                alt={mediaData.alternativeText || 'Alpine Armoring'}
+                width={mediaData.formats?.large?.width || mediaData.width}
+                height={mediaData.formats?.large?.height || mediaData.height}
+                className={`${styles.featured_image}`}
+                quality={100}
+              />
+            )}
+          </>
+        )}
       </div>
     </div>
   );
