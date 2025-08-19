@@ -81,7 +81,7 @@ const MediaSlider = ({ media, className = '' }) => {
           ) : (
             <Image
               src={
-                currentItem.attributes.formats.large.url ||
+                currentItem.attributes.formats?.large?.url ||
                 currentItem.attributes.url
               }
               width={currentItem.attributes.width}
