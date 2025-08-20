@@ -65,7 +65,7 @@
     letter-spacing: 0.4px;
     font-weight: var(--font-medium);
 
-    @media (max-width: 400px){
+    @media (max-width: 400px) {
       font-size: clamp(0.875rem, -0.125rem + 5vw, 1.125rem);
     }
 
@@ -87,8 +87,7 @@
     }
 
     .hp_banner_big & {
-
-      @media (max-width: 400px){
+      @media (max-width: 400px) {
         font-size: clamp(4.375rem, 1.875rem + 12.5vw, 5rem);
       }
 

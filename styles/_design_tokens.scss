@@ -272,7 +272,7 @@ small {
       height: clamp(6.25rem, 4.733rem + 6.4725vw, 12.5rem);
     }
   }
-  
+
   &.twoColumnsText {
     margin: 32px auto;
 
@@ -293,13 +293,13 @@ small {
     }
   }
 
-  &.twoColumnsText{
-    &.specs{
-      &>div{
+  &.twoColumnsText {
+    &.specs {
+      & > div {
         @include breakpoint(large) {
           width: 50%;
 
-          p{
+          p {
             font-size: rem(15);
           }
         }
@@ -315,7 +315,7 @@ small {
           rgba(255, 255, 255, 0.1) 0%,
           rgba(0, 0, 0, 0) 70%
         );
-  
+
         li {
           display: flex;
           padding: rem(12);
@@ -323,7 +323,7 @@ small {
           font-size: rem(13);
           line-height: 1.3;
           border-bottom: 1px solid #fff3;
-  
+
           @include breakpoint(large) {
             padding: rem(16) rem(28);
             font-size: rem(15);
@@ -332,13 +332,13 @@ small {
             padding: rem(20) rem(40);
             font-size: rem(17);
           }
-  
+
           span {
             margin-right: rem(20);
             min-width: 75px;
             color: rgb(153, 153, 153);
             font-size: rem(11);
-  
+
             @include breakpoint(large) {
               margin-right: rem(50);
               min-width: 102px;
@@ -350,7 +350,7 @@ small {
               font-size: rem(17);
             }
           }
-  
+
           &:last-child {
             border-bottom: 0;
           }
