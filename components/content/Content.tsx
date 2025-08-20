@@ -57,7 +57,7 @@ function Content(props) {
         switch (component.__component) {
           case 'slices.text': {
             const textContent = (
-              <div className={`static ${classes}`} key={index}>
+              <div className={`static ${classes} container_small`} key={index}>
                 <FadeInContent>
                   <CustomMarkdown>{component.Content}</CustomMarkdown>
                 </FadeInContent>
@@ -108,7 +108,10 @@ function Content(props) {
 
           case 'slices.two-columns-text': {
             return (
-              <div className={`twoColumnsText`} key={index}>
+              <div
+                className={`${classes} twoColumnsText static container_small`}
+                key={index}
+              >
                 <div>
                   <CustomMarkdown>{component.leftText}</CustomMarkdown>
                 </div>

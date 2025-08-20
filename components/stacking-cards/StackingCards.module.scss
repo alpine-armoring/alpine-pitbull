@@ -123,13 +123,16 @@
       text-align: center;
     }
 
-    h1 {
+    h3 {
       font-weight: 500;
-      font-size: rem(30);
+      font-size: rem(22);
 
       @include breakpoint(medium) {
         letter-spacing: -0.1rem;
-        font-size: clamp(3.375rem, -2.375rem + 7.1875vw, 6.25rem);
+        font-size: clamp(3.125rem, 2.6699rem + 1.9417vw, 5rem);
+        line-height: 1.1;
+        max-width: 1700px;
+        margin: auto
       }
     }
   }

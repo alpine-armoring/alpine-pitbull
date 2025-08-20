@@ -10,9 +10,17 @@
   justify-content: space-between;
   z-index: 3;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  transition-property: background-color, backdrop-filter;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
 
   @include breakpoint(large) {
     padding: rem(6) rem(36);
+  }
+
+  &_scrolled{
+    background-color: rgba(23, 23, 23, 0.8);
+    backdrop-filter: blur(10px);
   }
 
   &_logo {

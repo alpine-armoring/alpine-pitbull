@@ -15,6 +15,7 @@ interface ExtendedHTMLElement extends HTMLElement {
 const StackingCards = ({ data }) => {
   const containerRef = useRef<HTMLElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
   const isDesktop = useIsDesktop();
 
   // Helper function to determine media type from mime
@@ -62,7 +63,7 @@ const StackingCards = ({ data }) => {
 
     // Split text animation setup
     const titles = gsap.utils.toArray<HTMLElement>(
-      `.${styles.stackingCards_cardTitle} h1`
+      `.${styles.stackingCards_cardTitle} h3`
     );
     titles.forEach((title) => {
       const split = new SplitText(title, {
@@ -113,7 +114,7 @@ const StackingCards = ({ data }) => {
       `.${styles.stackingCards_cardDescription}`
     );
 
-    ScrollTrigger.create({
+    const introScrollTrigger = ScrollTrigger.create({
       trigger: introCard,
       start: 'top top',
       end: '+=300vh',
@@ -145,11 +146,12 @@ const StackingCards = ({ data }) => {
         }
       },
     });
+    scrollTriggersRef.current.push(introScrollTrigger);
 
     // Pin cards
     cardElements.forEach((card, index) => {
       const isLastCard = index === cardElements.length - 1;
-      ScrollTrigger.create({
+      const pinTrigger = ScrollTrigger.create({
         trigger: card,
         start: 'top top',
         end: isLastCard ? '+=100vh' : 'top top',
@@ -157,6 +159,7 @@ const StackingCards = ({ data }) => {
         pin: true,
         pinSpacing: isLastCard,
       });
+      scrollTriggersRef.current.push(pinTrigger);
     });
 
     // Scale and fade out cards
@@ -165,7 +168,7 @@ const StackingCards = ({ data }) => {
         const cardWrapper = card.querySelector(
           `.${styles.stackingCards_cardWrapper}`
         );
-        ScrollTrigger.create({
+        const scaleTrigger = ScrollTrigger.create({
           trigger: cardElements[index + 1],
           start: 'top bottom',
           end: 'top top',
@@ -177,6 +180,7 @@ const StackingCards = ({ data }) => {
             });
           },
         });
+        scrollTriggersRef.current.push(scaleTrigger);
       }
     });
 
@@ -189,7 +193,7 @@ const StackingCards = ({ data }) => {
         const imgContainer = card.querySelector(
           `.${styles.stackingCards_cardImg}`
         );
-        ScrollTrigger.create({
+        const imageTrigger = ScrollTrigger.create({
           trigger: card,
           start: 'top bottom',
           end: 'top top',
@@ -201,6 +205,7 @@ const StackingCards = ({ data }) => {
             });
           },
         });
+        scrollTriggersRef.current.push(imageTrigger);
       }
     });
 
@@ -213,20 +218,22 @@ const StackingCards = ({ data }) => {
       );
       const cardTitleChars = Array.from(card.querySelectorAll('.char span'));
 
-      ScrollTrigger.create({
+      const contentTrigger = ScrollTrigger.create({
         trigger: card,
         start: 'top top',
         onEnter: () => animateContentIn(cardTitleChars, cardDescription!),
         onLeaveBack: () => animateContentOut(cardTitleChars, cardDescription!),
       });
+      scrollTriggersRef.current.push(contentTrigger);
     });
 
-    // Cleanup function
+    // Cleanup function - only kill ScrollTriggers created by this component
     return () => {
       if (lenisRef.current) {
         lenisRef.current.destroy();
       }
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      scrollTriggersRef.current.forEach((trigger) => trigger.kill());
+      scrollTriggersRef.current = [];
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, [isDesktop, data]);
@@ -259,7 +266,7 @@ const StackingCards = ({ data }) => {
 
                 <div className={styles.stackingCards_cardContent}>
                   <div className={styles.stackingCards_cardTitle}>
-                    <h1>{card.title}</h1>
+                    <h3 dangerouslySetInnerHTML={{ __html: card.title }} />
                   </div>
                   <div className={styles.stackingCards_cardDescription}>
                     <p>{card.description}</p>

@@ -47,7 +47,7 @@ export default async function VehiclePage({ params }) {
     <>
       {vehicleData.banner && <BannerHero props={vehicleData.banner} big />}
 
-      <div className="container_small overflow m2">
+      <div className="m4">
         <Content data={contentData} />
       </div>
 

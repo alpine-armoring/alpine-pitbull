@@ -190,7 +190,9 @@ const StickySections = ({ data, media, text }) => {
             )}
 
             {item.Caption && (
-              <p className={styles.stickySections_card_text}>{item.Caption}</p>
+              <div className={styles.stickySections_card_text}>
+                <CustomMarkdown>{item.Caption}</CustomMarkdown>
+              </div>
             )}
           </div>
         ))}
