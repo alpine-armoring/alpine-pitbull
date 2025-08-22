@@ -47,7 +47,7 @@ export default async function VehiclePage({ params }) {
     <>
       {vehicleData.banner && <BannerHero props={vehicleData.banner} big />}
 
-      <div className="m4">
+      <div className="m2">
         <Content data={contentData} />
       </div>
 
