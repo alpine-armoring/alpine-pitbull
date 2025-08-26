@@ -5,7 +5,7 @@ import { getStrapiData } from '@/lib/fechData';
 async function getPageData() {
   try {
     const pageData = await getStrapiData({
-      route: 'pibull-contact',
+      route: 'pitbull-contact',
       custom: 'populate[faqs][populate]=*',
       revalidate: 3600,
     });

@@ -70,8 +70,6 @@ const VideoSingle = ({ props }) => {
 
   const videoType = getVideoType();
 
-  console.log(props);
-
   return (
     <div
       className={`
