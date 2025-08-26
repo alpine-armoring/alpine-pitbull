@@ -335,4 +335,9 @@ export default {
   authors: 'Autores',
   ifInterestedPlease: 'Si está interesado, póngase en',
   us: 'con nosotros',
+
+  formInquiry1: 'Pit-Bull VX®',
+  formInquiry2: 'Pit-Bull VXT®',
+  formInquiry3: 'Warranty Related',
+  formInquiry4: 'To Become a Dealer',
 };

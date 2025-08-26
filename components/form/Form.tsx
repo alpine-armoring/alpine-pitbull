@@ -599,15 +599,10 @@ const Form = () => {
         <Dropdown
           label={`${lang.formInquiry}`}
           options={[
-            lang.formInquirySUVs,
-            lang.formInquirySWAT,
-            lang.formInquiryRiot,
-            lang.formInquiryCIT,
-            lang.rentalVehicles,
-            lang.formInquiryParts,
-            lang.formInquiryWarranty,
-            lang.formInquiryDealer,
-            lang.formInquiryEmployment,
+            lang.formInquiry1,
+            lang.formInquiry2,
+            lang.formInquiry3,
+            lang.formInquiry4,
             lang.formInquiryOther,
           ]}
           selectedOption={inquiry}

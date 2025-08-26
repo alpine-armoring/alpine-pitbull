@@ -49,7 +49,7 @@ const BannerHero = ({ props, big, small }: BannerHeroComponentProps) => {
         <div className={`${styles.hp_banner_content}`}>
           {props.subtitle && (
             <FadeInContent>
-              <h4
+              <h1
                 dangerouslySetInnerHTML={{
                   __html: props.subtitle,
                 }}
@@ -60,7 +60,7 @@ const BannerHero = ({ props, big, small }: BannerHeroComponentProps) => {
 
           {props.title ? (
             <FadeInContent delay={0.2}>
-              <h1
+              <h2
                 dangerouslySetInnerHTML={{
                   __html: props.title,
                 }}
@@ -82,7 +82,7 @@ const BannerHero = ({ props, big, small }: BannerHeroComponentProps) => {
 
           {props.Description && (
             <FadeInContent delay={0.3}>
-              <h2
+              <h3
                 dangerouslySetInnerHTML={{
                   __html: props.Description,
                 }}
