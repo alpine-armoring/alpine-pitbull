@@ -53,12 +53,13 @@
       font-size: rem(13);
       font-size: clamp(0.8125rem, 0.7822rem + 0.1294vw, 0.9375rem);
 
-      ul, p{
+      ul,
+      p {
         font-size: rem(13);
         font-size: clamp(0.8125rem, 0.7822rem + 0.1294vw, 0.9375rem);
         margin: 0;
       }
-      li{
+      li {
         line-height: 1.5;
       }
 
