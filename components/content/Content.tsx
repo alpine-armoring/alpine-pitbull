@@ -169,7 +169,7 @@ function Content(props) {
             return (
               <iframe
                 src={`https://www.youtube.com/embed/${component.url}?controls=0&showinfo=0&modestbranding=1`}
-                title={props.data.title}
+                title={component.title || 'YouTube video'}
                 frameBorder="0"
                 allow="autoplay"
                 allowFullScreen
