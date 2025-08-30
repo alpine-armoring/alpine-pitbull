@@ -30,7 +30,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 25svh;
+      gap: 10svh;
     }
   }
 
@@ -129,7 +129,7 @@
 
       @include breakpoint(medium) {
         letter-spacing: -0.1rem;
-        font-size: clamp(3.5625rem, 2.7708rem + 1.6493vw, 4.75rem);
+        font-size: clamp(2rem, 0.4167rem + 3.2986vw, 4.375rem);
         line-height: 1.1;
         max-width: 1700px;
         margin: auto;

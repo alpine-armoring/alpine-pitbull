@@ -53,12 +53,12 @@ const Header = () => {
         ]}
         socialLinks={[
           {
-            href: '/about#features',
-            text: 'Tactical Features and Customizations',
-          },
-          {
             href: '/about#history',
             text: 'History of Alpine Armoring Pit-Bull',
+          },
+          {
+            href: '/about#features',
+            text: 'Tactical Features and Customizations',
           },
           {
             href: '/about#testing',

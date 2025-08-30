@@ -283,12 +283,12 @@ small {
     @include breakpoint(large) {
       display: flex;
       justify-content: space-evenly;
-      align-items: center;
       gap: 50px;
       margin: 50px auto;
 
       div:first-child {
         margin-bottom: 0;
+        padding-top: rem(24);
       }
     }
   }
@@ -301,6 +301,8 @@ small {
 
           p {
             font-size: rem(15);
+
+            margin-bottom: rem(14);
           }
         }
       }
@@ -396,9 +398,10 @@ small {
   }
 
   &.right {
+    margin-right: 0;
+    
     img {
       max-width: 100%;
-      margin-right: 0;
       border-radius: 6px;
 
       @include breakpoint(large) {

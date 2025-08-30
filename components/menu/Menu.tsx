@@ -135,7 +135,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
 
     gsap.to([`.${styles.link} a`, `.${styles.social} a`], {
       y: '0%',
-      delay: 0.75,
+      delay: 0.5,
       opacity: 1,
       duration: 1,
       stagger: 0.1,
@@ -293,17 +293,18 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 {menuLinks && menuLinks.length > 0 ? (
                   menuLinks.map((link, index) => (
                     <div key={index} className={styles.link}>
-                      <a
+                      <Link
                         href={link.href}
                         onMouseOver={() => handleLinkHover(link.imgSrc)}
+                        onClick={closeMenu}
                       >
                         {link.text}
-                      </a>
+                      </Link>
                     </div>
                   ))
                 ) : (
                   <div className={styles.link}>
-                    <a href="#">No menu items</a>
+                    <Link href="#">No menu items</Link>
                   </div>
                 )}
               </div>
@@ -312,12 +313,14 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 {socialLinks && socialLinks.length > 0 ? (
                   socialLinks.map((social, index) => (
                     <div key={index} className={styles.social}>
-                      <a href={social.href}>{social.text}</a>
+                      <Link href={social.href} onClick={closeMenu}>
+                        {social.text}
+                      </Link>
                     </div>
                   ))
                 ) : (
                   <div className={styles.social}>
-                    <a href="#">No social links</a>
+                    <Link href="#">No social links</Link>
                   </div>
                 )}
               </div>

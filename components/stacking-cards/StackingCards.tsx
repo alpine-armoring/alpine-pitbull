@@ -116,7 +116,7 @@ const StackingCards = ({ data }) => {
 
     const introScrollTrigger = ScrollTrigger.create({
       trigger: introCard,
-      start: 'top top',
+      start: 'top 40%',
       end: '+=300vh',
       onUpdate: (self) => {
         const progress = self.progress;
@@ -170,7 +170,7 @@ const StackingCards = ({ data }) => {
         );
         const scaleTrigger = ScrollTrigger.create({
           trigger: cardElements[index + 1],
-          start: 'top bottom',
+          start: 'top 100%',
           end: 'top top',
           onUpdate: (self) => {
             const progress = self.progress;
@@ -195,7 +195,7 @@ const StackingCards = ({ data }) => {
         );
         const imageTrigger = ScrollTrigger.create({
           trigger: card,
-          start: 'top bottom',
+          start: 'top 110%',
           end: 'top top',
           onUpdate: (self) => {
             const progress = self.progress;

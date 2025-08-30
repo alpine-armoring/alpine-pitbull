@@ -491,12 +491,12 @@ const VehicleBuilder = ({ configuratorMedia }) => {
                   }}
                   className={styles.vehicleConfigurator_section}
                 >
-                  <h2 className={styles.vehicleConfigurator_section_title}>
+                  <h3 className={styles.vehicleConfigurator_section_title}>
                     {section.title}
                     {section.options.length > 2 && (
                       <span>({section.options?.length})</span>
                     )}
-                  </h2>
+                  </h3>
 
                   {section.type === 'group' && section.subsections && (
                     <div className={styles.subsections}>
@@ -676,9 +676,9 @@ const VehicleBuilder = ({ configuratorMedia }) => {
         {/* Bottom Summary Button */}
         <div className={styles.vehicleConfigurator_bottomBar}>
           <div className={styles.vehicleConfigurator_bottomBar_heading}>
-            <h4 className={styles.vehicleConfigurator_bottomBar_title}>
+            <h3 className={styles.vehicleConfigurator_bottomBar_title}>
               Pit-Bull VXT® Armored Tactical SWAT/APC Truck
-            </h4>
+            </h3>
 
             <button
               className={styles.vehicleConfigurator_bottomBar_button}
