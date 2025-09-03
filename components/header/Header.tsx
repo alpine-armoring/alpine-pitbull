@@ -36,19 +36,24 @@ const Header = () => {
       </Link>
 
       <Menu
-        defaultPreviewImage="https://alpine-pitbull.vercel.app/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_tactical_features_button_image_6e23a07a4d.jpg&w=1024&q=90"
+        // defaultPreviewImage={`${process.env.NEXT_PUBLIC_URL}/_next/image?url=%2Fimages%2Falpine-pitbull-logo.svg&w=64&q=100`}
+        defaultPreviewImage={`https://alpine-pitbull.vercel.app/_next/image?url=%2Fimages%2Falpine-pitbull-logo.svg&w=64&q=100`}
+        previewWidth={400}
+        previewHeight={490}
         menuLinks={[
           {
             href: '/vehicles/armored-vx',
             text: 'VX',
             imgSrc:
-              'https://alpine-pitbull.vercel.app/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_VX_4b724134d4.jpg&w=1024&q=90',
+              'https://d102sycao8uwt8.cloudfront.net/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
+            isVideo: true,
           },
           {
             href: '/vehicles/armored-vxt',
             text: 'VXT',
             imgSrc:
-              'https://alpine-pitbull.vercel.app/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Flarge_VXT_cover_ef2eb9c8b9.jpg&w=1920&q=90',
+              'https://d102sycao8uwt8.cloudfront.net/VXT_header_9_2_b8260edd5e.mp4',
+            isVideo: true,
           },
         ]}
         socialLinks={[

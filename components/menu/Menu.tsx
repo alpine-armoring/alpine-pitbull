@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import styles from './Menu.module.scss';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ interface MenuLink {
   href: string;
   text: string;
   imgSrc: string;
+  isVideo?: boolean;
 }
 
 interface SocialLink {
@@ -38,10 +39,16 @@ interface OverlayMenuProps {
   heroTitle?: string;
   heroImage?: string;
   defaultPreviewImage?: string;
+  defaultPreviewIsVideo?: boolean;
+  previewWidth?: number;
+  previewHeight?: number;
 }
 
 const OverlayMenu: React.FC<OverlayMenuProps> = ({
   defaultPreviewImage,
+  defaultPreviewIsVideo = false,
+  previewWidth,
+  previewHeight,
   menuLinks,
   socialLinks,
 }) => {
@@ -56,26 +63,42 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
   const menuOpenRef = useRef<HTMLParagraphElement>(null);
   const menuCloseRef = useRef<HTMLParagraphElement>(null);
 
-  const cleanupPreviewImages = () => {
+  const cleanupPreviewMedia = () => {
     if (!menuPreviewImgRef.current) return;
 
-    const previewImages = menuPreviewImgRef.current.querySelectorAll('img');
-    if (previewImages.length > 3) {
-      for (let i = 0; i < previewImages.length - 3; i++) {
-        menuPreviewImgRef.current.removeChild(previewImages[i]);
+    const previewMedia =
+      menuPreviewImgRef.current.querySelectorAll('img, video');
+    if (previewMedia.length > 3) {
+      for (let i = 0; i < previewMedia.length - 3; i++) {
+        menuPreviewImgRef.current.removeChild(previewMedia[i]);
       }
     }
   };
 
-  const resetPreviewImage = () => {
+  const resetPreviewImage = useCallback(() => {
     if (!menuPreviewImgRef.current) return;
 
     menuPreviewImgRef.current.innerHTML = '';
-    const defaultImg = document.createElement('img');
-    defaultImg.src = defaultPreviewImage || '/img-1.jpg'; // Add fallback
-    defaultImg.alt = '';
-    menuPreviewImgRef.current.appendChild(defaultImg);
-  };
+
+    if (defaultPreviewIsVideo) {
+      const defaultVideo = document.createElement('video');
+      defaultVideo.src = defaultPreviewImage || '';
+      defaultVideo.muted = true;
+      defaultVideo.autoplay = true;
+      defaultVideo.loop = true;
+      defaultVideo.playsInline = true;
+      if (previewWidth) defaultVideo.style.width = `${previewWidth}px`;
+      if (previewHeight) defaultVideo.style.height = `${previewHeight}px`;
+      menuPreviewImgRef.current.appendChild(defaultVideo);
+    } else {
+      const defaultImg = document.createElement('img');
+      defaultImg.src = defaultPreviewImage || '';
+      defaultImg.alt = '';
+      if (previewWidth) defaultImg.style.width = `${previewWidth}px`;
+      if (previewHeight) defaultImg.style.height = `${previewHeight}px`;
+      menuPreviewImgRef.current.appendChild(defaultImg);
+    }
+  }, [defaultPreviewImage, defaultPreviewIsVideo, previewWidth, previewHeight]);
 
   const animateMenuToggle = (isOpening: boolean) => {
     if (!menuOpenRef.current || !menuCloseRef.current) return;
@@ -207,29 +230,129 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
     }
   };
 
-  const handleLinkHover = (imgSrc: string) => {
+  const handleLinkHover = (imgSrc: string, isVideo = false) => {
     if (!isOpen || isAnimating || !menuPreviewImgRef.current) return;
 
-    const previewImages = menuPreviewImgRef.current.querySelectorAll('img');
+    const previewMedia =
+      menuPreviewImgRef.current.querySelectorAll('img, video');
+    if (previewMedia.length > 0) {
+      const lastMedia = previewMedia[previewMedia.length - 1] as
+        | HTMLImageElement
+        | HTMLVideoElement;
+      if (lastMedia.src.endsWith(imgSrc)) {
+        return;
+      }
+    }
+
+    let newPreviewElement: HTMLImageElement | HTMLVideoElement;
+
+    if (isVideo) {
+      const newPreviewVideo = document.createElement('video');
+      newPreviewVideo.src = imgSrc;
+      newPreviewVideo.muted = true;
+      newPreviewVideo.autoplay = true;
+      newPreviewVideo.loop = true;
+      newPreviewVideo.playsInline = true;
+      if (previewWidth) newPreviewVideo.style.width = `${previewWidth}px`;
+      if (previewHeight) newPreviewVideo.style.height = `${previewHeight}px`;
+      newPreviewElement = newPreviewVideo;
+    } else {
+      const newPreviewImg = document.createElement('img');
+      newPreviewImg.src = imgSrc;
+      newPreviewImg.alt = '';
+      if (previewWidth) newPreviewImg.style.width = `${previewWidth}px`;
+      if (previewHeight) newPreviewImg.style.height = `${previewHeight}px`;
+      newPreviewElement = newPreviewImg;
+    }
+
+    newPreviewElement.style.opacity = '0';
+    newPreviewElement.style.transform = 'scale(1.25) rotate(10deg)';
+
+    menuPreviewImgRef.current.appendChild(newPreviewElement);
+    cleanupPreviewMedia();
+
+    gsap.to(newPreviewElement, {
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 0.75,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleDefaultPreviewHover = () => {
     if (
-      previewImages.length > 0 &&
-      (
-        previewImages[previewImages.length - 1] as HTMLImageElement
-      ).src.endsWith(imgSrc)
-    ) {
+      !isOpen ||
+      isAnimating ||
+      !defaultPreviewImage ||
+      !menuPreviewImgRef.current
+    )
+      return;
+
+    const hasVideos = menuPreviewImgRef.current.querySelector('video');
+    const currentImg = menuPreviewImgRef.current.querySelector(
+      'img'
+    ) as HTMLImageElement;
+
+    // If we have videos and default is image, always clear and show default image
+    if (hasVideos && !defaultPreviewIsVideo) {
+      // Clear videos and show default image
+      menuPreviewImgRef.current.innerHTML = '';
+    }
+    // If we have videos and default is also video, check if it's the same
+    else if (hasVideos && defaultPreviewIsVideo) {
+      const currentVideo = menuPreviewImgRef.current.querySelector(
+        'video'
+      ) as HTMLVideoElement;
+      if (currentVideo && currentVideo.src.endsWith(defaultPreviewImage)) {
+        return; // Same video already showing
+      }
+      menuPreviewImgRef.current.innerHTML = '';
+    }
+    // If we have image and default is image, check if it's the same
+    else if (currentImg && !defaultPreviewIsVideo) {
+      if (currentImg.src.endsWith(defaultPreviewImage)) {
+        return; // Same image already showing
+      }
+      menuPreviewImgRef.current.innerHTML = '';
+    }
+    // If we have image and default is video, clear and show video
+    else if (currentImg && defaultPreviewIsVideo) {
+      menuPreviewImgRef.current.innerHTML = '';
+    }
+    // If no current media, use resetPreviewImage for initial state
+    else if (!hasVideos && !currentImg) {
+      resetPreviewImage();
       return;
     }
 
-    const newPreviewImg = document.createElement('img');
-    newPreviewImg.src = imgSrc;
-    newPreviewImg.alt = '';
-    newPreviewImg.style.opacity = '0';
-    newPreviewImg.style.transform = 'scale(1.25) rotate(10deg)';
+    let defaultElement: HTMLImageElement | HTMLVideoElement;
 
-    menuPreviewImgRef.current.appendChild(newPreviewImg);
-    cleanupPreviewImages();
+    if (defaultPreviewIsVideo) {
+      const defaultVideo = document.createElement('video');
+      defaultVideo.src = defaultPreviewImage;
+      defaultVideo.muted = true;
+      defaultVideo.autoplay = true;
+      defaultVideo.loop = true;
+      defaultVideo.playsInline = true;
+      if (previewWidth) defaultVideo.style.width = `${previewWidth}px`;
+      if (previewHeight) defaultVideo.style.height = `${previewHeight}px`;
+      defaultElement = defaultVideo;
+    } else {
+      const defaultImg = document.createElement('img');
+      defaultImg.src = defaultPreviewImage;
+      defaultImg.alt = '';
+      if (previewWidth) defaultImg.style.width = `${previewWidth}px`;
+      if (previewHeight) defaultImg.style.height = `${previewHeight}px`;
+      defaultElement = defaultImg;
+    }
 
-    gsap.to(newPreviewImg, {
+    defaultElement.style.opacity = '0';
+    defaultElement.style.transform = 'scale(1.25) rotate(10deg)';
+
+    menuPreviewImgRef.current.appendChild(defaultElement);
+
+    gsap.to(defaultElement, {
       opacity: 1,
       scale: 1,
       rotation: 0,
@@ -240,7 +363,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
 
   useEffect(() => {
     resetPreviewImage();
-  }, [defaultPreviewImage]);
+  }, [resetPreviewImage]);
 
   return (
     <>
@@ -284,8 +407,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
           <div className={styles.menuItems}>
             <div className={styles.menuItems_colLg}>
               <div className={styles.menuPreviewImg} ref={menuPreviewImgRef}>
-                <img src={defaultPreviewImage} alt="" />
-                video
+                {/* Preview media will be dynamically inserted here */}
               </div>
             </div>
             <div className={styles.menuItems_colSm}>
@@ -295,7 +417,9 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                     <div key={index} className={styles.link}>
                       <Link
                         href={link.href}
-                        onMouseOver={() => handleLinkHover(link.imgSrc)}
+                        onMouseOver={() =>
+                          handleLinkHover(link.imgSrc, link.isVideo)
+                        }
                         onClick={closeMenu}
                       >
                         {link.text}
@@ -313,7 +437,11 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 {socialLinks && socialLinks.length > 0 ? (
                   socialLinks.map((social, index) => (
                     <div key={index} className={styles.social}>
-                      <Link href={social.href} onClick={closeMenu}>
+                      <Link
+                        href={social.href}
+                        onClick={closeMenu}
+                        onMouseOver={handleDefaultPreviewHover}
+                      >
                         {social.text}
                       </Link>
                     </div>
@@ -345,6 +473,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
               href="tel:+17034710002"
               className={`${styles.menuContent_contact_item}`}
               rel="nofollow noreferrer noopener"
+              onMouseOver={handleDefaultPreviewHover}
             >
               <PhoneIcon />
               1.703.471.0002
@@ -353,12 +482,16 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
               href="mailto:info@alpineco.com"
               className={`${styles.menuContent_contact_item}`}
               rel="nofollow noreferrer noopener"
+              onMouseOver={handleDefaultPreviewHover}
             >
               <MailIcon />
               info@AlpineCo.com
             </Link>
 
-            <div className={`${styles.menuContent_contact_item}`}>
+            <div
+              className={`${styles.menuContent_contact_item}`}
+              onMouseOver={handleDefaultPreviewHover}
+            >
               <MapIcon />
               Chantilly, Virginia, USA
             </div>
@@ -370,6 +503,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.youtube.com/c/AlpineArmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <YoutubeIcon color="white" />
               </Link>
@@ -379,6 +513,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.instagram.com/alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <InstagramIcon color="white" />
               </Link>
@@ -390,6 +525,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://x.com/AlpineArmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <XIcon color="white" />
               </Link>
@@ -399,6 +535,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.facebook.com/AlpineArmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <FacebookIcon color="white" />
               </Link>
@@ -410,6 +547,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.tiktok.com/@alpinearmoring"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <TiktokIcon color="white" />
               </Link>
@@ -419,6 +557,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.linkedin.com/company/alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <LinkedinIcon color="white" />
               </Link>
@@ -430,6 +569,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
                 href="https://www.threads.net/@alpinearmoring/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
+                onMouseOver={handleDefaultPreviewHover}
               >
                 <ThreadsIcon color="white" />
               </Link>
