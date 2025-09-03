@@ -144,85 +144,6 @@ export default async function Home() {
     'vehicles'
   );
 
-  const videoData = [
-    {
-      youtubeURL: 'dQw4w9WgXcQ',
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/532038256_18528404878001456_5702841156940207529_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QHtU_A5ML1UpOaoE4VOUHOZ7x7KYa7zqUHGuaJzT7PqUrGYTgiNJSev7Pq1muQFoak&_nc_ohc=UXWgAaDGzsoQ7kNvwH0ElM9&_nc_gid=rLdVsGCqlbGy7xxFEuF9KQ&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfXUdpGMnsh51_LHt2pp8Uy5JakK-IqPr7_S-zlbiNnYww&oe=68A4FF60&_nc_sid=cc8940',
-          },
-        },
-      },
-      url: 'https://www.instagram.com/p/CjYXCa8sIvd/',
-      views: '160k',
-    },
-    {
-      video: {
-        data: {
-          attributes: {
-            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_6_16_25_7c8ebcf56e.webm',
-          },
-        },
-      },
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/533489539_18528403246001456_181466034192915959_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QE0QrrJne8iUfkXMyWR2X8RNGEmrOdsY11AOt66CfjR2nztgMKPdPFNE_Jn7Uxc7lQ&_nc_ohc=Hf0WQ4YjP5QQ7kNvwFjE29n&_nc_gid=sSZJeIez9OsWdQQRikwVow&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfVYxfZYQJ_m9-4VpA_IlgKXi-ZazATRzLxaR8W2XYQ3rg&oe=68A5220E&_nc_sid=cc8940',
-          },
-        },
-      },
-      views: '890',
-    },
-    {
-      youtubeURL: 'dQw4w9WgXcQ',
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/532372427_18527873533001456_2808708626097421394_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGYeUWyfMvSmha6Uat1_TTkm_Q1fd7CFb2-GUprcdfN9gE-z5Z3mOyQuj2wd2x-HBE&_nc_ohc=A1SVJHodKegQ7kNvwFT-uis&_nc_gid=By8TgLlGZhH1U4VL7Biqwg&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfUQFYaYuza518THpk_yKuCHK-QMKB43m2H0DwTtVPCfWQ&oe=68A14008&_nc_sid=cc8940',
-          },
-        },
-      },
-    },
-    {
-      youtubeURL: 'dQw4w9WgXcQ',
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/532372427_18527873533001456_2808708626097421394_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGYeUWyfMvSmha6Uat1_TTkm_Q1fd7CFb2-GUprcdfN9gE-z5Z3mOyQuj2wd2x-HBE&_nc_ohc=A1SVJHodKegQ7kNvwFT-uis&_nc_gid=By8TgLlGZhH1U4VL7Biqwg&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfUQFYaYuza518THpk_yKuCHK-QMKB43m2H0DwTtVPCfWQ&oe=68A14008&_nc_sid=cc8940',
-          },
-        },
-      },
-    },
-    {
-      youtubeURL: 'dQw4w9WgXcQ',
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/532038256_18528404878001456_5702841156940207529_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QHtU_A5ML1UpOaoE4VOUHOZ7x7KYa7zqUHGuaJzT7PqUrGYTgiNJSev7Pq1muQFoak&_nc_ohc=UXWgAaDGzsoQ7kNvwH0ElM9&_nc_gid=rLdVsGCqlbGy7xxFEuF9KQ&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfXUdpGMnsh51_LHt2pp8Uy5JakK-IqPr7_S-zlbiNnYww&oe=68A4FF60&_nc_sid=cc8940',
-          },
-        },
-      },
-      link: 'instagram.com',
-    },
-    {
-      video: {
-        data: {
-          attributes: {
-            url: 'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_6_16_25_7c8ebcf56e.webm',
-          },
-        },
-      },
-      thumbnail: {
-        data: {
-          attributes: {
-            url: 'https://scontent-fra3-1.cdninstagram.com/v/t51.2885-15/533489539_18528403246001456_181466034192915959_n.jpg?stp=dst-jpg_e15_p480x480_tt6&_nc_ht=scontent-fra3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QE0QrrJne8iUfkXMyWR2X8RNGEmrOdsY11AOt66CfjR2nztgMKPdPFNE_Jn7Uxc7lQ&_nc_ohc=Hf0WQ4YjP5QQ7kNvwFjE29n&_nc_gid=sSZJeIez9OsWdQQRikwVow&edm=AMO9-JQAAAAA&ccb=7-5&oh=00_AfVYxfZYQJ_m9-4VpA_IlgKXi-ZazATRzLxaR8W2XYQ3rg&oe=68A5220E&_nc_sid=cc8940',
-          },
-        },
-      },
-    },
-  ];
-
   return (
     <>
       {pageData?.banner && <BannerHero props={pageData.banner} />}
@@ -244,7 +165,8 @@ export default async function Home() {
             title={pageData.vehiclesTitle}
             description={pageData.vehiclesText}
             items={normalizedVehicles}
-            configurator
+            // configurator
+            id={'models'}
           />
         )}
       </FadeInContent>
@@ -267,13 +189,11 @@ export default async function Home() {
         )}
       </div>
 
-      <FadeInContent>
-        <SocialFeed
-          videos={
-            pageData?.socialFeed?.length > 0 ? pageData.socialFeed : videoData
-          }
-        />
-      </FadeInContent>
+      {pageData.socialFeed && (
+        <FadeInContent>
+          <SocialFeed videos={pageData.socialFeed} />
+        </FadeInContent>
+      )}
     </>
   );
 }

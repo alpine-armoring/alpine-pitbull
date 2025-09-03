@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './ColumnsList.module.scss';
 
 const ColumnsList = (props) => {
-  const { className, items, title, description } = props;
+  const { className, items, title, description, id } = props;
   const classNames = className ? className.split(' ') : [];
   const moduleClasses = classNames
     .map((cls) => styles[cls])
@@ -14,6 +14,7 @@ const ColumnsList = (props) => {
   return (
     <div
       className={`container ${className || ''} ${styles.columnsList_wrapper}`}
+      id={id}
     >
       <div className={`c-content`}>
         {title && <h2 className={`c-title`}>{title}</h2>}
