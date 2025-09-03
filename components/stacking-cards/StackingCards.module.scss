@@ -7,7 +7,7 @@
     max-width: 100%;
 
     @include breakpoint(medium) {
-      margin-top: -24vh;
+      margin-top: -10vh;
       position: relative;
       width: 100vw;
     }
@@ -30,7 +30,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 10svh;
+      gap: 2svh;
     }
   }
 
@@ -46,7 +46,7 @@
       padding: 10px 27px 10px 10px;
 
       &:nth-child(2) {
-        margin-top: 50vh;
+        margin-top: 10vh;
       }
     }
   }

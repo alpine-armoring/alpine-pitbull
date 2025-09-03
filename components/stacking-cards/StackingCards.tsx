@@ -83,7 +83,7 @@ const StackingCards = ({ data }) => {
     const cardMedia = introCard.querySelector(
       `.${styles.stackingCards_cardImg} img, .${styles.stackingCards_cardImg} video`
     );
-    gsap.set(cardImgWrapper, { scale: 0.5, borderRadius: '400px' });
+    gsap.set(cardImgWrapper, { scale: 0.8, borderRadius: '400px' });
     gsap.set(cardMedia, { scale: 1.5 });
 
     // Animation functions
@@ -120,7 +120,7 @@ const StackingCards = ({ data }) => {
       end: '+=300vh',
       onUpdate: (self) => {
         const progress = self.progress;
-        const imgScale = 0.5 + progress * 0.5;
+        const imgScale = 0.8 + progress * 0.2;
         const borderRadius = 400 - progress * 375;
         const innerImgScale = 1.5 - progress * 0.5;
 
@@ -131,14 +131,14 @@ const StackingCards = ({ data }) => {
         gsap.set(cardMedia, { scale: innerImgScale });
 
         if (
-          progress >= 1 &&
+          progress >= 0.2 &&
           !(introCard as ExtendedHTMLElement).contentRevealed
         ) {
           (introCard as ExtendedHTMLElement).contentRevealed = true;
           animateContentIn(titleChars, description!);
         }
         if (
-          progress < 1 &&
+          progress < 0.2 &&
           (introCard as ExtendedHTMLElement).contentRevealed
         ) {
           (introCard as ExtendedHTMLElement).contentRevealed = false;
@@ -220,7 +220,7 @@ const StackingCards = ({ data }) => {
 
       const contentTrigger = ScrollTrigger.create({
         trigger: card,
-        start: 'top top',
+        start: 'top 30%',
         onEnter: () => animateContentIn(cardTitleChars, cardDescription!),
         onLeaveBack: () => animateContentOut(cardTitleChars, cardDescription!),
       });
