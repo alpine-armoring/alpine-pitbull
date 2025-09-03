@@ -376,7 +376,7 @@ small {
   }
 }
 
-.twoImages{
+.twoImages {
   margin: rem(30) 0;
 
   @include breakpoint(large) {
@@ -385,12 +385,13 @@ small {
     margin: rem(60) 0;
   }
 
-  iframe, img{
+  iframe,
+  img {
     aspect-ratio: 16/9;
     border-radius: 8px;
 
     @include breakpoint(small) {
-      &:first-child{
+      &:first-child {
         margin-bottom: rem(16);
       }
     }
