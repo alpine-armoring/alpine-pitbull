@@ -376,6 +376,31 @@ small {
   }
 }
 
+.twoImages{
+  margin: rem(30) 0;
+
+  @include breakpoint(large) {
+    display: flex;
+    justify-content: space-between;
+    margin: rem(60) 0;
+  }
+
+  iframe, img{
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+
+    @include breakpoint(small) {
+      &:first-child{
+        margin-bottom: rem(16);
+      }
+    }
+
+    @include breakpoint(large) {
+      width: 49%;
+    }
+  }
+}
+
 .staticImage {
   margin: rem(24) auto;
   padding: 12px 0;

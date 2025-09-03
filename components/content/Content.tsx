@@ -123,44 +123,60 @@ function Content(props) {
           }
 
           case 'slices.two-images': {
+            // Helper function to check if value is a YouTube ID string
+            const isYouTubeId = (value): boolean => {
+              return (
+                typeof value === 'string' &&
+                value.length === 11 &&
+                /^[A-Za-z0-9_-]+$/.test(value)
+              );
+            };
+
+            // Helper function to render media item (image or YouTube video)
+            const renderMediaItem = (imageData, youtubeId, index: number) => {
+              // Check if YouTube video ID is provided
+              if (youtubeId && isYouTubeId(youtubeId)) {
+                return (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${youtubeId}?controls=0&showinfo=0&modestbranding=1`}
+                    title={`YouTube video ${index}`}
+                    frameBorder="0"
+                    allow="autoplay"
+                    allowFullScreen
+                    className="twoImages-youtube"
+                  />
+                );
+              }
+
+              // Render as image if image data exists
+              if (imageData?.data) {
+                return (
+                  <Image
+                    src={
+                      imageData.data.attributes.formats.medium?.url ||
+                      imageData.data.attributes.url
+                    }
+                    alt={imageData.data.attributes.alternativeText || ''}
+                    width={
+                      imageData.data.attributes.formats.medium?.width ||
+                      imageData.data.attributes.width
+                    }
+                    height={
+                      imageData.data.attributes.formats.medium?.height ||
+                      imageData.data.attributes.height
+                    }
+                    quality={100}
+                  />
+                );
+              }
+
+              return null;
+            };
+
             return (
               <div className="twoImages" key={index}>
-                <Image
-                  src={
-                    component.firstImage?.data?.attributes.formats.medium
-                      ?.url || component.firstImage.data?.attributes.url
-                  }
-                  alt={
-                    component.firstImage.data?.attributes.alternativeText || ''
-                  }
-                  width={
-                    component.firstImage.data?.attributes.formats.medium
-                      ?.width || component.firstImage.data?.attributes.width
-                  }
-                  height={
-                    component.firstImage.data?.attributes.formats.medium
-                      ?.height || component.firstImage.data?.attributes.height
-                  }
-                  quality={100}
-                />
-                <Image
-                  src={
-                    component.secondImage?.data?.attributes.formats.medium
-                      ?.url || component.secondImage.data?.attributes.url
-                  }
-                  alt={
-                    component.secondImage.data?.attributes.alternativeText || ''
-                  }
-                  width={
-                    component.secondImage.data?.attributes.formats.medium
-                      ?.width || component.secondImage.data?.attributes.width
-                  }
-                  height={
-                    component.secondImage.data?.attributes.formats.medium
-                      ?.height || component.secondImage.data?.attributes.height
-                  }
-                  quality={100}
-                />
+                {renderMediaItem(component.firstImage, component.ytVideo1, 1)}
+                {renderMediaItem(component.secondImage, component.ytVideo2, 2)}
               </div>
             );
           }
