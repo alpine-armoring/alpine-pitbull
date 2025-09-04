@@ -4,6 +4,7 @@ import StackingCards from '@/components/stacking-cards/StackingCards';
 import FadeInContent from '@/components/FadeInContent';
 import ParallaxElement from '@/components/ParallaxElement';
 import StickySections from '@/components/sticky-sections/StickySections';
+import Timeline from '@/components/timeline/Timeline';
 
 function Content(props) {
   const dynamicZone = props.data.dynamicZone;
@@ -179,6 +180,10 @@ function Content(props) {
                 {renderMediaItem(component.secondImage, component.ytVideo2, 2)}
               </div>
             );
+          }
+
+          case 'slices.repeatable-component': {
+            return <Timeline key={index} data={component.timeline} />;
           }
 
           case 'slices.youtube-video': {
