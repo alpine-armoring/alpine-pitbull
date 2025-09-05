@@ -6,6 +6,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import styles from './VehicleBuilder.module.scss';
 import Slider from '@/components/slider/Slider';
+import ConfiguratorForm from './ConfiguratorForm';
 
 interface Option {
   title: string;
@@ -71,78 +72,58 @@ const VehicleBuilder = ({ configuratorMedia }) => {
             { title: 'Other' },
           ],
         },
-        {
-          title: 'Application',
-          type: 'select',
-          options: [
-            { title: 'Law Enforcement' },
-            { title: 'Security' },
-            { title: 'Other' },
-          ],
-        },
+        // {
+        //   title: 'Application',
+        //   type: 'select',
+        //   options: [
+        //     { title: 'Law Enforcement' },
+        //     { title: 'Security' },
+        //     { title: 'Other' },
+        //   ],
+        // },
       ],
     },
+    // {
+    //   title: 'Fuel Type',
+    //   type: 'radio',
+    //   options: [{ title: 'Gasoline' }, { title: 'Diesel' }],
+    // },
     {
-      title: 'Fuel Type',
-      type: 'radio',
-      options: [{ title: 'Gasoline' }, { title: 'Diesel' }],
+      title: 'Communications & Electronics Options',
+      type: 'checkbox',
+      options: [
+        {
+          title: `360-degree LED lighting package<br>(includes front grille, visors, rear lights)`,
+        },
+        {
+          title:
+            '360-degree camera package<br>(side mounted, front mounted, and rear backup, with front dash and rear crew monitors)',
+        },
+        { title: 'Interior LED Red & White lighting' },
+        { title: 'Multi-sound public address siren system' },
+        { title: 'Red/Blue LED 360-degree police lighting package' },
+        { title: 'IR Lights' },
+      ],
     },
     {
       title: 'Conversion Options',
       type: 'checkbox',
       options: [
-        {
-          title: 'Battery Kill Switch',
-          info: 'Allows immediate disconnection of the battery in emergency situations.',
-        },
-        { title: 'Composite Run-Flat Inserts' },
-        { title: 'Detachable Ladder - Exterior' },
-        { title: 'Grille Guard/Bull Bar' },
-        { title: 'Gun Racks' },
-        { title: 'Heavy Duty D-Rings' },
-        { title: 'Heavy Duty Hangers' },
-        { title: 'Heavy Duty Side Steps' },
-        { title: 'Heavy Duty Trailer Hitch Step' },
-        { title: 'Heavy-Duty Vinyl Floor' },
-        { title: 'Heavy Duty Winch' },
-        { title: 'Hidden LED Grille Lights' },
-        { title: 'Inconspicuous Reinforced Bumper' },
-        { title: 'Interior Fold Down Ladder' },
-        { title: 'Mesh Screen Protection' },
-        { title: 'Mil-Spec Aircraft Tiedowns' },
-        { title: 'Privacy Curtain' },
-        { title: 'Ram Bumper' },
-        { title: 'Roof Hatch' },
-        { title: 'Roof Over-Watch Area' },
-        { title: 'Tactical Molle Racks' },
-        { title: 'Upgraded Heavy Duty Door Hinges' },
-        { title: 'Upgraded Heavy Duty Suspension' },
-        { title: 'Weapon Vault Lockbox' },
-      ],
-    },
-    {
-      title: 'Communications Options',
-      type: 'checkbox',
-      options: [
-        { title: '360 Degree Monitoring System' },
-        { title: 'Golights' },
-        { title: 'Interior White/Red Crew Lights' },
-        { title: 'IR Lights' },
-        { title: 'NV Front Camera & Monitor' },
-        { title: 'PA/Multi Siren System' },
-        { title: 'Power Inverter & USB Outlets' },
-        { title: 'Rear AC Unit' },
-        { title: 'Server/Network Cabinet' },
-        { title: 'Side Camera' },
-      ],
-    },
-    {
-      title: 'Other',
-      type: 'checkbox',
-      options: [
-        { title: 'Bomb Jamming & Detection System' },
-        { title: 'Emergency Oxygen System' },
-        { title: 'Fire Extinguisher & First Aid Kit' },
+        { title: 'Manual platform lift' },
+        { title: 'Rear cabin exhaust system' },
+        { title: 'USBc/USB & 110V outlets on rear crew bench seat' },
+        { title: 'Secured gun racks' },
+        { title: 'Battery Killswitch' },
+        { title: 'Heavy-duty brake kit (Rotors & Upgraded Brake Pad)' },
+        { title: 'Roof hatch' },
+        { title: 'Power winch' },
+        { title: 'Jump Seat' },
+        { title: '360-degree rotating bearing for roof hatch' },
+        { title: 'Front-mounted hydraulic ram system' },
+        { title: 'Front driver and passenger power windows' },
+        { title: 'Mesh screen protection' },
+        { title: 'Fire extinguisher & first aid kit' },
+        { title: 'Chemical munitions box' },
       ],
     },
   ];
@@ -614,9 +595,10 @@ const VehicleBuilder = ({ configuratorMedia }) => {
 
                               <span
                                 className={`${styles.vehicleConfigurator_card_title}`}
-                              >
-                                {option.title}
-                              </span>
+                                dangerouslySetInnerHTML={{
+                                  __html: option.title,
+                                }}
+                              ></span>
 
                               <span
                                 className={styles.vehicleConfigurator_card_info}
@@ -690,10 +672,11 @@ const VehicleBuilder = ({ configuratorMedia }) => {
 
           {showSummary && (
             <div className={styles.vehicleConfigurator_summary}>
-              <h3 className={styles.vehicleConfigurator_summary_title}>
-                Your Vehicle Configuration
-              </h3>
               <div className={styles.vehicleConfigurator_summary_items}>
+                <h3 className={styles.vehicleConfigurator_summary_title}>
+                  Your Vehicle Configuration
+                </h3>
+
                 {sections.map((section) => {
                   const sectionKey = slugify(section.title);
 
@@ -781,9 +764,12 @@ const VehicleBuilder = ({ configuratorMedia }) => {
                           >
                             {((selections[sectionKey] as string[]) || []).map(
                               (selectedTitle, index) => (
-                                <li key={`${selectedTitle}-${index}`}>
-                                  {selectedTitle}
-                                </li>
+                                <li
+                                  key={`${selectedTitle}-${index}`}
+                                  dangerouslySetInnerHTML={{
+                                    __html: selectedTitle,
+                                  }}
+                                ></li>
                               )
                             )}
                           </ul>
@@ -794,6 +780,13 @@ const VehicleBuilder = ({ configuratorMedia }) => {
                     );
                   }
                 })}
+              </div>
+
+              <div className={styles.vehicleConfigurator_summary_form}>
+                <h4 className={styles.vehicleConfigurator_summary_form_title}>
+                  Request a Quote
+                </h4>
+                <ConfiguratorForm selectedOptions={selections} />
               </div>
             </div>
           )}

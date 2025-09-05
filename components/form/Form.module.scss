@@ -16,6 +16,10 @@
     }
   }
 
+  &_plain{
+    margin: 0;
+  }
+
   &_input {
     position: relative;
     padding: rem(14) rem(8) rem(14) rem(16);
@@ -26,6 +30,12 @@
     border: 1px solid transparent;
     font-size: rem(13);
     font-family: Termina, sans-serif;
+
+    .form_plain &{
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
 
     @supports (-webkit-touch-callout: none) {
       @include breakpoint(small) {
