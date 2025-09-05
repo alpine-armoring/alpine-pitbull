@@ -16,7 +16,7 @@
     }
   }
 
-  &_plain{
+  &_plain {
     margin: 0;
   }
 
@@ -31,7 +31,7 @@
     font-size: rem(13);
     font-family: Termina, sans-serif;
 
-    .form_plain &{
+    .form_plain & {
       border: 0;
       border-radius: 0;
       border-bottom: 1px solid #e2e8f0;
