@@ -10,32 +10,39 @@
   justify-content: space-between;
   z-index: 3;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-  transition-property: background-color, backdrop-filter;
+  transition-property: background-color, backdrop-filter, height;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 
   @include breakpoint(large) {
     padding: rem(6) rem(36);
+    justify-content: flex-end;
+    height: 100px;
   }
 
   &_scrolled {
     background-color: rgba(23, 23, 23, 0.8);
-    // backdrop-filter: blur(10px);
+    
+    @include breakpoint(large) {
+      height: 60px;
+    }
   }
 
   &_logo {
-    // position: absolute;
-    // left: 0;
-    // right: 0;
-    // bottom: 0;
-    // top: 0;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // text-transform: uppercase;
-    // font-weight: 500;
-    // font-size: 20px;
-    // z-index: 4;
+    @include breakpoint(large) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+
+      img{
+        width: 200px;
+      }
+      
+    }
   }
 }
 
