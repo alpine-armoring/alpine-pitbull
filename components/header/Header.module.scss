@@ -22,7 +22,7 @@
 
   &_scrolled {
     background-color: rgba(23, 23, 23, 0.8);
-    
+
     @include breakpoint(large) {
       height: 60px;
     }
@@ -38,10 +38,9 @@
       display: flex;
       justify-content: center;
 
-      img{
+      img {
         width: 200px;
       }
-      
     }
   }
 }
