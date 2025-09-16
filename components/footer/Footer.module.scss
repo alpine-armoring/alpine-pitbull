@@ -13,7 +13,7 @@
   padding-bottom: $padding !important;
 
   &_logo {
-    img{
+    img {
       margin: auto;
       width: 80px;
     }
@@ -33,34 +33,33 @@
     }
   }
 
-  &_navigation{
+  &_navigation {
     @include breakpoint(small) {
       margin: 40px 0;
     }
     @include breakpoint(large) {
       display: flex;
     }
-    &_column{
+    &_column {
       @include breakpoint(small) {
         padding-bottom: 2.5rem;
       }
 
-      &:last-child{
+      &:last-child {
         padding-bottom: 0;
 
         @include breakpoint(large) {
           margin-left: 50px;
         }
       }
-      
     }
-    p{
+    p {
       margin-bottom: 1.25rem;
       font-size: 1.25rem;
       font-weight: var(--font-medium);
       text-transform: uppercase;
     }
-    li{
+    li {
       margin-bottom: 1rem;
       font-size: 14px;
     }
@@ -72,7 +71,6 @@
     margin-top: 30px;
 
     @include breakpoint(large) {
-
       width: 100%;
     }
   }

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  max-width: 100vW;
+  max-width: 100vw;
   padding: rem(6) rem(12);
   overflow: hidden;
   display: flex;
@@ -30,7 +30,6 @@
   }
 
   &_logo {
-
     @include breakpoint(small) {
       z-index: 4;
     }
