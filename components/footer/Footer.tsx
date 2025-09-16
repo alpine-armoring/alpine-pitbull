@@ -23,6 +23,37 @@ const Footer = () => {
         ></Image>
       </Link>
 
+      <div className={`${styles.footer_navigation}`}>
+        <div className={`${styles.footer_navigation_column}`}>
+          <p>Available</p>
+          <ul>
+            <li>
+              <Link href="/">VX</Link>
+            </li>
+            <li>
+              <Link href="/">VXT</Link>
+            </li>
+          </ul>
+        </div>
+        <div className={`${styles.footer_navigation_column}`}>
+          <p>Quick Links</p>
+          <ul>
+            <li>
+              <Link href="/">History of Alpine Armoring Pit-Bull</Link>
+            </li>
+            <li>
+              <Link href="/">Tactical Features and Customizations</Link>
+            </li>
+            <li>
+              <Link href="/">Testing and Certification</Link>
+            </li>
+            <li>
+              <Link href="/">Contact Us</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <ul className={`${styles.footer_socials}`}>
         <li className={`${styles.footer_socials_item}`}>
           <Link

@@ -44,8 +44,8 @@
 
 .menuOverlay {
   position: fixed;
-  width: 100vw;
-  height: 100svh;
+  width: 101vw;
+  height: 102svh;
   background: var(--color-background) url(/images/noise4.png);
   background-size: 30px;
   top: 0;
@@ -53,6 +53,11 @@
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
   z-index: 3;
   will-change: clip-path;
+
+  @include breakpoint(large) {
+    width: 100vw;
+    height: 100svh;
+  }
 
   img {
     width: 100%;
@@ -198,7 +203,7 @@
     padding: 2.5em 0;
     display: flex;
     flex-direction: column;
-    gap: 2.5em;
+    gap: 0.5em;
   }
 }
 
@@ -246,7 +251,11 @@
     transition: color 0.5s;
     transform: translateY(120%);
     opacity: 0.25;
-    font-size: rem(80);
+    // font-size: rem(22);
+
+    @include breakpoint(large) {
+      font-size: rem(22);
+    }
 
     &::after {
       position: absolute;
@@ -279,6 +288,10 @@
     transform: translateY(120%);
     opacity: 0.25;
     color: var(--color-grayDark);
+
+    @include breakpoint(large) {
+      font-size: 20px;
+    }
 
     &:hover {
       color: #fff;

@@ -1,15 +1,22 @@
 .footer {
   $padding: 12px;
+
   @include breakpoint(large) {
     $padding: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
   }
+
   padding-top: $padding !important;
   padding-bottom: $padding !important;
 
   &_logo {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
+    img{
+      margin: auto;
+      width: 80px;
+    }
   }
 
   &_socials {
@@ -26,9 +33,47 @@
     }
   }
 
+  &_navigation{
+    @include breakpoint(small) {
+      margin: 40px 0;
+    }
+    @include breakpoint(large) {
+      display: flex;
+    }
+    &_column{
+      @include breakpoint(small) {
+        padding-bottom: 2.5rem;
+      }
+
+      &:last-child{
+        padding-bottom: 0;
+
+        @include breakpoint(large) {
+          margin-left: 50px;
+        }
+      }
+      
+    }
+    p{
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      font-weight: var(--font-medium);
+      text-transform: uppercase;
+    }
+    li{
+      margin-bottom: 1rem;
+      font-size: 14px;
+    }
+  }
+
   &_copy {
     text-align: center;
     font-size: 12px;
     margin-top: 30px;
+
+    @include breakpoint(large) {
+
+      width: 100%;
+    }
   }
 }

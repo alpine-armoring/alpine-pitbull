@@ -36,21 +36,20 @@ const Header = () => {
       </Link>
 
       <Menu
-        // defaultPreviewImage={`${process.env.NEXT_PUBLIC_URL}/_next/image?url=%2Fimages%2Falpine-pitbull-logo.svg&w=64&q=100`}
-        defaultPreviewImage={`https://alpine-pitbull.vercel.app/_next/image?url=%2Fimages%2Falpine-pitbull-logo.svg&w=64&q=100`}
-        previewWidth={400}
-        previewHeight={490}
+        defaultPreviewImage="/images/alpine-pitbull-logo.svg"
+        previewWidth={300}
+        previewHeight={329}
         menuLinks={[
           {
             href: '/vehicles/armored-vx',
-            text: 'VX',
+            text: 'Pit-Bull® VX',
             imgSrc:
               'https://d102sycao8uwt8.cloudfront.net/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
             isVideo: true,
           },
           {
             href: '/vehicles/armored-vxt',
-            text: 'VXT',
+            text: 'Pit-Bull® VXT',
             imgSrc:
               'https://d102sycao8uwt8.cloudfront.net/VXT_header_9_2_b8260edd5e.mp4',
             isVideo: true,
@@ -59,7 +58,7 @@ const Header = () => {
         socialLinks={[
           {
             href: '/about#history',
-            text: 'History of Alpine Armoring Pit-Bull',
+            text: 'History of Alpine Armoring Pit-Bull®',
           },
           {
             href: '/about#features',
