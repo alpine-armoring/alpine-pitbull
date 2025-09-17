@@ -423,11 +423,11 @@ const VehicleBuilder = ({ configuratorMedia }) => {
     <>
       <div className={`${styles.vehicleConfigurator_heading} c-content`}>
         <h2 className={`${styles.vehicleConfigurator_title} c-title`}>
-          Configurator
+          Build Your Pit-Bull®
         </h2>
-        <h3 className={`${styles.vehicleConfigurator_subtitle} c-description`}>
+        {/* <h3 className={`${styles.vehicleConfigurator_subtitle} c-description`}>
           Build your Pit-Bull®
-        </h3>
+        </h3> */}
       </div>
 
       <div className={styles.vehicleConfigurator}>
