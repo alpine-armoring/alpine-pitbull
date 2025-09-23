@@ -16,10 +16,10 @@
     }
   }
 
-  &_plain{
+  &_plain {
     margin: 0;
 
-    &_passwordWrap{
+    &_passwordWrap {
       @include breakpoint(large) {
         position: relative;
         flex: 1;

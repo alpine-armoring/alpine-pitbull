@@ -31,11 +31,11 @@ select {
 .mt0 {
   margin-top: 0 !important;
 }
-.pb2{
+.pb2 {
   padding-bottom: 2rem !important;
   @include breakpoint(large) {
     padding-bottom: 4rem !important;
-  }  
+  }
 }
 .m1 {
   margin-top: 1rem !important;

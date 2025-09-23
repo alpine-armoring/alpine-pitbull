@@ -28,8 +28,8 @@
   &_title {
     margin-bottom: 10px;
   }
-  
-  &_initial{
+
+  &_initial {
     color: var(--color-background);
 
     @include breakpoint(small) {
@@ -41,7 +41,7 @@
       justify-content: space-between;
     }
 
-    &>div{
+    & > div {
       @include breakpoint(small) {
         margin-bottom: 40px;
       }
@@ -52,14 +52,13 @@
       }
     }
 
-    p{
+    p {
       font-size: 15px;
 
       @include breakpoint(small) {
         font-size: 13px;
         text-align: center;
       }
-
     }
   }
 
