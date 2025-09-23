@@ -3,7 +3,7 @@ import { cache } from 'react';
 import { getStrapiData } from '@/lib/fechData';
 import BannerHero from '@/components/banner-hero/BannerHero';
 import { Suspense } from 'react';
-import VehicleBuilder from '@/components/vehicle-builder/VehicleBuilder';
+import PasswordProtectedConfigurator from '@/components/vehicle-builder/PasswordProtectedConfigurator';
 // import StickyVideoSection from '@/components/sticky-video-section/StickyVideoSection';
 import Content from '@/components/content/Content';
 
@@ -117,8 +117,10 @@ export default async function VehiclePage({ params }) {
       {/* <StickyVideoSection /> */}
 
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="bg-white ">
-          <VehicleBuilder configuratorMedia={vehicleData.configuratorMedia} />
+        <div className="bg-white pb2">
+          <PasswordProtectedConfigurator
+            configuratorMedia={vehicleData.configuratorMedia}
+          />
         </div>
       </Suspense>
     </>

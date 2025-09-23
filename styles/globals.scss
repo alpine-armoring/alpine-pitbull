@@ -31,6 +31,12 @@ select {
 .mt0 {
   margin-top: 0 !important;
 }
+.pb2{
+  padding-bottom: 2rem !important;
+  @include breakpoint(large) {
+    padding-bottom: 4rem !important;
+  }  
+}
 .m1 {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
@@ -51,6 +57,24 @@ select {
   margin-top: 2rem !important;
   @include breakpoint(large) {
     margin-top: 4rem !important;
+  }
+}
+.mt3 {
+  margin-top: 3rem !important;
+  @include breakpoint(large) {
+    margin-top: 6rem !important;
+  }
+}
+.mb1 {
+  margin-bottom: 1rem !important;
+  @include breakpoint(large) {
+    margin-bottom: 2rem !important;
+  }
+}
+.mb2 {
+  margin-bottom: 2rem !important;
+  @include breakpoint(large) {
+    margin-bottom: 4rem !important;
   }
 }
 .m4 {
