@@ -28,10 +28,10 @@ const Footer = () => {
           <p>Available</p>
           <ul>
             <li>
-              <Link href="/">VX</Link>
+              <Link href="/vehicles/armored-vx">VX</Link>
             </li>
             <li>
-              <Link href="/">VXT</Link>
+              <Link href="/vehicles/armored-vxt">VXT</Link>
             </li>
           </ul>
         </div>
@@ -39,16 +39,18 @@ const Footer = () => {
           <p>Quick Links</p>
           <ul>
             <li>
-              <Link href="/">History of Alpine Armoring Pit-Bull</Link>
+              <Link href="/history">History of Alpine Armoring Pit-Bull</Link>
             </li>
             <li>
-              <Link href="/">Tactical Features and Customizations</Link>
+              <Link href="/tactical-features">
+                Tactical Features and Customizations
+              </Link>
             </li>
             <li>
-              <Link href="/">Testing and Certification</Link>
+              <Link href="/ballistic-chart">Testing and Certification</Link>
             </li>
             <li>
-              <Link href="/">Contact Us</Link>
+              <Link href="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>

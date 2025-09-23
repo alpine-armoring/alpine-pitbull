@@ -57,15 +57,15 @@ const Header = () => {
         ]}
         socialLinks={[
           {
-            href: '/about#history',
+            href: '/history',
             text: 'History of Alpine Armoring Pit-Bull®',
           },
           {
-            href: '/about#features',
+            href: '/tactical-features',
             text: 'Tactical Features and Customizations',
           },
           {
-            href: '/about#testing',
+            href: '/ballistic-chart',
             text: 'Testing and Certification',
           },
           {
