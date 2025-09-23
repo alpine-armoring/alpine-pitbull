@@ -37,7 +37,7 @@ const Header = () => {
 
       <Menu
         defaultPreviewImage="/images/alpine-pitbull-logo.svg"
-        previewWidth={300}
+        previewWidth={280}
         previewHeight={329}
         menuLinks={[
           {
