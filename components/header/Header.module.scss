@@ -22,11 +22,8 @@
   }
 
   &_scrolled {
-    background-color: rgba(23, 23, 23, 0.8);
-
-    @include breakpoint(large) {
-      height: 60px;
-    }
+    background-color: rgba(23, 23, 23, 0.6);
+    backdrop-filter: blur(7px);
   }
 
   &_logo {
@@ -39,7 +36,7 @@
       left: 0;
       right: 0;
       bottom: 4px;
-      top: 4px;
+      top: 0;
       display: flex;
       justify-content: center;
 

@@ -11,7 +11,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 200);
+      setIsScrolled(scrollY > 1);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

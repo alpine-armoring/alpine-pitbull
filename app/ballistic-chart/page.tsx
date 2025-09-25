@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { cache } from 'react';
 import { getStrapiData } from '@/lib/fechData';
-import BannerHero from '@/components/banner-hero/BannerHero';
-import Content from '@/components/content/Content';
+import BallisticChart from '@/components/ballistic-chart/BallisticChart';
 
 const getpageData = cache(async () => {
   try {
@@ -83,19 +82,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const { pageData } = await getpageData();
 
-  const contentData = {
-    dynamicZone: pageData?.dynamicZone || [],
-  };
-
   return (
     <>
-      {pageData?.banner && <BannerHero props={pageData.banner} small />}
+      <div className="mt6 pb2">
+        <h1 className="c-title center">{pageData.banner.title}</h1>
 
-      {contentData && (
-        <div className="container_small">
-          <Content data={contentData} />
-        </div>
-      )}
+        <h2 className="c-description mb2 center">{pageData.banner.subtitle}</h2>
+
+        <BallisticChart />
+      </div>
     </>
   );
 }

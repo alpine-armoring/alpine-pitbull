@@ -81,7 +81,7 @@ export default async function ContactPage() {
   const { faqs } = await getPageData();
 
   return (
-    <div className="m4 container_small">
+    <div className="mt6 mb2 container_small">
       <h1 className="c-title center">Contact us</h1>
 
       <Form />
