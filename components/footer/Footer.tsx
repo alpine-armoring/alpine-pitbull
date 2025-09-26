@@ -156,6 +156,14 @@ const Footer = () => {
         </li>
       </ul>
 
+      <Link
+        className={`${styles.footer_alpineco}`}
+        href="https://www.alpineco.com/"
+        target="_blank"
+      >
+        <img src="/images/Alpineco-Logo.jpg" />
+      </Link>
+
       <p className={`${styles.footer_copy}`}>
         ©2025. Pit-Bull® is a Registered Trademark of Alpine Armoring Inc. All
         Rights Reserved.

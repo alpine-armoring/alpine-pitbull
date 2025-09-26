@@ -1,4 +1,5 @@
 .footer {
+  position: relative;
   $padding: 12px;
 
   @include breakpoint(large) {
@@ -89,4 +90,18 @@
       width: 100%;
     }
   }
+  
+  &_alpineco{
+    margin: auto;
+    width: 70px;
+    margin-top: 20px;
+
+    @include breakpoint(large) {
+      position: absolute;
+      margin: 0;
+      right: 32px;
+      bottom: 36px;
+    }
+  }
+
 }
