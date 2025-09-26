@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { cache } from 'react';
 import { getStrapiData } from '@/lib/fechData';
-import BannerHero from '@/components/banner-hero/BannerHero';
+import FadeInContent from '@/components/FadeInContent';
 import Content from '@/components/content/Content';
 
 const getpageData = cache(async () => {
@@ -89,13 +89,23 @@ export default async function AboutPage() {
 
   return (
     <>
-      {pageData?.banner && <BannerHero props={pageData.banner} small />}
+      <div className="mt6 pb2">
+        <FadeInContent>
+          <h2 className="c-description mb1 center">
+            {pageData.banner.subtitle}
+          </h2>
+        </FadeInContent>
 
-      {contentData && (
-        <div className="container_small">
-          <Content data={contentData} />
-        </div>
-      )}
+        <FadeInContent delay={0.1}>
+          <h1 className="c-title mb2 center">{pageData.banner.title}</h1>
+        </FadeInContent>
+
+        {contentData && (
+          <div className="container_small">
+            <Content data={contentData} />
+          </div>
+        )}
+      </div>
     </>
   );
 }

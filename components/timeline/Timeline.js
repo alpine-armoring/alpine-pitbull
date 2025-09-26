@@ -17,7 +17,7 @@ const Timeline = ({ data }) => {
     if (!sections.length) return;
 
     sections.forEach((section) => {
-      const heading = section.querySelector('h2');
+      const heading = section.querySelector('h3');
       const image = section.querySelector(`.${styles.timeline_section_image}`);
 
       if (!heading || !image) return;
@@ -29,13 +29,13 @@ const Timeline = ({ data }) => {
       });
       gsap.set(image, {
         opacity: 0,
-        rotateY: 15,
+        y: 50,
       });
 
       const sectionTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top center',
+          start: 'top 70%',
           end: `+=${window.innerHeight}`,
           toggleActions: 'play reverse play reverse',
         },
@@ -44,9 +44,9 @@ const Timeline = ({ data }) => {
       sectionTl
         .to(image, {
           opacity: 1,
-          rotateY: -5,
-          duration: 6,
-          ease: 'elastic',
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
         })
         .to(
           heading,
@@ -81,10 +81,10 @@ const Timeline = ({ data }) => {
           ref={addToRefs}
         >
           <div className={styles.timeline_container}>
-            <h2 className={styles.timeline_section_heading}>
+            <h3 className={styles.timeline_section_heading}>
               {item.year && <span>{item.year}</span>}
               {item.Caption && <span>{item.Caption}</span>}
-            </h2>
+            </h3>
             {item.image.data && (
               <div className={styles.timeline_section_image}>
                 <img

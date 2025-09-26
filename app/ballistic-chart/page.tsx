@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { cache } from 'react';
 import { getStrapiData } from '@/lib/fechData';
+import FadeInContent from '@/components/FadeInContent';
 import BallisticChart from '@/components/ballistic-chart/BallisticChart';
 
 const getpageData = cache(async () => {
@@ -85,11 +86,19 @@ export default async function AboutPage() {
   return (
     <>
       <div className="mt6 pb2">
-        <h1 className="c-title center">{pageData.banner.title}</h1>
+        <FadeInContent>
+          <h1 className="c-title center">{pageData.banner.title}</h1>
+        </FadeInContent>
 
-        <h2 className="c-description mb2 center">{pageData.banner.subtitle}</h2>
+        <FadeInContent delay={0.1}>
+          <h2 className="c-description mb2 center">
+            {pageData.banner.subtitle}
+          </h2>
+        </FadeInContent>
 
-        <BallisticChart />
+        <FadeInContent>
+          <BallisticChart />
+        </FadeInContent>
       </div>
     </>
   );
