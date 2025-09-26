@@ -18,7 +18,7 @@
     @include breakpoint(large) {
       padding: 8rem 0 max(5vh, 2rem);
 
-      &:nth-child(2n) .timeline_container{
+      &:nth-child(2n) .timeline_container {
         flex-flow: row-reverse;
       }
     }
@@ -51,7 +51,7 @@
     &_image {
       @include breakpoint(large) {
         width: 50%;
-      }      
+      }
     }
   }
 }
