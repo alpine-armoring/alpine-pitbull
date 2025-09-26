@@ -59,7 +59,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
   const menuToggleRef = useRef<HTMLDivElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const menuContentRef = useRef<HTMLDivElement>(null);
-  const menuPreviewImgRef = useRef<HTMLDivElement>(null);
+  const menuPreviewImgRef = useRef<HTMLAnchorElement>(null);
   const menuOpenRef = useRef<HTMLParagraphElement>(null);
   const menuCloseRef = useRef<HTMLParagraphElement>(null);
 
@@ -406,9 +406,14 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
         <div className={styles.menuContent} ref={menuContentRef}>
           <div className={styles.menuItems}>
             <div className={styles.menuItems_colLg}>
-              <div className={styles.menuPreviewImg} ref={menuPreviewImgRef}>
+              <Link
+                href="/"
+                className={styles.menuPreviewImg}
+                ref={menuPreviewImgRef}
+                onClick={closeMenu}
+              >
                 {/* Preview media will be dynamically inserted here */}
-              </div>
+              </Link>
             </div>
             <div className={styles.menuItems_colSm}>
               <div className={styles.menuLinks}>

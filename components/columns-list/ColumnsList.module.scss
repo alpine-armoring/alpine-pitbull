@@ -121,6 +121,12 @@
       text-transform: uppercase;
       z-index: 1;
 
+      .vehicles_item & {
+        @include breakpoint(small) {
+          padding: 30px 12px;
+        }
+      }
+
       @include breakpoint(large) {
         padding: 36px;
       }
@@ -130,6 +136,14 @@
       font-size: 12px;
       letter-spacing: 1px;
       margin-bottom: 12px;
+
+      .vehicles_item & {
+        font-size: 16px;
+
+        @include breakpoint(large) {
+          font-size: 22px;
+        }
+      }
     }
 
     &_title {

@@ -66,7 +66,7 @@ const Header = () => {
           },
           {
             href: '/ballistic-chart',
-            text: 'Testing and Certification',
+            text: 'Weapons and Ammunition Chart',
           },
           {
             href: '/contact',

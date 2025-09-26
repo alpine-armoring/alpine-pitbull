@@ -75,7 +75,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/ballistic-chart">Testing and Certification</Link>
+              <Link href="/ballistic-chart">Weapons and Ammunition Chart</Link>
             </li>
             <li>
               <Link href="/contact">Contact Us</Link>

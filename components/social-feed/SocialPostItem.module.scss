@@ -2,15 +2,23 @@
   position: relative;
   width: 100%;
   max-width: 630px;
-  margin-bottom: rem(20);
+  margin-bottom: rem(8);
   background: #000;
   border-radius: 6px;
-  height: 650px;
+  height: 250px;
   overflow: hidden;
   cursor: pointer;
+  width: calc(100% / 2 - 4px);
+
+  @include breakpoint(medium) {
+    height: 450px;
+    width: calc(100% / 3 - 5.5px);
+    margin-bottom: rem(20);
+  }
 
   @include breakpoint(large) {
-    width: calc(100% / 3 - 14px);
+    height: 650px;
+    width: calc(100% / 3 - 13.5px);
   }
 
   &:hover {

@@ -165,7 +165,6 @@ export default async function Home() {
             title={pageData.vehiclesTitle}
             description={pageData.vehiclesText}
             items={normalizedVehicles}
-            // configurator
             id={'models'}
           />
         )}
