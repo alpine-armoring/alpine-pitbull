@@ -34,14 +34,15 @@
     }
   }
 
-  &_column{
-    &>div, &>a{
+  &_column {
+    & > div,
+    & > a {
       display: flex;
-      align-items: center;      
+      align-items: center;
       margin-bottom: 1rem;
       font-size: 14px;
 
-      svg{
+      svg {
         margin-right: 10px;
       }
     }
