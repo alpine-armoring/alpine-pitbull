@@ -9,19 +9,47 @@ import InstagramIcon from 'components/icons/Instagram';
 import YoutubeIcon from 'components/icons/Youtube';
 import LinkedinIcon from 'components/icons/Linkedin';
 import ThreadsIcon from 'components/icons/Threads';
+import PhoneIcon from 'components/icons/Phone';
+import MailIcon from 'components/icons/Mail';
+import MapIcon from 'components/icons/Map';
 
 const Footer = () => {
   return (
     <footer className={`${styles.footer} container`}>
-      <Link href="/" className={`${styles.footer_logo}`}>
-        <Image
-          src="/images/alpine-pitbull-logo.svg"
-          alt="Alpine Armoring Pitbull Logo"
-          width={50}
-          height={60}
-          quality={100}
-        ></Image>
-      </Link>
+      <div className={`${styles.footer_column}`}>
+        <Link href="/" className={`${styles.footer_logo}`}>
+          <Image
+            src="/images/alpine-pitbull-logo.svg"
+            alt="Alpine Armoring Pitbull Logo"
+            width={50}
+            height={60}
+            quality={100}
+          ></Image>
+        </Link>
+
+        <Link
+          href="tel:+17034710002"
+          className={`${styles.menuContent_contact_item}`}
+          rel="nofollow noreferrer noopener"
+        >
+          <PhoneIcon />
+          1.703.471.0002
+        </Link>
+
+        <Link
+          href="mailto:info@pit-bull.net"
+          className={`${styles.menuContent_contact_item}`}
+          rel="nofollow noreferrer noopener"
+        >
+          <MailIcon />
+          info@pit-bull.net
+        </Link>
+
+        <div className={`${styles.menuContent_contact_item}`}>
+          <MapIcon />
+          Chantilly, Virginia, USA
+        </div>
+      </div>
 
       <div className={`${styles.footer_navigation}`}>
         <div className={`${styles.footer_navigation_column}`}>

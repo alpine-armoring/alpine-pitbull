@@ -13,6 +13,7 @@
   padding-bottom: $padding !important;
 
   &_logo {
+    margin-bottom: 40px !important;
     img {
       margin: auto;
       width: 80px;
@@ -29,6 +30,19 @@
 
       &:hover {
         transform: translateY(-3px);
+      }
+    }
+  }
+
+  &_column{
+    &>div, &>a{
+      display: flex;
+      align-items: center;      
+      margin-bottom: 1rem;
+      font-size: 14px;
+
+      svg{
+        margin-right: 10px;
       }
     }
   }

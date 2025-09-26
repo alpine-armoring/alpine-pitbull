@@ -37,6 +37,7 @@
     font-weight: var(--font-medium);
     border: 1px solid transparent;
     font-size: rem(12);
+    font-family: inherit;
 
     .form_plain & {
       background: #c8c8c8;
@@ -51,6 +52,7 @@
     &::placeholder {
       font-weight: var(--font-regular);
       color: var(--color-dark);
+      // font-size: rem(12);
     }
 
     .form_group.error & {
@@ -87,7 +89,7 @@
       color: var(--color-dark);
       background: transparent;
       border: 0;
-      font-size: rem(13);
+      font-size: rem(12);
       padding: 0;
 
       @supports (-webkit-touch-callout: none) {
@@ -190,7 +192,6 @@
 
     @include breakpoint(large) {
       padding: 14px 26px;
-      margin: 0 !important;
       transition:
         transform 0.2s ease-in-out,
         background 0.2s ease-in-out;
@@ -199,6 +200,10 @@
       &:hover {
         background: #3b3427;
         transform: translateY(-2px) !important;
+      }
+
+      .form_plain & {
+        margin: 0 !important;
       }
     }
   }
