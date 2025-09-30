@@ -390,6 +390,7 @@ small {
   video {
     aspect-ratio: 16/9;
     border-radius: 8px;
+    max-width: 100%;
 
     @include breakpoint(small) {
       &:first-child {
