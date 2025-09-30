@@ -133,7 +133,7 @@ function Content(props) {
               );
             };
 
-            // Helper function to render media item (image or YouTube video)
+            // Helper function to render media item (image, video, or YouTube video)
             const renderMediaItem = (imageData, youtubeId, index: number) => {
               // Check if YouTube video ID is provided
               if (youtubeId && isYouTubeId(youtubeId)) {
@@ -149,8 +149,21 @@ function Content(props) {
                 );
               }
 
-              // Render as image if image data exists
+              // Check if media data exists
               if (imageData?.data) {
+                // Check if it's a video file (mp4, webm, etc.)
+                if (imageData.data.attributes.mime?.startsWith('video/')) {
+                  return (
+                    <video autoPlay muted loop playsInline>
+                      <source
+                        src={imageData.data.attributes.url}
+                        type={imageData.data.attributes.mime}
+                      />
+                    </video>
+                  );
+                }
+
+                // Render as image
                 return (
                   <Image
                     src={
