@@ -154,16 +154,16 @@ function Content(props) {
                 return (
                   <Image
                     src={
-                      imageData.data.attributes.formats.medium?.url ||
+                      imageData.data.attributes.formats?.medium?.url ||
                       imageData.data.attributes.url
                     }
                     alt={imageData.data.attributes.alternativeText || ''}
                     width={
-                      imageData.data.attributes.formats.medium?.width ||
+                      imageData.data.attributes.formats?.medium?.width ||
                       imageData.data.attributes.width
                     }
                     height={
-                      imageData.data.attributes.formats.medium?.height ||
+                      imageData.data.attributes.formats?.medium?.height ||
                       imageData.data.attributes.height
                     }
                     quality={100}
