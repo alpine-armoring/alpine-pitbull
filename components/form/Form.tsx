@@ -421,6 +421,7 @@ const Form = () => {
                 route: window.location.href,
                 date: Date.now(),
                 trackingData: trackingData,
+                domain: 'pitbull',
               },
             }),
           }
