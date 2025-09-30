@@ -89,15 +89,15 @@ const Timeline = ({ data }) => {
               <div className={styles.timeline_section_image}>
                 <img
                   src={
-                    item.image.data[0].attributes.formats.medium.url ||
+                    item.image.data[0].attributes.formats?.medium.url ||
                     item.image.data[0].attributes.url
                   }
                   width={
-                    item.image.data[0].attributes.formats.medium.width ||
+                    item.image.data[0].attributes.formats?.medium.width ||
                     item.image.data[0].attributes.width
                   }
                   height={
-                    item.image.data[0].attributes.formats.medium.height ||
+                    item.image.data[0].attributes.formats?.medium.height ||
                     item.image.data[0].attributes.height
                   }
                   alt={`${item.image.data[0].attributes.alternativeText} || ${item.Caption} (${item.year})`}
