@@ -20,7 +20,7 @@ const Footer = () => {
         <Link href="/" className={`${styles.footer_logo}`}>
           <Image
             src="/images/alpine-pitbull-logo.svg"
-            alt="Alpine Armoring Pitbull Logo"
+            alt="Pit-Bull® Logo"
             width={50}
             height={60}
             quality={100}
@@ -67,7 +67,7 @@ const Footer = () => {
           <p>Quick Links</p>
           <ul>
             <li>
-              <Link href="/history">History of Alpine Armoring Pit-Bull</Link>
+              <Link href="/history">History of Pit-Bull</Link>
             </li>
             <li>
               <Link href="/tactical-features">
@@ -161,7 +161,7 @@ const Footer = () => {
         href="https://www.alpineco.com/"
         target="_blank"
       >
-        <img src="/images/Alpineco-Logo.jpg" />
+        <img src="/images/Alpineco-Logo.jpg" width="70" height="107" />
       </Link>
 
       <p className={`${styles.footer_copy}`}>

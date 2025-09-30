@@ -99,7 +99,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       locale: 'en_US',
       url: './',
-      siteName: 'Alpine Pitbull',
+      siteName: 'Pit-Bull®',
       title: seoData.metaTitle,
       description: seoData.metaDescription,
       images: [
@@ -110,8 +110,7 @@ export async function generateMetadata(): Promise<Metadata> {
           width: 1200,
           height: 630,
           alt:
-            seoData.metaImage.data.attributes.alternativeText ||
-            'Alpine Pitbull',
+            seoData.metaImage.data.attributes.alternativeText || 'Pit-Bull®',
         },
       ],
     };

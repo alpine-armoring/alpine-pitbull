@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname, useParams } from 'next/navigation';
 import en from '../locales/en';
-import es from '../locales/es';
+// import es from '../locales/es';
 
 const getLocaleStrings = (locale) => {
   switch (locale) {

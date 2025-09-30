@@ -34,33 +34,33 @@ const terminaFont = localFont({
 // });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://alpinepitbull.com'),
+  metadataBase: new URL('https://pit-bull.net'),
   alternates: {
     canonical: './',
   },
   title: {
-    default: 'Alpine Pitbull',
-    template: '%s | Alpine Pitbull',
+    default: 'Pit-Bull® Armored SWAT APC',
+    template: '%s | Pit-Bull®',
   },
   description:
-    'Alpine Pitbull - Premium outdoor equipment and gear for your adventures.',
-  authors: [{ name: 'Alpine Pitbull' }],
-  creator: 'Alpine Pitbull',
-  publisher: 'Alpine Pitbull',
+    'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',
+  authors: [{ name: 'Pit-Bull®' }],
+  creator: 'Pit-Bull®',
+  publisher: 'Pit-Bull®',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: './',
-    siteName: 'Alpine Pitbull',
-    title: 'Alpine Pitbull',
+    siteName: 'Pit-Bull®',
+    title: 'Pit-Bull®',
     description:
-      'Alpine Pitbull - Premium outdoor equipment and gear for your adventures.',
+      'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',
     images: [
       {
         url: '/images/alpine-pitbull-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Alpine Pitbull',
+        alt: 'Pit-Bull®',
       },
     ],
   },

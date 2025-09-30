@@ -81,7 +81,7 @@ const VideoSingle = ({ props }) => {
         <>
           <Image
             src={getThumbnailUrl()}
-            alt="Alpine Armoring"
+            alt="Pit-Bull®"
             width={500}
             height={450}
             sizes="(min-width: 768px) 100vw, 80vw"
@@ -156,7 +156,7 @@ const VideoSingle = ({ props }) => {
           >
             <Image
               src={getThumbnailUrl()}
-              alt="Alpine Armoring"
+              alt="Pit-Bull®"
               width={500}
               height={450}
               sizes="(min-width: 768px) 100vw, 80vw"

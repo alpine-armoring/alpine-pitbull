@@ -72,7 +72,7 @@ const ColumnsList = (props) => {
                   mediaData.formats?.large?.url ||
                   mediaData.url
                 }
-                alt={mediaData.alternativeText || 'Alpine Armoring'}
+                alt={mediaData.alternativeText || 'Pit-Bull®'}
                 width={mediaData.formats?.large?.width || mediaData.width}
                 height={mediaData.formats?.large?.height || mediaData.height}
                 className={`${styles.featured_image}`}

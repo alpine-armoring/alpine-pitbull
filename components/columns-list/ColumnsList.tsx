@@ -31,7 +31,7 @@ const ColumnsList = (props) => {
             {item.image && (
               <Image
                 src={item.image.formats?.large?.url || item.image.url}
-                alt={item.image.alternativeText || 'Alpine Armoring'}
+                alt={item.image.alternativeText || 'Pit-Bull®'}
                 width={item.image.formats?.large?.width || item.image.width}
                 height={item.image.formats?.large?.height || item.image.height}
                 className={`${styles.columnsList_item_image}`}

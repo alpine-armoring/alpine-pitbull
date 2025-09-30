@@ -57,7 +57,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
       type: 'website',
       locale: 'en_US',
       url: './',
-      siteName: 'Alpine Pitbull',
+      siteName: 'Pit-Bull®',
       title: seoData.metaTitle || vehicleData?.title,
       description: seoData.metaDescription || vehicleData?.description,
       images: [

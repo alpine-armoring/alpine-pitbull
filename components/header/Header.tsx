@@ -28,7 +28,7 @@ const Header = () => {
       <Link href="/" className={`${styles.header_logo}`}>
         <Image
           src="/images/alpine-pitbull-logo.svg"
-          alt="Alpine Armoring Pitbull Logo"
+          alt="Pit-Bull® Logo"
           width={50}
           height={60}
           quality={100}
@@ -58,7 +58,7 @@ const Header = () => {
         socialLinks={[
           {
             href: '/history',
-            text: 'History of Alpine Armoring Pit-Bull®',
+            text: 'History of Pit-Bull®',
           },
           {
             href: '/tactical-features',

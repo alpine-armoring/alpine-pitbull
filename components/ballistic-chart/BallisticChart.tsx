@@ -364,7 +364,7 @@ const BallisticChart = () => {
     <div className={styles.ballistic_header_inner}>
       <HeaderItem
         src="ballistic_logo"
-        alt="AlpineLogo"
+        alt="Pit-Bull®"
         mobileWidth={132}
         mobileHeight={47}
         desktopWidth={80}
@@ -427,7 +427,7 @@ const BallisticChart = () => {
         imageHeight={17}
       />
       <NavigationItem
-        label="Alpine"
+        label="Pit-Bull®"
         imageSrc="alpine.png"
         imageWidth={103}
         imageHeight={20}
