@@ -7,7 +7,7 @@ const BallisticChartChosen = ({ items, onClose }) => {
       <div className={`${styles.ballistic_chosen_inner}`}>
         <div className={`${styles.ballistic_chosen_heading}`}>
           <h2>Comparison</h2>
-          <p>(Alpine’s Levels vs. Others)</p>
+          <p>(Pit-Bull® Levels vs. Others)</p>
           <button
             className={`${styles.ballistic_chosen_close}`}
             onClick={onClose}

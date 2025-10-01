@@ -365,8 +365,8 @@ const BallisticChart = () => {
       <HeaderItem
         src="ballistic_logo"
         alt="Pit-Bull®"
-        mobileWidth={132}
-        mobileHeight={47}
+        mobileWidth={50}
+        mobileHeight={60}
         desktopWidth={80}
         desktopHeight={122}
         styles={styles}

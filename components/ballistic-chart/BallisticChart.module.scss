@@ -144,8 +144,8 @@
       &:first-child {
         @include breakpoint(untilLarge) {
           order: 0;
-          left: 150px;
-          top: 25px;
+          left: 190px;
+          top: 16px;
         }
 
         @include breakpoint(large) {
@@ -165,7 +165,7 @@
 
       &:nth-child(2) {
         @include breakpoint(untilLarge) {
-          left: -37px;
+          left: -18px;
         }
 
         @include breakpoint(large) {
@@ -187,7 +187,7 @@
       &:nth-child(3) {
         @include breakpoint(untilLarge) {
           order: 1;
-          left: 10px;
+          left: 63px;
         }
 
         @include breakpoint(large) {
@@ -210,7 +210,7 @@
 
       &:nth-child(4) {
         @include breakpoint(untilLarge) {
-          left: -50px;
+          left: -64px;
         }
 
         @include breakpoint(large) {
@@ -230,8 +230,12 @@
       }
       &:nth-child(5) {
         @include breakpoint(untilLarge) {
-          left: -32px;
+          left: -100px;
           top: 12px;
+          
+          img{
+            max-width: 50px;
+          }
         }
         @include breakpoint(large) {
           left: -5vw;
@@ -256,6 +260,10 @@
     flex-wrap: wrap;
     margin-top: -28px;
 
+    @include breakpoint(untilLarge) {
+      position: relative;
+      bottom: 4px;
+    }
     @include breakpoint(large) {
       margin-top: -2.344vw;
     }
@@ -372,7 +380,8 @@
           text-shadow: none;
           order: 0;
           font-size: 19px;
-          left: 18px;
+          left: 35px;
+          margin-left: -27px;
         }
 
         @include breakpoint(large) {
@@ -1818,6 +1827,7 @@
       text-transform: uppercase;
       text-align: center;
       line-height: 44px;
+      font-weight: var(--font-weight-bold);
 
       &:before {
         position: absolute;
