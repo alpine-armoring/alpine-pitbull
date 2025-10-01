@@ -150,6 +150,7 @@
 
         @include breakpoint(large) {
           left: 4.792vw;
+          top: 0.5vW;
 
           img {
             width: 4.2vw;
@@ -168,7 +169,7 @@
         }
 
         @include breakpoint(large) {
-          left: 6vw;
+          left: 5.5vw;
           top: 1.65vw;
 
           img {
@@ -190,12 +191,12 @@
         }
 
         @include breakpoint(large) {
-          left: 7.6vw;
+          left: 6vw;
           top: -1.8vw;
         }
 
         @include breakpoint(max) {
-          left: 146px;
+          left: 108px;
           top: -34px;
         }
 
@@ -213,7 +214,7 @@
         }
 
         @include breakpoint(large) {
-          left: 1.875vw;
+          left: -0.4vw;
           top: -0.4vw;
         }
         @include breakpoint(max) {
@@ -233,18 +234,16 @@
           top: 12px;
         }
         @include breakpoint(large) {
-          left: -3.281vw;
-          top: 1.1vw;
+          left: -5vw;
+          top: 0.5vW;
         }
         @include breakpoint(max) {
-          left: -63px;
-          top: 21px;
+          left: -100px;
         }
         img {
-          max-width: 127px;
           @include breakpoint(large) {
-            max-width: 140px;
-            width: 7.292vw;
+            max-width: 80px;
+            width: 4.2vw;
           }
         }
       }

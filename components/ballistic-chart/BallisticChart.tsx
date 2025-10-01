@@ -399,10 +399,10 @@ const BallisticChart = () => {
         styles={styles}
       />
       <HeaderItem
-        src="heading_best"
+        src="ballistic_logo"
         alt="No one protects you better."
-        desktopWidth={140}
-        desktopHeight={78}
+        desktopWidth={80}
+        desktopHeight={122}
         styles={styles}
       />
     </div>

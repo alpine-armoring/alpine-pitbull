@@ -515,7 +515,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
             </li>
             <li className={`${styles.menuContent_socials_item}`}>
               <Link
-                href="https://www.instagram.com/alpinearmoring/"
+                href="https://www.instagram.com/pitbullvehicles/"
                 target="_blank"
                 rel="nofollow noreferrer noopener"
                 onMouseOver={handleDefaultPreviewHover}

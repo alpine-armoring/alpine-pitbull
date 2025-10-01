@@ -96,7 +96,7 @@ const Footer = () => {
         </li>
         <li className={`${styles.footer_socials_item}`}>
           <Link
-            href="https://www.instagram.com/alpinearmoring/"
+            href="https://www.instagram.com/pitbullvehicles/"
             target="_blank"
             rel="nofollow noreferrer noopener"
           >

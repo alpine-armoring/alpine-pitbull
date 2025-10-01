@@ -17,7 +17,7 @@ const PasswordProtectedConfigurator: React.FC<
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordError, setPasswordError] = useState('');
 
-  const validPasswords = ['config2025', 'alpine123'];
+  const validPasswords = ['Alpine-PB'];
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,7 +95,10 @@ const PasswordProtectedConfigurator: React.FC<
               </button> */}
 
               {passwordError && (
-                <small className={stylesForm.form_input_error}>
+                <small
+                  className={stylesForm.form_input_error}
+                  style={{ visibility: 'visible' }}
+                >
                   {passwordError}
                 </small>
               )}
