@@ -89,15 +89,17 @@ export default async function AboutPage() {
   return (
     <>
       <div className="mt6 pb2">
-        <FadeInContent>
-          <h2 className="c-description mb1 center">
-            {pageData.banner.subtitle}
-          </h2>
-        </FadeInContent>
+        <div className="container">
+          <FadeInContent>
+            <h2 className="c-description mb1 center">
+              {pageData.banner.subtitle}
+            </h2>
+          </FadeInContent>
 
-        <FadeInContent delay={0.1}>
-          <h1 className="c-title mb2 center">{pageData.banner.title}</h1>
-        </FadeInContent>
+          <FadeInContent delay={0.1}>
+            <h1 className="c-title mb2 center">{pageData.banner.title}</h1>
+          </FadeInContent>
+        </div>
 
         {contentData && (
           <div className="container_small">
