@@ -21,8 +21,8 @@ const Footer = () => {
           <Image
             src="/images/alpine-pitbull-logo.svg"
             alt="Pit-Bull® Logo"
-            width={50}
-            height={60}
+            width={130}
+            height={94}
             quality={100}
           ></Image>
         </Link>

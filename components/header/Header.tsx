@@ -29,15 +29,15 @@ const Header = () => {
         <Image
           src="/images/alpine-pitbull-logo.svg"
           alt="Pit-Bull® Logo"
-          width={50}
-          height={60}
+          width={100}
+          height={72}
           quality={100}
         ></Image>
       </Link>
 
       <Menu
         defaultPreviewImage="/images/alpine-pitbull-logo.svg"
-        previewWidth={280}
+        previewWidth={370}
         previewHeight={329}
         menuLinks={[
           {
