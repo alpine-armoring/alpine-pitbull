@@ -50,7 +50,6 @@ const VehicleBuilder = ({ configuratorMedia }) => {
     Record<string, string | string[]>
   >({});
   const [selectionOrder, setSelectionOrder] = useState<string[]>([]);
-  const [showSummary, setShowSummary] = useState<boolean>(false);
 
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -657,141 +656,130 @@ const VehicleBuilder = ({ configuratorMedia }) => {
           </div>
         </div>
 
-        {/* Bottom Summary Button */}
+        {/* Bottom Summary */}
         <div className={styles.vehicleConfigurator_bottomBar}>
           <div className={styles.vehicleConfigurator_bottomBar_heading}>
             <h3 className={styles.vehicleConfigurator_bottomBar_title}>
               Pit-Bull VXT® Armored Tactical SWAT/APC Truck
             </h3>
-
-            <button
-              className={styles.vehicleConfigurator_bottomBar_button}
-              onClick={() => setShowSummary((prev) => !prev)}
-            >
-              {showSummary ? 'Hide Summary' : 'Summary'}
-            </button>
           </div>
 
-          {showSummary && (
-            <div className={styles.vehicleConfigurator_summary}>
-              <div className={styles.vehicleConfigurator_summary_items}>
-                <h3 className={styles.vehicleConfigurator_summary_title}>
-                  Your Vehicle Configuration
-                </h3>
+          <div className={styles.vehicleConfigurator_summary}>
+            <div className={styles.vehicleConfigurator_summary_items}>
+              <h3 className={styles.vehicleConfigurator_summary_title}>
+                Your Vehicle Configuration
+              </h3>
 
-                {sections.map((section) => {
-                  const sectionKey = slugify(section.title);
+              {sections.map((section) => {
+                const sectionKey = slugify(section.title);
 
-                  if (section.type === 'group' && section.subsections) {
-                    // Check if any subsection has selections
-                    const hasAnySubsectionSelections = section.subsections.some(
-                      (subsection) => {
-                        const subsectionKey = slugify(subsection.title);
-                        const selection = selections[subsectionKey];
-                        return (
-                          selection &&
-                          ((Array.isArray(selection) && selection.length > 0) ||
-                            (!Array.isArray(selection) && selection !== ''))
-                        );
-                      }
-                    );
+                if (section.type === 'group' && section.subsections) {
+                  // Check if any subsection has selections
+                  const hasAnySubsectionSelections = section.subsections.some(
+                    (subsection) => {
+                      const subsectionKey = slugify(subsection.title);
+                      const selection = selections[subsectionKey];
+                      return (
+                        selection &&
+                        ((Array.isArray(selection) && selection.length > 0) ||
+                          (!Array.isArray(selection) && selection !== ''))
+                      );
+                    }
+                  );
 
-                    if (!hasAnySubsectionSelections) return null;
+                  if (!hasAnySubsectionSelections) return null;
 
-                    return (
-                      <div
-                        key={sectionKey}
-                        className={styles.vehicleConfigurator_summary_item}
-                      >
-                        <p className={styles.vehicleConfigurator_summary_label}>
-                          {section.title}:
-                        </p>
-                        <div
-                          className={styles.vehicleConfigurator_summary_group}
-                        >
-                          {section.subsections.map((subsection) => {
-                            const subsectionKey = slugify(subsection.title);
-                            const selection = selections[subsectionKey];
-                            const hasSelection =
-                              selection &&
-                              ((Array.isArray(selection) &&
-                                selection.length > 0) ||
-                                (!Array.isArray(selection) &&
-                                  selection !== ''));
+                  return (
+                    <div
+                      key={sectionKey}
+                      className={styles.vehicleConfigurator_summary_item}
+                    >
+                      <p className={styles.vehicleConfigurator_summary_label}>
+                        {section.title}:
+                      </p>
+                      <div className={styles.vehicleConfigurator_summary_group}>
+                        {section.subsections.map((subsection) => {
+                          const subsectionKey = slugify(subsection.title);
+                          const selection = selections[subsectionKey];
+                          const hasSelection =
+                            selection &&
+                            ((Array.isArray(selection) &&
+                              selection.length > 0) ||
+                              (!Array.isArray(selection) && selection !== ''));
 
-                            if (!hasSelection) return null;
+                          if (!hasSelection) return null;
 
-                            return (
-                              <div
-                                key={subsectionKey}
+                          return (
+                            <div
+                              key={subsectionKey}
+                              className={
+                                styles.vehicleConfigurator_summary_subitem
+                              }
+                            >
+                              <span
                                 className={
-                                  styles.vehicleConfigurator_summary_subitem
+                                  styles.vehicleConfigurator_summary_subLabel
                                 }
                               >
-                                <span
-                                  className={
-                                    styles.vehicleConfigurator_summary_subLabel
-                                  }
-                                >
-                                  {subsection.title}: &nbsp;
-                                </span>
-                                {selection}
-                              </div>
-                            );
-                          })}
-                        </div>
+                                {subsection.title}: &nbsp;
+                              </span>
+                              {selection}
+                            </div>
+                          );
+                        })}
                       </div>
-                    );
-                  } else {
-                    // For regular sections, check if there are selections
-                    const selection = selections[sectionKey];
-                    const hasSelection =
-                      selection &&
-                      ((Array.isArray(selection) && selection.length > 0) ||
-                        (!Array.isArray(selection) && selection !== ''));
+                    </div>
+                  );
+                } else {
+                  // For regular sections, check if there are selections
+                  const selection = selections[sectionKey];
+                  const hasSelection =
+                    selection &&
+                    ((Array.isArray(selection) && selection.length > 0) ||
+                      (!Array.isArray(selection) && selection !== ''));
 
-                    if (!hasSelection) return null;
+                  if (!hasSelection) return null;
 
-                    return (
-                      <div
-                        key={sectionKey}
-                        className={styles.vehicleConfigurator_summary_item}
-                      >
-                        <p className={styles.vehicleConfigurator_summary_label}>
-                          {section.title}:
-                        </p>
-                        {section.type === 'checkbox' ? (
-                          <ul
-                            className={styles.vehicleConfigurator_summary_list}
-                          >
-                            {((selections[sectionKey] as string[]) || []).map(
-                              (selectedTitle, index) => (
-                                <li
-                                  key={`${selectedTitle}-${index}`}
-                                  dangerouslySetInnerHTML={{
-                                    __html: selectedTitle,
-                                  }}
-                                ></li>
-                              )
-                            )}
-                          </ul>
-                        ) : (
-                          <p>{selection}</p>
-                        )}
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-
-              <div className={styles.vehicleConfigurator_summary_form}>
-                <h4 className={styles.vehicleConfigurator_summary_form_title}>
-                  Request a Quote
-                </h4>
-                <ConfiguratorForm selectedOptions={selections} />
-              </div>
+                  return (
+                    <div
+                      key={sectionKey}
+                      className={styles.vehicleConfigurator_summary_item}
+                    >
+                      <p className={styles.vehicleConfigurator_summary_label}>
+                        {section.title}:
+                      </p>
+                      {section.type === 'checkbox' ? (
+                        <ul className={styles.vehicleConfigurator_summary_list}>
+                          {((selections[sectionKey] as string[]) || []).map(
+                            (selectedTitle, index) => (
+                              <li
+                                key={`${selectedTitle}-${index}`}
+                                dangerouslySetInnerHTML={{
+                                  __html: selectedTitle,
+                                }}
+                              ></li>
+                            )
+                          )}
+                        </ul>
+                      ) : (
+                        <p>{selection}</p>
+                      )}
+                    </div>
+                  );
+                }
+              })}
             </div>
-          )}
+
+            <div className={styles.vehicleConfigurator_summary_form}>
+              <h4 className={styles.vehicleConfigurator_summary_form_title}>
+                Request a Quote
+              </h4>
+              <ConfiguratorForm
+                selectedOptions={selections}
+                requestPassword={false}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>

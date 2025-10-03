@@ -37,12 +37,12 @@ const Footer = () => {
         </Link>
 
         <Link
-          href="mailto:info@pit-bull.net"
+          href="mailto:pit-bull@alpineco.com"
           className={`${styles.menuContent_contact_item}`}
           rel="nofollow noreferrer noopener"
         >
           <MailIcon />
-          info@pit-bull.net
+          pit-bull@alpineco.com
         </Link>
 
         <div className={`${styles.menuContent_contact_item}`}>

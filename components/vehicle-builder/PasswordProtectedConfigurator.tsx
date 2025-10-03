@@ -81,7 +81,7 @@ const PasswordProtectedConfigurator: React.FC<
             We&apos;ll send you a password via email.
           </p>
 
-          <ConfiguratorForm selectedOptions={{}} />
+          <ConfiguratorForm selectedOptions={{}} requestPassword />
         </div>
 
         <div>

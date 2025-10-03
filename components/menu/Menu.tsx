@@ -484,13 +484,13 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
               1.703.471.0002
             </Link>
             <Link
-              href="mailto:info@pit-bull.net"
+              href="mailto:pit-bull@alpineco.com"
               className={`${styles.menuContent_contact_item}`}
               rel="nofollow noreferrer noopener"
               onMouseOver={handleDefaultPreviewHover}
             >
               <MailIcon />
-              info@pit-bull.net
+              pit-bull@alpineco.com
             </Link>
 
             <div

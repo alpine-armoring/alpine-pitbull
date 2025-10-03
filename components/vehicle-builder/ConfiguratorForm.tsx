@@ -5,10 +5,12 @@ import styles from '@/components/form/Form.module.scss';
 
 interface ConfiguratorFormProps {
   selectedOptions: Record<string, string | string[]>;
+  requestPassword: boolean;
 }
 
 const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
   selectedOptions,
+  requestPassword,
 }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -62,17 +64,27 @@ const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
   const formatSelectedOptions = (): string => {
     const optionStrings: string[] = [];
 
+    // Reason: Format category names by removing dashes, capitalizing each word
+    const formatCategoryName = (key: string): string => {
+      return key
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    };
+
     Object.entries(selectedOptions).forEach(([key, value]) => {
       if (value) {
+        const formattedCategory = `**${formatCategoryName(key)}:**`;
+
         if (Array.isArray(value) && value.length > 0) {
-          optionStrings.push(`${key}: ${value.join(', ')}`);
+          optionStrings.push(`${formattedCategory}\n${value.join(', ')}`);
         } else if (!Array.isArray(value) && value !== '') {
-          optionStrings.push(`${key}: ${value}`);
+          optionStrings.push(`${formattedCategory}\n${value}`);
         }
       }
     });
 
-    return optionStrings.join('\n');
+    return optionStrings.join('\n\n');
   };
 
   const handleSubmit = async () => {
@@ -108,9 +120,11 @@ const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
                 email: email,
                 phoneNumber: phone,
                 company: company,
-                message: `Vehicle Configurator Inquiry\n\nSelected Options:\n${configuratorOptions}`,
-                route: window.location.href,
+                message: configuratorOptions,
+                route: window.location.origin + window.location.pathname,
                 date: Date.now(),
+                domain: 'pitbull',
+                inquiry: requestPassword ? 'requestPassword' : 'requestInquiry',
               },
             }),
           }
