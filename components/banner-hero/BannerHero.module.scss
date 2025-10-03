@@ -91,18 +91,17 @@
       @media (max-width: 400px) {
         font-size: clamp(0.875rem, -0.125rem + 5vw, 1.125rem);
       }
-  
+
       @include breakpoint(large) {
         font-size: rem(26);
       }
 
-
-      span{
+      span {
         display: block;
         @media (max-width: 400px) {
           font-size: clamp(4.375rem, 1.875rem + 12.5vw, 5rem);
         }
-  
+
         @include breakpoint(large) {
           font-size: 13vw;
         }

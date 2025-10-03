@@ -155,7 +155,7 @@
         font-size: clamp(1.3125rem, 0.3125rem + 1.25vw, 1.8125rem); // 21-29
       }
 
-      span{
+      span {
         display: block;
         letter-spacing: 1px;
         margin-bottom: 12px;
@@ -164,7 +164,6 @@
         @include breakpoint(large) {
           font-size: 22px;
         }
-
       }
 
       .vehicles_item & {
