@@ -75,7 +75,6 @@
   }
 
   &_title {
-    margin-bottom: rem(30);
     font-weight: 500;
     font-size: 9vw;
     line-height: 1.1;
@@ -87,12 +86,26 @@
     }
 
     .hp_banner_big & {
+      font-size: rem(15);
+
       @media (max-width: 400px) {
-        font-size: clamp(4.375rem, 1.875rem + 12.5vw, 5rem);
+        font-size: clamp(0.875rem, -0.125rem + 5vw, 1.125rem);
+      }
+  
+      @include breakpoint(large) {
+        font-size: rem(26);
       }
 
-      @include breakpoint(large) {
-        font-size: 13vw;
+
+      span{
+        display: block;
+        @media (max-width: 400px) {
+          font-size: clamp(4.375rem, 1.875rem + 12.5vw, 5rem);
+        }
+  
+        @include breakpoint(large) {
+          font-size: 13vw;
+        }
       }
     }
 
@@ -118,6 +131,7 @@
   &_button {
     display: inline-block;
     margin: 0 auto;
+    margin-top: rem(30);
     padding: 14px 24px;
     text-transform: uppercase;
     background: white;

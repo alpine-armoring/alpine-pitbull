@@ -41,15 +41,16 @@ const ColumnsList = (props) => {
 
             <div className={`${styles.columnsList_item_content}`}>
               {item.subtitle && (
-                <h4 className={`${styles.columnsList_item_subtitle}`}>
+                <p className={`${styles.columnsList_item_subtitle}`}>
                   {item.subtitle}
-                </h4>
+                </p>
               )}
 
               {item.title && (
-                <h3 className={`${styles.columnsList_item_title}`}>
-                  {item.title}
-                </h3>
+                <h3
+                  className={`${styles.columnsList_item_title}`}
+                  dangerouslySetInnerHTML={{ __html: item.title }}
+                />
               )}
 
               <div className={`${styles.columnsList_item_button_wrap}`}>

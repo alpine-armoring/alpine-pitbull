@@ -155,6 +155,18 @@
         font-size: clamp(1.3125rem, 0.3125rem + 1.25vw, 1.8125rem); // 21-29
       }
 
+      span{
+        display: block;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        font-size: 16px;
+
+        @include breakpoint(large) {
+          font-size: 22px;
+        }
+
+      }
+
       .vehicles_item & {
         font-size: 50px;
         font-weight: 600;

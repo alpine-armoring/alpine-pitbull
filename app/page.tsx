@@ -18,8 +18,8 @@ function normalizeItemData(items, type = 'default') {
     if (type === 'vehicles') {
       const attrs = item.attributes || item;
       normalizedItem = {
-        title: attrs.featuredTitle,
-        subtitle: attrs.featuredSubtitle,
+        title: `<span>${attrs.featuredSubtitle}</span> ${attrs.featuredTitle}`,
+        // subtitle: attrs.featuredSubtitle,
         link: 'vehicles/' + attrs.slug,
         buttonText: attrs.linkText || 'Learn More',
         image: attrs.featuredImage?.data?.attributes

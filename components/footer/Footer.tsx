@@ -56,10 +56,10 @@ const Footer = () => {
           <p>Available</p>
           <ul>
             <li>
-              <Link href="/vehicles/armored-vx">VX</Link>
+              <Link href="/vehicles/armored-vx">Pit-Bull® VX</Link>
             </li>
             <li>
-              <Link href="/vehicles/armored-vxt">VXT</Link>
+              <Link href="/vehicles/armored-vxt">Pit-Bull® VXT</Link>
             </li>
           </ul>
         </div>

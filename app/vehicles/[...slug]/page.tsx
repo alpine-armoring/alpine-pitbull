@@ -117,7 +117,7 @@ export default async function VehiclePage({ params }) {
       {/* <StickyVideoSection /> */}
 
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="bg-white pb2">
+        <div className="bg-white pb2" id="RequestAQuote">
           <PasswordProtectedConfigurator
             configuratorMedia={vehicleData.configuratorMedia}
           />

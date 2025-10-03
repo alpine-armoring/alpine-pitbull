@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',
     images: [
       {
-        url: '/images/alpine-pitbull-og.jpg',
+        url: '/images/pitbull_head.png',
         width: 1200,
         height: 630,
         alt: 'Pit-Bull®',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@alpinepitbull',
     creator: '@alpinepitbull',
-    images: ['/images/alpine-pitbull-og.jpg'],
+    images: ['/images/pitbull_head.png'],
   },
 };
 
