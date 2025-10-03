@@ -2,7 +2,7 @@
 
 import { useLenis } from 'lenis/react';
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import styles from './VehicleBuilder.module.scss';
 import Slider from '@/components/slider/Slider';
@@ -41,9 +41,9 @@ const slugify = (text: string | undefined | null): string => {
 };
 
 const VehicleBuilder = ({ configuratorMedia }) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const lenis = useLenis();
   const [activeSection, setActiveSection] = useState<string>('');
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const [selections, setSelections] = useState<
@@ -231,8 +231,15 @@ const VehicleBuilder = ({ configuratorMedia }) => {
       }
     });
 
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
-  }, [selections, selectionOrder, pathname, router]);
+    const newUrl = `${pathname}?${params.toString()}`;
+
+    // Use replaceState to update URL without triggering navigation/scroll
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+  }, [selections, selectionOrder, pathname]);
 
   // Update active section when scrolling
   useEffect(() => {
@@ -367,8 +374,6 @@ const VehicleBuilder = ({ configuratorMedia }) => {
       return selection === optionTitle;
     }
   };
-
-  const lenis = useLenis();
 
   useEffect(() => {
     const sidebar = sidebarRef.current;

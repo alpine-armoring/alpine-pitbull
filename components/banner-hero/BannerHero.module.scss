@@ -44,6 +44,8 @@
 
     @include breakpoint(large) {
       padding-bottom: 20vh;
+      max-width: 90%;
+      margin: auto;
     }
   }
 
@@ -82,7 +84,7 @@
     text-align: center;
 
     @include breakpoint(large) {
-      font-size: 7vw;
+      font-size: 5vw;
     }
 
     .hp_banner_big & {

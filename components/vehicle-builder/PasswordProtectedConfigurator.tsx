@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import stylesForm from '@/components/form/Form.module.scss';
 import VehicleBuilder from './VehicleBuilder';
 import ConfiguratorForm from './ConfiguratorForm';
@@ -19,12 +19,41 @@ const PasswordProtectedConfigurator: React.FC<
 
   const validPasswords = ['Alpine-PB'];
 
+  // Check localStorage on component mount
+  useEffect(() => {
+    const savedAuth = localStorage.getItem('configurator_auth');
+    if (savedAuth) {
+      const { authenticated, expiry } = JSON.parse(savedAuth);
+      const now = new Date().getTime();
+
+      // Check if authentication is still valid (not expired)
+      if (authenticated && expiry > now) {
+        setIsAuthenticated(true);
+      } else {
+        // Remove expired authentication
+        localStorage.removeItem('configurator_auth');
+      }
+    }
+  }, []);
+
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validPasswords.includes(password)) {
       setIsAuthenticated(true);
       setPasswordError('');
+
+      // Save authentication to localStorage with 1 month expiry
+      const expiryDate = new Date();
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
+
+      localStorage.setItem(
+        'configurator_auth',
+        JSON.stringify({
+          authenticated: true,
+          expiry: expiryDate.getTime(),
+        })
+      );
     } else {
       setPasswordError('Invalid password. Please try again.');
       setPassword('');
