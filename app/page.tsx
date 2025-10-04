@@ -145,7 +145,7 @@ export default async function Home() {
 
   return (
     <>
-      {pageData?.banner && <BannerHero props={pageData.banner} />}
+      {pageData?.banner && <BannerHero props={pageData.banner} hp />}
 
       <FadeInContent>
         {pageData?.otherPages && (
