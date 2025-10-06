@@ -44,6 +44,7 @@ const Dropdown = ({
         <ChevronIcon />
       </button>
       <div
+        data-lenis-prevent
         className={`${styles.form_select_list} ${
           isActive ? styles.form_select_list_active : ''
         }`}
