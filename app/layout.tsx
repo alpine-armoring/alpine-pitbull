@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   title: {
     default: 'Pit-Bull® Armored SWAT APC',
-    template: '%s | Pit-Bull®',
+    template: '%s',
   },
   description:
     'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',

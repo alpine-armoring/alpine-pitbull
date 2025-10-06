@@ -161,7 +161,12 @@ const Footer = () => {
         href="https://www.alpineco.com/"
         target="_blank"
       >
-        <img src="/images/Alpineco-Logo.jpg" width="70" height="107" />
+        <img
+          src="/images/Alpineco-Logo.jpg"
+          width="70"
+          height="107"
+          alt="alpineco.com"
+        />
       </Link>
 
       <p className={`${styles.footer_copy}`}>
