@@ -94,8 +94,8 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
       const defaultImg = document.createElement('img');
       defaultImg.src = defaultPreviewImage || '';
       defaultImg.alt = '';
-      if (previewWidth) defaultImg.style.width = `${previewWidth}px`;
-      if (previewHeight) defaultImg.style.height = `${previewHeight}px`;
+      // if (previewWidth) defaultImg.style.width = `${previewWidth}px`;
+      // if (previewHeight) defaultImg.style.height = `${previewHeight}px`;
       menuPreviewImgRef.current.appendChild(defaultImg);
     }
   }, [defaultPreviewImage, defaultPreviewIsVideo, previewWidth, previewHeight]);

@@ -74,7 +74,7 @@ const PasswordProtectedConfigurator: React.FC<
 
       <div className={`${styles.vehicleConfigurator_initial} container_small`}>
         <div>
-          <p className={`mb1`}>
+          <p className={`${styles.vehicleConfigurator_initial_title} mb1`}>
             Fill out the form below to request access to our vehicle
             configurator.
             <br />
@@ -85,7 +85,9 @@ const PasswordProtectedConfigurator: React.FC<
         </div>
 
         <div>
-          <p className={`mb1`}>Already have a password?</p>
+          <p className={`${styles.vehicleConfigurator_initial_title} mb1`}>
+            Already have a password?
+          </p>
 
           <form
             onSubmit={handlePasswordSubmit}

@@ -39,6 +39,10 @@
     @include breakpoint(large) {
       display: flex;
       justify-content: space-between;
+
+      &_title{
+        min-height: 42px;
+      }
     }
 
     & > div {
