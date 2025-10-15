@@ -1,7 +1,7 @@
 .listing {
   &_list {
     padding-top: rem(32);
-    
+
     @include breakpoint(medium) {
       display: flex;
       flex-wrap: wrap;
