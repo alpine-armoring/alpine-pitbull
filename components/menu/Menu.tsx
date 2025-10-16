@@ -490,7 +490,7 @@ const OverlayMenu: React.FC<OverlayMenuProps> = ({
               onMouseOver={handleDefaultPreviewHover}
             >
               <MailIcon />
-              pit-bull@alpineco.com
+              Pit-Bull@AlpineCo.com
             </Link>
 
             <div
