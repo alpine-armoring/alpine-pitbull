@@ -1358,3 +1358,32 @@ $shapeColor: var(--color-background);
     display: block !important;
   }
 }
+
+
+
+.loaderAbsolute {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  color: var(--color-white);
+  font-size: 17px;
+  background: rgba(0, 0, 0, 0.8);
+
+  // &_inner {
+  //   background: #000;
+  // }
+
+  img {
+    max-width: 120px;
+  }
+
+  .text {
+    padding: 6px 0 6px 10px;
+  }
+}

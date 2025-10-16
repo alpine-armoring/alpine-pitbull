@@ -6,9 +6,40 @@ import VehicleDetailsPage from '@/components/vehicle-details/VehicleDetailsPage'
 
 const getInventoryVehicleData = cache(async (slug: string) => {
   try {
+    const populateQuery = [
+      'populate[seo][populate][metaImage][populate][image][populate]=*',
+      'populate[seo][populate][metaSocial][populate][image][populate]=*',
+      'populate[gallery][populate]=*',
+      'populate[video][populate]=*',
+      'populate[videoMP4][populate]=*',
+      'populate[featuredImage][populate]=*',
+      'populate[OEMWindowSticker][populate]=*',
+      'populate[OEMWindowSticker][fields][0]=url',
+      'populate[OEMWindowSticker][fields][1]=isUrlSigned',
+      'populate[OEMWindowSticker][fields][2]=provider',
+      'populate[OEMWindowSticker][fields][3]=createdAt',
+      'populate[OEMWindowSticker][fields][4]=ext',
+      'populate[OEMWindowSticker][fields][5]=hash',
+      'populate[OEMWindowSticker][fields][6]=mime',
+      'populate[OEMWindowSticker][fields][7]=name',
+      'populate[OEMWindowSticker][fields][8]=updatedAt',
+      'populate[OEMWindowSticker][fields][9]=provider_metadata',
+      'populate[OEMArmoringSpecs][populate]=*',
+      'populate[OEMArmoringSpecs][fields][0]=url',
+      'populate[OEMArmoringSpecs][fields][1]=isUrlSigned',
+      'populate[OEMArmoringSpecs][fields][2]=provider',
+      'populate[OEMArmoringSpecs][fields][3]=createdAt',
+      'populate[OEMArmoringSpecs][fields][4]=ext',
+      'populate[OEMArmoringSpecs][fields][5]=hash',
+      'populate[OEMArmoringSpecs][fields][6]=mime',
+      'populate[OEMArmoringSpecs][fields][7]=name',
+      'populate[OEMArmoringSpecs][fields][8]=updatedAt',
+      'populate[OEMArmoringSpecs][fields][9]=provider_metadata',
+    ].join('&');
+
     const inventoryData = await getStrapiData({
       route: 'inventories',
-      custom: `filters[slug][$eq]=${slug}&populate=deep`,
+      custom: `filters[slug][$eq]=${slug}&${populateQuery}`,
       revalidate: 3600,
     });
 
@@ -109,7 +140,6 @@ export default async function InventoryVehiclePage({
   }
 
   const { vehicleData } = await getInventoryVehicleData(slug);
-
   if (!vehicleData) {
     notFound();
   }

@@ -4,6 +4,7 @@ import { cache } from 'react';
 import { getStrapiData } from '@/lib/fechData';
 import InventoryList from '@/components/inventory/InventoryList';
 import FadeInContent from '@/components/FadeInContent';
+import InventoryPageWrapper from '@/components/inventory/InventoryPageWrapper';
 
 const getInventoryData = cache(async () => {
   try {
@@ -38,8 +39,8 @@ const InventoryPage = async (): Promise<React.ReactElement> => {
   const { vehicles } = await getInventoryData();
 
   return (
-    <>
-      <div className="m4 container">
+    <InventoryPageWrapper>
+      <div className="mt6 pb2 container">
         <FadeInContent>
           <div className="c-content">
             <h1 className="c-title">Pit-Bull® Inventory</h1>
@@ -51,7 +52,7 @@ const InventoryPage = async (): Promise<React.ReactElement> => {
           <InventoryList vehicles={vehicles} />
         </FadeInContent>
       </div>
-    </>
+    </InventoryPageWrapper>
   );
 };
 

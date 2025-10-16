@@ -77,7 +77,6 @@ This is a Next.js 15 application using the App Router architecture with TypeScri
 ### 📚 Documentation & Explainability
 
 - **Comment non-obvious code** and ensure everything is understandable to a mid-level developer.
-- When writing complex logic, **add an inline `# Reason:` comment** explaining the why, not just the what.
 - Prefer arrow functions
 - Annotate return types
 - Always destructure props
