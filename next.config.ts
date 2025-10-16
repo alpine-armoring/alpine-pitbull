@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
   },
 
   webpack: (config) => {
+    // Ignore canvas module for PDF.js (only needed for server-side Node.js rendering)
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
+
     config.optimization.splitChunks = {
       chunks: 'all',
       cacheGroups: {
