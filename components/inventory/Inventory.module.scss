@@ -10,7 +10,7 @@
       max-width: 1165px;
       margin: auto;
     }
-    
+
     @include breakpoint(large) {
       justify-content: center;
       max-width: unset;
@@ -76,7 +76,7 @@
           background: var(--color-grayLight);
           color: var(--color-secondary);
 
-          span{
+          span {
             color: var(--color-secondary);
           }
         }
@@ -263,7 +263,9 @@
     span {
       color: var(--color-primaryLight);
       font-weight: var(--font-demi);
-      transition: background 0.3s ease, color 0.3s ease;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
   }
 
