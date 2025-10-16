@@ -9,11 +9,8 @@ const getInventoryData = cache(async () => {
   try {
     const inventoryData = await getStrapiData({
       route: 'inventories',
-      populate: 'featuredImage',
-      fields:
-        'fields[0]=title&fields[1]=slug&fields[2]=armor_level&fields[3]=engine&fields[4]=VIN&fields[5]=hide&fields[6]=flag&fields[7]=label&fields[8]=vehicleID',
       custom:
-        'filters[title][$contains]=Pit-Bull&filters[$and][0][$or][0][hide][$null]=true&filters[$and][0][$or][1][hide][$eq]=false&filters[$and][1][$or][0][flag][$ne]=sold&filters[$and][1][$or][1][flag][$null]=true&pagination[pageSize]=100',
+        'filters[title][$contains]=Pit-Bull&filters[$and][0][$or][0][hide][$null]=true&filters[$and][0][$or][1][hide][$eq]=false&filters[$and][1][$or][0][flag][$ne]=sold&filters[$and][1][$or][1][flag][$null]=true&pagination[pageSize]=100&populate=featuredImage&fields[0]=title&fields[1]=slug&fields[2]=armor_level&fields[3]=engine&fields[4]=VIN&fields[5]=hide&fields[6]=flag&fields[7]=label&fields[8]=vehicleID',
       pageSize: 100,
       revalidate: 3600,
     });
@@ -31,9 +28,9 @@ const getInventoryData = cache(async () => {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Pit-Bull Inventory | Available Vehicles',
+    title: 'Pit-Bull® Inventory | Available Vehicles',
     description:
-      'Browse our current inventory of Pit-Bull armored vehicles available for immediate delivery.',
+      'Browse our current inventory of Pit-Bull® armored vehicles available for immediate delivery.',
   };
 }
 
@@ -45,7 +42,7 @@ const InventoryPage = async (): Promise<React.ReactElement> => {
       <div className="mt6 pb2 container">
         <FadeInContent>
           <div className="c-content">
-            <h1 className="c-title">Pit-Bull Inventory</h1>
+            <h1 className="c-title">Pit-Bull® Inventory</h1>
             <p className="c-description">
               Available vehicles ready for immediate delivery
             </p>

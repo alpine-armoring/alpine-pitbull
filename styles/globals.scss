@@ -550,6 +550,8 @@ $shapeColor: var(--color-background);
     margin-right: 10px;
     height: 28px;
     cursor: pointer;
+    border: none;
+    background: none;
 
     svg {
       max-width: 28px;
@@ -835,7 +837,7 @@ $shapeColor: var(--color-background);
   overflow: hidden;
   align-items: center;
   z-index: 1;
-  color: var(--color-primary);
+  color: var(--color-primaryLight);
   text-transform: capitalize;
   font-weight: var(--font-medium);
   margin-bottom: rem(16);
@@ -1348,3 +1350,11 @@ $shapeColor: var(--color-background);
 // .second-layer-mixin {
 //   @include overlay-layer(var(--color-background));
 // }
+
+.blockOnPhone {
+  display: initial !important;
+
+  @include breakpoint(small) {
+    display: block !important;
+  }
+}

@@ -62,7 +62,7 @@ const InventoryList = ({
 
         return (
           <Link
-            href={`/vehicles/${data.slug}`}
+            href={`/inventory/${data.slug}`}
             className={`${styles.inventory_item} ${data.flag === 'sold' ? styles.inventory_item_sold : ''}`}
             key={vehicle.id}
           >

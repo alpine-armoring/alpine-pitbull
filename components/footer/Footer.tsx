@@ -53,7 +53,7 @@ const Footer = () => {
 
       <div className={`${styles.footer_navigation}`}>
         <div className={`${styles.footer_navigation_column}`}>
-          <p>Available</p>
+          <p>Models</p>
           <ul>
             <li>
               <Link href="/vehicles/armored-vx">Pit-Bull® VX</Link>
@@ -67,7 +67,10 @@ const Footer = () => {
           <p>Quick Links</p>
           <ul>
             <li>
-              <Link href="/history">History of Pit-Bull</Link>
+              <Link href="/inventory">Available Now</Link>
+            </li>
+            <li>
+              <Link href="/history">History of Pit-Bull®</Link>
             </li>
             <li>
               <Link href="/tactical-features">

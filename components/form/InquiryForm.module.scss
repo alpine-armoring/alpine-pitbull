@@ -1,0 +1,133 @@
+.inquiry_form {
+  position: relative;
+  padding-top: rem(32);
+  padding-bottom: rem(32);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  background: var(--color-grayLight);
+  width: calc(100% - 32px);
+  margin: auto;
+  color: var(--color-secondary);
+  z-index: 3;
+
+  @include breakpoint(medium) {
+    padding-top: rem(48);
+  }
+
+  @include breakpoint(large) {
+    width: calc(100% - 128px);
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+  }
+
+  @include breakpoint(huge) {
+    padding-top: rem(64);
+  }
+
+  & > div:last-child {
+    margin: unset;
+    margin-left: auto;
+  }
+
+  &:after {
+    right: -16px;
+    @include breakpoint(large) {
+      right: -64px;
+    }
+  }
+
+  &_wrap {
+    padding-top: rem(64);
+    @include breakpoint(large) {
+      max-width: 1500px;
+      margin: auto;
+    }
+
+    &_locations {
+      padding-top: 0;
+    }
+  }
+
+  &_inner {
+    @include breakpoint(small) {
+      padding: 0 rem(8);
+    }
+    @include breakpoint(large) {
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+
+      .inquiry_form_plain & {
+        max-width: 1528px;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &_heading {
+    margin-bottom: rem(16);
+    font-weight: var(--font-medium);
+    font-size: rem(16);
+    font-size: clamp(1rem, 0.9545rem + 0.1942vw, 1.1875rem);
+    text-align: center;
+    white-space: pre-wrap;
+    display: flex;
+    flex-flow: column;
+
+    @include breakpoint(medium) {
+      display: block;
+    }
+
+    .inquiry_form_plain & {
+      font-size: rem(16);
+      font-size: clamp(1rem, 0.7928rem + 0.884vw, 1.5rem);
+
+      @include breakpoint(large) {
+        font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem);
+      }
+    }
+
+    &_level {
+      span strong {
+        color: var(--color-primary);
+        font-weight: var(--font-demi);
+      }
+    }
+
+    span {
+      display: block;
+    }
+
+    h4 {
+      margin-bottom: 8px;
+    }
+  }
+
+  img {
+    margin: auto;
+    margin-bottom: rem(16);
+    border-radius: 12px;
+    max-height: 400px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 700px;
+
+    @include breakpoint(large) {
+      margin-bottom: rem(8);
+    }
+  }
+
+  &_left {
+    @include breakpoint(medium) {
+      // max-width: 500px;
+      margin: auto;
+      // margin-left: auto;
+
+      .inquiry_form_plain & {
+        min-width: 450px;
+        max-width: 700px;
+        flex: 1;
+      }
+    }
+  }
+}

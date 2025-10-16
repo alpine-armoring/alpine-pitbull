@@ -76,7 +76,12 @@
     }
     li {
       margin-bottom: 1rem;
-      font-size: 14px;
+      font-size: 14px; 
+      transition: color .2s ease-in-out;
+
+      &:hover{
+        color: var(--color-primaryLight);
+      }
     }
   }
 
