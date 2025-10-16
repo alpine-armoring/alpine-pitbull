@@ -25,6 +25,10 @@ export interface BannerHeroProps {
       Title: string;
       URL: string;
     };
+    Button2?: {
+      Title: string;
+      URL: string;
+    };
   };
   error?: Error;
 }

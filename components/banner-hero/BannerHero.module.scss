@@ -160,6 +160,16 @@
     cursor: pointer;
     color: var(--color-dark);
 
+    &_wrap{
+      display: flex;
+      flex-flow: column;
+
+      @include breakpoint(medium) {
+        flex-flow: row;
+        gap: 30px;
+      }
+    }
+
     @include breakpoint(large) {
       padding: 18px 32px;
       font-size: rem(16);

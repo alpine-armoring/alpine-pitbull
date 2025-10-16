@@ -1,7 +1,5 @@
 .listing {
   &_list {
-    padding-top: rem(32);
-
     @include breakpoint(medium) {
       display: flex;
       flex-wrap: wrap;
@@ -12,8 +10,8 @@
       max-width: 1165px;
       margin: auto;
     }
+    
     @include breakpoint(large) {
-      padding-top: 0;
       justify-content: center;
       max-width: unset;
     }
@@ -77,6 +75,10 @@
         &_level {
           background: var(--color-grayLight);
           color: var(--color-secondary);
+
+          span{
+            color: var(--color-secondary);
+          }
         }
         &_label {
           opacity: 0;
@@ -261,7 +263,7 @@
     span {
       color: var(--color-primaryLight);
       font-weight: var(--font-demi);
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease;
     }
   }
 

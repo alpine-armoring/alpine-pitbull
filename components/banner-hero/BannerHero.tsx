@@ -80,16 +80,26 @@ const BannerHero = ({ props, big, hp }: BannerHeroComponentProps) => {
             </FadeInContent>
           )}
 
-          {props.Button && (
-            <FadeInContent delay={0.3}>
-              <Link
-                href={props.Button.URL}
-                className={`${styles.hp_banner_button}`}
-              >
-                {props.Button.Title}
-              </Link>
-            </FadeInContent>
-          )}
+          <FadeInContent delay={0.3}>
+            <div className={`${styles.hp_banner_button_wrap}`}>
+              {props.Button && (
+                <Link
+                  href={props.Button.URL}
+                  className={`${styles.hp_banner_button}`}
+                >
+                  {props.Button.Title}
+                </Link>
+              )}
+              {props.Button2 && (
+                <Link
+                  href={props.Button2.URL}
+                  className={`${styles.hp_banner_button}`}
+                >
+                  {props.Button2.Title}
+                </Link>
+              )}
+            </div>
+          </FadeInContent>
         </div>
       </div>
       <div className={`${styles.hp_banner_shape} shape-before`}></div>

@@ -39,7 +39,7 @@ const InventoryPage = async (): Promise<React.ReactElement> => {
 
   return (
     <>
-      <div className="mt6 pb2 container">
+      <div className="m4 container">
         <FadeInContent>
           <div className="c-content">
             <h1 className="c-title">Pit-Bull® Inventory</h1>
