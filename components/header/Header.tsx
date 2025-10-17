@@ -57,6 +57,10 @@ const Header = () => {
         ]}
         socialLinks={[
           {
+            href: '/inventory',
+            text: 'Ready-To-Ship Now',
+          },
+          {
             href: '/history',
             text: 'History of Pit-Bull®',
           },
