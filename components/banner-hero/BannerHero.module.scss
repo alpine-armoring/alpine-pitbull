@@ -78,7 +78,7 @@
     }
 
     @include breakpoint(large) {
-      font-size: 1.4vW;
+      font-size: 1.4vw;
     }
   }
 
@@ -161,7 +161,7 @@
     cursor: pointer;
     color: var(--color-dark);
 
-    &:nth-child(2){
+    &:nth-child(2) {
       margin-top: rem(14);
 
       @include breakpoint(medium) {
@@ -181,10 +181,10 @@
         color: var(--color-white);
         background: var(--color-primary);
         transform: translateY(-2px) !important;
-      transition:
-        transform 0.2s ease-in-out,
-        background-color 0.2s ease-in-out,
-        color 0.2s ease-in-out;
+        transition:
+          transform 0.2s ease-in-out,
+          background-color 0.2s ease-in-out,
+          color 0.2s ease-in-out;
       }
     }
 
