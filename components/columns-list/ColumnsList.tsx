@@ -17,7 +17,14 @@ const ColumnsList = (props) => {
       id={id}
     >
       <div className={`c-content`}>
-        {title && <h2 className={`c-title`}>{title}</h2>}
+        {title && (
+          <h2
+            className={`c-title`}
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          ></h2>
+        )}
         {description && <p className={`c-description`}>{description}</p>}
       </div>
 
