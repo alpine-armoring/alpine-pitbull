@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
 import Image from 'next/image';
@@ -11,35 +12,8 @@ import ThreadsIcon from 'components/icons/Threads';
 import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import MapIcon from 'components/icons/Map';
-// import { getStrapiData } from '@/lib/fechData';
 
-// interface Vehicle {
-//   id: number;
-//   attributes: {
-//     title: string;
-//     slug: string;
-//   };
-// }
-
-// const getInventoryData = async (): Promise<Vehicle[]> => {
-//   try {
-//     const inventoryData = await getStrapiData({
-//       route: 'inventories',
-//       custom:
-//         'filters[title][$contains]=Pit-Bull&filters[$and][0][$or][0][hide][$null]=true&filters[$and][0][$or][1][hide][$eq]=false&filters[$and][1][$or][0][flag][$ne]=sold&filters[$and][1][$or][1][flag][$null]=true&pagination[pageSize]=100&fields[0]=title&fields[1]=slug',
-//       pageSize: 100,
-//       revalidate: 3600,
-//     });
-
-//     return inventoryData?.data || [];
-//   } catch (error) {
-//     console.error('Error fetching inventory data for footer:', error);
-//     return [];
-//   }
-// };
-
-const Footer = async (): Promise<React.ReactElement> => {
-  // const vehicles = await getInventoryData();
+const Footer = () => {
   return (
     <footer className={`${styles.footer} container`}>
       <div className={`${styles.footer_column}`}>
@@ -89,27 +63,11 @@ const Footer = async (): Promise<React.ReactElement> => {
             </li>
           </ul>
         </div>
-        {/* <div className={`${styles.footer_navigation_column}`}>
-          <p>Ready-To-Ship Now</p>
-          <ul>
-            {vehicles.length > 0 ? (
-              vehicles.map((vehicle) => (
-                <li key={vehicle.id}>
-                  <Link href={`/inventory/${vehicle.attributes.slug}`}>
-                    {vehicle.attributes.title}
-                  </Link>
-                </li>
-              ))
-            ) : (
-              <li>No vehicles available</li>
-            )}
-          </ul>
-        </div> */}
         <div className={`${styles.footer_navigation_column}`}>
           <p>Quick Links</p>
           <ul>
             <li>
-              <Link href="/history">Ready-To-Ship Now</Link>
+              <Link href="/inventory">Ready-To-Ship Now</Link>
             </li>
             <li>
               <Link href="/history">History of Pit-Bull®</Link>

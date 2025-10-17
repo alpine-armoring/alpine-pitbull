@@ -9,6 +9,13 @@ import Featured from '@/components/featured/Featured';
 import StickySections from '@/components/sticky-sections/StickySections';
 import SocialFeed from '@/components/social-feed/SocialFeed';
 
+const USE_OPTIMIZED_VIDEO = true; // Set to false: Fetch video URL from Strapi
+const HOMEPAGE_VIDEO_CONFIG = {
+  video:
+    'https://d102sycao8uwt8.cloudfront.net/pitbull_homepage_10_06_5766d97809.mp4',
+  poster: '/images/hp-poster.jpg',
+};
+
 function normalizeItemData(items, type = 'default') {
   if (!items || !Array.isArray(items)) return [];
 
@@ -145,7 +152,15 @@ export default async function Home() {
 
   return (
     <>
-      {pageData?.banner && <BannerHero props={pageData.banner} hp />}
+      {pageData?.banner && (
+        <BannerHero
+          props={pageData.banner}
+          hp
+          optimizedVideo={
+            USE_OPTIMIZED_VIDEO ? HOMEPAGE_VIDEO_CONFIG : undefined
+          }
+        />
+      )}
 
       <FadeInContent>
         {pageData?.otherPages && (

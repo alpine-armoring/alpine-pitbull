@@ -7,6 +7,24 @@ import PasswordProtectedConfigurator from '@/components/vehicle-builder/Password
 // import StickyVideoSection from '@/components/sticky-video-section/StickyVideoSection';
 import Content from '@/components/content/Content';
 
+const USE_OPTIMIZED_VIDEO = true; // Set to false: Fetch video URLs from Strapi
+
+const VIDEO_CONFIG: Record<
+  string,
+  { video: string; poster: string; videoWebM?: string }
+> = {
+  'armored-vxt': {
+    video:
+      'https://d102sycao8uwt8.cloudfront.net/VXT_header_9_2_b8260edd5e.mp4',
+    poster: '/images/vxt-poster.jpg',
+  },
+  'armored-vx': {
+    video:
+      'https://d102sycao8uwt8.cloudfront.net/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
+    poster: '/images/vx-poster.jpg',
+  },
+};
+
 const getVehicleData = cache(async (slug: string) => {
   try {
     const vehicleData = await getStrapiData({
@@ -106,9 +124,17 @@ export default async function VehiclePage({ params }) {
     );
   }
 
+  const videoConfig = USE_OPTIMIZED_VIDEO ? VIDEO_CONFIG[slug] : undefined;
+
   return (
     <>
-      {vehicleData.banner && <BannerHero props={vehicleData.banner} big />}
+      {vehicleData.banner && (
+        <BannerHero
+          props={vehicleData.banner}
+          big
+          optimizedVideo={videoConfig}
+        />
+      )}
 
       <div className="m2">
         <Content data={contentData} />

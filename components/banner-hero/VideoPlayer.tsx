@@ -11,24 +11,29 @@ interface MediaData {
   } | null;
 }
 
+interface OptimizedVideo {
+  video: string;
+  poster: string;
+  videoWebM?: string;
+}
+
 interface VideoPlayerProps {
   media?: MediaData;
   mediaMP4?: MediaData;
   className?: string;
+  optimizedVideo?: OptimizedVideo;
 }
 
 const VideoPlayer = React.memo(
-  ({ media, mediaMP4, className }: VideoPlayerProps) => {
+  ({ media, mediaMP4, className, optimizedVideo }: VideoPlayerProps) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    // Fixed device detection with proper TypeScript types
     const deviceInfo = useMemo(() => {
       if (typeof window === 'undefined') {
         return {
           isIOS: false,
           isSafari: false,
           isChrome: false,
-          safariVersion: null as string | null,
         };
       }
 
@@ -40,32 +45,19 @@ const VideoPlayer = React.memo(
         userAgent.toLowerCase().indexOf('firefox') === -1;
       const isChrome = Boolean(userAgent.match(/Chrome|CriOS/i));
 
-      let safariVersion: string | null = null;
-      if (isSafari) {
-        const versionMatch = userAgent.match(/Version\/(\d+(\.\d+)?)/);
-        safariVersion = versionMatch ? versionMatch[1] : null;
-      }
-
-      return { isIOS, isSafari, isChrome, safariVersion };
+      return { isIOS, isSafari, isChrome };
     }, []);
 
     const shouldUseMP4Fallback = useCallback(() => {
       if (typeof window === 'undefined' || !mediaMP4?.data) return false;
 
-      const { isIOS, isSafari, isChrome, safariVersion } = deviceInfo;
-
-      const safariVersionNumber = safariVersion ? parseInt(safariVersion) : 0;
-      const isSafariCondition =
-        isSafari &&
-        (safariVersionNumber < 17 ||
-          (safariVersionNumber >= 17 && window.innerWidth >= 768));
+      const { isIOS, isSafari, isChrome } = deviceInfo;
 
       const isChromeOnIOSCondition = isChrome && isIOS;
 
-      return isSafariCondition || isChromeOnIOSCondition;
+      return isSafari || isChromeOnIOSCondition;
     }, [mediaMP4?.data, deviceInfo]);
 
-    // Optimize video loading and playback
     useEffect(() => {
       const videoElement = videoRef.current;
       if (!videoElement) return;
@@ -75,7 +67,6 @@ const VideoPlayer = React.memo(
       const handleVideoLoad = () => {
         if (!mounted) return;
 
-        // Optimize for mobile performance
         if (deviceInfo.isIOS) {
           videoElement.playsInline = true;
         }
@@ -89,7 +80,6 @@ const VideoPlayer = React.memo(
 
       const handleEnded = () => {
         if (!mounted) return;
-        // Use requestAnimationFrame for smoother loop
         requestAnimationFrame(() => {
           if (videoElement && mounted) {
             videoElement.currentTime = 0;
@@ -102,8 +92,7 @@ const VideoPlayer = React.memo(
         });
       };
 
-      // Apply MP4 fallback if needed
-      if (shouldUseMP4Fallback()) {
+      if (!optimizedVideo && shouldUseMP4Fallback()) {
         const webmSource = videoElement.querySelector(
           'source[type="video/webm"]'
         ) as HTMLSourceElement | null;
@@ -114,45 +103,30 @@ const VideoPlayer = React.memo(
         }
       }
 
-      // Add event listeners
       videoElement.addEventListener('loadeddata', handleVideoLoad);
       videoElement.addEventListener('error', handleVideoError);
       videoElement.addEventListener('ended', handleEnded);
 
-      // Preload optimization
-      videoElement.preload = 'metadata';
-
-      // Intersection Observer for lazy loading
-      let observer: IntersectionObserver | null = null;
-
-      if ('IntersectionObserver' in window) {
-        observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting && mounted) {
-                videoElement.preload = 'auto';
-                observer?.disconnect();
-              }
-            });
-          },
-          { rootMargin: '50px' }
-        );
-
-        observer.observe(videoElement);
-      }
+      videoElement.preload = 'auto';
 
       return () => {
         mounted = false;
         videoElement.removeEventListener('loadeddata', handleVideoLoad);
         videoElement.removeEventListener('error', handleVideoError);
         videoElement.removeEventListener('ended', handleEnded);
-        observer?.disconnect();
       };
-    }, [shouldUseMP4Fallback, mediaMP4?.data, deviceInfo]);
+    }, [shouldUseMP4Fallback, mediaMP4?.data, deviceInfo, optimizedVideo]);
 
-    if (!media?.data && !mediaMP4?.data) {
+    if (!media?.data && !mediaMP4?.data && !optimizedVideo) {
       return null;
     }
+
+    // Use optimized video URLs when available, otherwise fall back to Strapi
+    const videoSrc = optimizedVideo?.video || media?.data?.attributes?.url;
+    const videoType = optimizedVideo
+      ? 'video/mp4'
+      : media?.data?.attributes?.mime;
+    const posterSrc = optimizedVideo?.poster;
 
     return (
       <video
@@ -160,7 +134,8 @@ const VideoPlayer = React.memo(
         muted
         autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
+        poster={posterSrc}
         className={className}
         suppressHydrationWarning={true}
         disablePictureInPicture
@@ -168,13 +143,8 @@ const VideoPlayer = React.memo(
         aria-label="Background video"
         role="presentation"
       >
-        {media?.data && (
-          <source
-            src={media.data.attributes.url}
-            type={media.data.attributes.mime}
-          />
-        )}
-        {mediaMP4?.data && !media?.data && (
+        {videoSrc && <source src={videoSrc} type={videoType} />}
+        {!optimizedVideo && mediaMP4?.data && !media?.data && (
           <source
             src={mediaMP4.data.attributes.url}
             type={mediaMP4.data.attributes.mime}

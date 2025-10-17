@@ -1,29 +1,31 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import styles from './BannerHero.module.scss';
 import { BannerHeroProps } from 'types';
 import Link from 'next/link';
 import FadeInContent from '@/components/FadeInContent';
 import Image from 'next/image';
+import VideoPlayer from './VideoPlayer';
 
-const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
-  ssr: false,
-  loading: () => (
-    <div
-      className={`${styles.hp_banner_video}`}
-      style={{ backgroundColor: '#000' }}
-    />
-  ),
-});
+interface OptimizedVideo {
+  video: string;
+  poster: string;
+  videoWebM?: string;
+}
 
 interface BannerHeroComponentProps {
   props: BannerHeroProps['props'];
   big?: boolean;
   hp?: boolean;
+  optimizedVideo?: OptimizedVideo;
 }
 
-const BannerHero = ({ props, big, hp }: BannerHeroComponentProps) => {
+const BannerHero = ({
+  props,
+  big,
+  hp,
+  optimizedVideo,
+}: BannerHeroComponentProps) => {
   return (
     <div
       className={`${styles.hp_banner} ${big ? styles.hp_banner_big : ''} ${hp ? styles.hp_banner_hp : ''}`}
@@ -35,6 +37,7 @@ const BannerHero = ({ props, big, hp }: BannerHeroComponentProps) => {
             media={props.media}
             mediaMP4={props.mediaMP4}
             className={`${styles.hp_banner_video}`}
+            optimizedVideo={optimizedVideo}
           />
         ) : props.media?.data?.attributes?.url ? (
           <Image
