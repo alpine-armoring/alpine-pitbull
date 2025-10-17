@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './SocialPostItem.module.scss';
 import Image from 'next/image';
 import PlayIcon from '@/components/icons/Play';
@@ -7,6 +8,7 @@ const VideoSingle = ({ props }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isImageOpen, setIsImageOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const getVideoType = () => {
@@ -31,6 +33,17 @@ const VideoSingle = ({ props }) => {
 
     if (videoType === 'youtube') {
       return `https://i.ytimg.com/vi/${props.youtubeURL}/sddefault.jpg`;
+    }
+
+    return '/images/alpine-pitbull-logo.svg';
+  };
+
+  const getFullImageUrl = () => {
+    if (props?.thumbnail?.data) {
+      return (
+        props.thumbnail.data.attributes.formats?.large?.url ||
+        props.thumbnail.data.attributes.url
+      );
     }
 
     return '/images/alpine-pitbull-logo.svg';
@@ -68,6 +81,21 @@ const VideoSingle = ({ props }) => {
     }
   };
 
+  const handleImageClick = () => {
+    setIsImageOpen(true);
+  };
+
+  const handleCloseImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsImageOpen(false);
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setIsImageOpen(false);
+    }
+  };
+
   const videoType = getVideoType();
 
   return (
@@ -85,8 +113,9 @@ const VideoSingle = ({ props }) => {
             width={500}
             height={450}
             sizes="(min-width: 768px) 100vw, 80vw"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', cursor: 'pointer' }}
             className={`${styles.socialPost_notPlaying_image}`}
+            onClick={handleImageClick}
           />
 
           <div className={`${styles.socialPost_data}`}>
@@ -283,6 +312,39 @@ const VideoSingle = ({ props }) => {
           </button>
         </div>
       )}
+
+      {isImageOpen &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className={styles.socialPost_imageOverlay}
+            onClick={handleOverlayClick}
+          >
+            <div className={styles.socialPost_imageContainer}>
+              <Image
+                src={getFullImageUrl()}
+                alt="Pit-Bull®"
+                width={1920}
+                height={1080}
+                sizes="90vw"
+                style={{
+                  width: 'auto',
+                  height: 'auto',
+                  maxWidth: '90vw',
+                  maxHeight: '90vh',
+                }}
+              />
+              <button
+                className={styles.socialPost_close}
+                onClick={handleCloseImage}
+                aria-label="Close image"
+              >
+                ×
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 };
