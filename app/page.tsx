@@ -162,15 +162,7 @@ export default async function Home() {
         />
       )}
 
-      <FadeInContent>
-        {pageData?.otherPages && (
-          <ColumnsList
-            items={normalizedOtherPages}
-            title={pageData.otherPagesTitle}
-            description={pageData.otherPagesText}
-          />
-        )}
-      </FadeInContent>
+      <div id="models" style={{ position: 'relative', top: '-50px' }}></div>
 
       <FadeInContent>
         {pageData?.vehicles?.data && (
@@ -179,7 +171,17 @@ export default async function Home() {
             title={pageData.vehiclesTitle}
             description={pageData.vehiclesText}
             items={normalizedVehicles}
-            id={'models'}
+            // id={'models'}
+          />
+        )}
+      </FadeInContent>
+
+      <FadeInContent>
+        {pageData?.otherPages && (
+          <ColumnsList
+            items={normalizedOtherPages}
+            title={pageData.otherPagesTitle}
+            description={pageData.otherPagesText}
           />
         )}
       </FadeInContent>
