@@ -8,17 +8,17 @@
   <url>
     <loc>https://pit-bull.net/history</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/tactical-features</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/ballistic-chart</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/vehicles/armored-vx</loc>
@@ -38,36 +38,36 @@
   <url>
     <loc>https://pit-bull.net/contact</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-pit-bull-vxt-7018</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-pit-bull-vxt-2397</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-swat-truck-pit-bull-vxt-50-cal-4016</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-pit-bull-vxt-7017</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-swat-truck-pit-bull-vx-2558</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pit-bull.net/inventory/armored-swat-truck-pit-bull-vx-4370</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
 </urlset>
