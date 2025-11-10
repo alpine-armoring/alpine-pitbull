@@ -25,6 +25,10 @@ const Header = () => {
     <header
       className={`${styles.header} ${isScrolled ? styles.header_scrolled : ''}`}
     >
+      <Link href="/inventory" className={`desktop-only`}>
+        Ready-To-Ship Now
+      </Link>
+
       <Link href="/" className={`${styles.header_logo}`}>
         <Image
           src="/images/alpine-pitbull-logo.svg"
