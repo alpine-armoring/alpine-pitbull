@@ -14,7 +14,7 @@
   padding-bottom: $padding !important;
 
   &_logo {
-    margin-bottom: 40px !important;
+    margin-bottom: 70px !important;
     img {
       margin: auto;
     }
@@ -23,6 +23,7 @@
   &_socials {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 
     &_item {
       margin: 0 6px;
@@ -93,19 +94,88 @@
     @include breakpoint(large) {
       width: 100%;
     }
-  }
+  }  
 
-  &_alpineco {
-    display: block;
+  &_flag {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-weight: var(--font-medium);
+    width: 100%;
+    max-width: 370px;
     margin: auto;
-    width: 70px;
-    margin-top: 20px;
 
     @include breakpoint(large) {
+      width: 370px;
+    }
+
+    &:before,
+    &:after {
       position: absolute;
-      margin: 0;
-      right: 32px;
-      bottom: 36px;
+      content: '';
+      left: 0;
+      width: 60px;
+      top: 0;
+      bottom: 0;
+      background: var(--color-background);
+      background: linear-gradient(
+        90deg,
+        #101010 0%,
+        rgba(16, 16, 16, 0) 100%
+      );
+      z-index: 1;
+    }
+
+    &:after {
+      right: 0;
+      left: auto;
+      background: linear-gradient(
+        -90deg,
+        #101010 0%,
+        rgba(16, 16, 16, 0) 100%
+      );
+    }
+
+    &_title {
+      position: absolute;
+      top: -20px;
+      text-align: center;
+      left: 0;
+      right: 0;
+      color: white;
+    }
+
+    &_wrap {
+      display: block;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      padding: 15px 10px;
+      font-size: 16px;
+      text-align: center;
+
+      &:before,
+      &:after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 10px;
+        top: 0;
+        background: linear-gradient(
+          180deg,
+          #101010 0%,
+          rgba(16, 16, 16, 0) 100%
+        );
+        z-index: 1;
+      }
+
+      &:after {
+        bottom: 0;
+        top: auto;
+        background: linear-gradient(0, #101010 0%, rgba(16, 16, 16, 0) 100%);
+      }
     }
   }
 }

@@ -21,33 +21,25 @@ const Footer = () => {
           <Image
             src="/images/alpine-pitbull-logo.svg"
             alt="Pit-Bull® Logo"
-            width={130}
+            width={160}
             height={94}
             quality={100}
           ></Image>
         </Link>
 
-        <Link
-          href="tel:+17034710002"
-          className={`${styles.menuContent_contact_item}`}
-          rel="nofollow noreferrer noopener"
-        >
-          <PhoneIcon />
-          1.703.471.0002
-        </Link>
-
-        <Link
-          href="mailto:pit-bull@alpineco.com"
-          className={`${styles.menuContent_contact_item}`}
-          rel="nofollow noreferrer noopener"
-        >
-          <MailIcon />
-          Pit-Bull@AlpineCo.com
-        </Link>
-
-        <div className={`${styles.menuContent_contact_item}`}>
-          <MapIcon />
-          Chantilly, Virginia, USA
+        <div className={`${styles.footer_flag}`}>
+          <p className={`${styles.footer_flag_title}`}>
+            Belonging to the group of companies at
+          </p>
+          <Image
+            src="/images/footer-american-flag.gif"
+            alt="armored vehicles"
+            fill
+            unoptimized
+          />
+          <Link href="/" className={`${styles.footer_flag_wrap}`}>
+            ArmoredVehicles.com
+          </Link>
         </div>
       </div>
 
@@ -87,94 +79,106 @@ const Footer = () => {
         </div>
       </div>
 
-      <ul className={`${styles.footer_socials}`}>
-        <li className={`${styles.footer_socials_item}`}>
-          <Link
-            href="https://www.youtube.com/c/AlpineArmoring"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <YoutubeIcon color="white" />
-          </Link>
-        </li>
-        <li className={`${styles.footer_socials_item}`}>
-          <Link
-            href="https://www.instagram.com/pitbullvehicles/"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <InstagramIcon color="white" />
-          </Link>
-        </li>
-        <li
-          className={`${styles.footer_socials_item} ${styles.footer_socials_item_x}`}
+      <div className={`${styles.footer_column}`}>
+        <Link
+          href="tel:+17034710002"
+          className={`${styles.menuContent_contact_item}`}
+          rel="nofollow noreferrer noopener"
         >
-          <Link
-            href="https://x.com/AlpineArmoring"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <XIcon color="white" />
-          </Link>
-        </li>
-        <li className={`${styles.footer_socials_item}`}>
-          <Link
-            href="https://www.facebook.com/AlpineArmoring/"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <FacebookIcon color="white" />
-          </Link>
-        </li>
-        <li
-          className={`${styles.footer_socials_item} ${styles.footer_socials_item_tiktok}`}
-        >
-          <Link
-            href="https://www.tiktok.com/@alpinearmoring"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <TiktokIcon color="white" />
-          </Link>
-        </li>
-        <li className={`${styles.footer_socials_item}`}>
-          <Link
-            href="https://www.linkedin.com/company/alpinearmoring/"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <LinkedinIcon color="white" />
-          </Link>
-        </li>
-        <li
-          className={`${styles.footer_socials_item} ${styles.footer_socials_item_threads}`}
-        >
-          <Link
-            href="https://www.threads.net/@alpinearmoring/"
-            target="_blank"
-            rel="nofollow noreferrer noopener"
-          >
-            <ThreadsIcon color="white" />
-          </Link>
-        </li>
-      </ul>
+          <PhoneIcon />
+          1.703.471.0002
+        </Link>
 
-      <Link
-        className={`${styles.footer_alpineco}`}
-        href="https://www.alpineco.com/"
-        target="_blank"
-      >
-        <img
-          src="/images/Alpineco-Logo.jpg"
-          width="70"
-          height="107"
-          alt="alpineco.com"
-        />
-      </Link>
+        <Link
+          href="mailto:pit-bull@alpineco.com"
+          className={`${styles.menuContent_contact_item}`}
+          rel="nofollow noreferrer noopener"
+        >
+          <MailIcon />
+          Pit-Bull@AlpineCo.com
+        </Link>
+
+        <div className={`${styles.menuContent_contact_item}`}>
+          <MapIcon />
+          Chantilly, Virginia, USA
+        </div>
+
+        <ul className={`${styles.footer_socials}`}>
+          <li className={`${styles.footer_socials_item}`}>
+            <Link
+              href="https://www.youtube.com/c/AlpineArmoring"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <YoutubeIcon color="white" />
+            </Link>
+          </li>
+          <li className={`${styles.footer_socials_item}`}>
+            <Link
+              href="https://www.instagram.com/pitbullvehicles/"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <InstagramIcon color="white" />
+            </Link>
+          </li>
+          <li
+            className={`${styles.footer_socials_item} ${styles.footer_socials_item_x}`}
+          >
+            <Link
+              href="https://x.com/AlpineArmoring"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <XIcon color="white" />
+            </Link>
+          </li>
+          <li className={`${styles.footer_socials_item}`}>
+            <Link
+              href="https://www.facebook.com/AlpineArmoring/"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <FacebookIcon color="white" />
+            </Link>
+          </li>
+          <li
+            className={`${styles.footer_socials_item} ${styles.footer_socials_item_tiktok}`}
+          >
+            <Link
+              href="https://www.tiktok.com/@alpinearmoring"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <TiktokIcon color="white" />
+            </Link>
+          </li>
+          <li className={`${styles.footer_socials_item}`}>
+            <Link
+              href="https://www.linkedin.com/company/alpinearmoring/"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <LinkedinIcon color="white" />
+            </Link>
+          </li>
+          <li
+            className={`${styles.footer_socials_item} ${styles.footer_socials_item_threads}`}
+          >
+            <Link
+              href="https://www.threads.net/@alpinearmoring/"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+            >
+              <ThreadsIcon color="white" />
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       <p className={`${styles.footer_copy}`}>
-        ©2025. Pit-Bull® is a Registered Trademark of Alpine Armoring Inc. All
-        Rights Reserved.
+        ©2025. Pit-Bull® is a Registered Trademark of Alpine Armoring Corp.
+        All Rights Reserved.
       </p>
     </footer>
   );
