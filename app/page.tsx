@@ -11,8 +11,7 @@ import SocialFeed from '@/components/social-feed/SocialFeed';
 
 const USE_OPTIMIZED_VIDEO = true; // Set to false: Fetch video URL from Strapi
 const HOMEPAGE_VIDEO_CONFIG = {
-  video:
-    'https://d102sycao8uwt8.cloudfront.net/pitbull_homepage_10_06_5766d97809.mp4',
+  video: 'https://assets.alpineco.com/pitbull_homepage_10_06_5766d97809.mp4',
   poster: '/images/hp-poster.jpg',
 };
 

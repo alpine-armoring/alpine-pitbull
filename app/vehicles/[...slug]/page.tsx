@@ -14,13 +14,12 @@ const VIDEO_CONFIG: Record<
   { video: string; poster: string; videoWebM?: string }
 > = {
   'armored-vxt': {
-    video:
-      'https://d102sycao8uwt8.cloudfront.net/VXT_header_9_2_b8260edd5e.mp4',
+    video: 'https://assets.alpineco.com/VXT_header_9_2_b8260edd5e.mp4',
     poster: '/images/vxt-poster.jpg',
   },
   'armored-vx': {
     video:
-      'https://d102sycao8uwt8.cloudfront.net/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
+      'https://assets.alpineco.com/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
     poster: '/images/vx-poster.jpg',
   },
 };

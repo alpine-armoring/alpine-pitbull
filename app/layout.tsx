@@ -93,7 +93,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* End Google Tag Manager */}
 
         {/* Preconnect to external domains for better performance */}
-        <link rel="preconnect" href="https://d102sycao8uwt8.cloudfront.net" />
+        <link rel="preconnect" href="https://assets.alpineco.com" />
         <link
           rel="preconnect"
           href="https://alpine-backend-992382787275.s3.us-east-1.amazonaws.com"

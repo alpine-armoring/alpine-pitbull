@@ -636,7 +636,7 @@ const VehicleBuilder = ({ configuratorMedia }) => {
                                   <Image
                                     src={
                                       option.image ||
-                                      'https://d102sycao8uwt8.cloudfront.net/Battery_kill_switch_4a364fe17c.jpg'
+                                      'https://assets.alpineco.com/Battery_kill_switch_4a364fe17c.jpg'
                                     }
                                     alt={option.title}
                                     fill

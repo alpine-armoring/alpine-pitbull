@@ -16,21 +16,20 @@ const StickyVideoSection = () => {
     {
       id: 1,
       video:
-        'https://d102sycao8uwt8.cloudfront.net/vxt_main_video_5_29_25_b9d85e3667.mp4',
+        'https://assets.alpineco.com/vxt_main_video_5_29_25_b9d85e3667.mp4',
       title: 'ONE WITH THE WIND',
       text: 'The MISTRAL is a one-of-a-kind wind that heralds the new seasons in southern France, stirring awe in all who experience it. The W16 MISTRAL embodies this and the spirit of BUGATTI, offering freedom, elegance, and speed with the incredible power of the iconic W16 engine.',
     },
     {
       id: 2,
-      video:
-        'https://d102sycao8uwt8.cloudfront.net/7018_web_vid_db1c365a40.mp4',
+      video: 'https://assets.alpineco.com/7018_web_vid_db1c365a40.mp4',
       title: 'SKY IS THE LIMIT',
       text: "The most intense roofless experience courtesy of the W16 power. With only 99 units produced, never to be replicated, one thing is clear: you're witnessing automotive history being made.",
     },
     {
       id: 3,
       video:
-        'https://d102sycao8uwt8.cloudfront.net/Alpine_Armoring_homepage_video_6_16_25_7c8ebcf56e.webm',
+        'https://assets.alpineco.com/Alpine_Armoring_homepage_video_6_16_25_7c8ebcf56e.webm',
       title: 'NEXT ICON. LAST OF ITS KIND.',
       text: 'The last road-going model to be produced with the supreme power of the 1600 PS W16 Quad-Turbo, the W16 MISTRAL delivers dizzying high speeds in a body built for winding across scenic vistas.',
     },

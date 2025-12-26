@@ -96,6 +96,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'assets.alpineco.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'scontent-waw2-1.cdninstagram.com',
         pathname: '**',
       },

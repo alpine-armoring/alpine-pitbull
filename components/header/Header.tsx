@@ -48,14 +48,13 @@ const Header = () => {
             href: '/vehicles/armored-vx',
             text: 'Pit-Bull® VX',
             imgSrc:
-              'https://d102sycao8uwt8.cloudfront.net/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
+              'https://assets.alpineco.com/VX_vehicle_page_main_7_28_f47aecba3d.mp4',
             isVideo: true,
           },
           {
             href: '/vehicles/armored-vxt',
             text: 'Pit-Bull® VXT',
-            imgSrc:
-              'https://d102sycao8uwt8.cloudfront.net/VXT_header_9_2_b8260edd5e.mp4',
+            imgSrc: 'https://assets.alpineco.com/VXT_header_9_2_b8260edd5e.mp4',
             isVideo: true,
           },
         ]}
