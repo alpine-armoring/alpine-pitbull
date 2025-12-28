@@ -25,7 +25,10 @@ const Header = () => {
     <header
       className={`${styles.header} ${isScrolled ? styles.header_scrolled : ''}`}
     >
-      <Link href="/inventory" className={`desktop-only`}>
+      <Link
+        href="/inventory"
+        className={`${styles.header_mainLink} desktop-only`}
+      >
         Ready-To-Ship Now
       </Link>
 

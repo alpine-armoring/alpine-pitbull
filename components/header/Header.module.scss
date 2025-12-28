@@ -25,6 +25,11 @@
     background-color: rgba(23, 23, 23, 0.9);
   }
 
+  &_mainLink{
+    position: relative;
+    z-index: 1;
+  }
+
   &_logo {
     @include breakpoint(small) {
       z-index: 4;
