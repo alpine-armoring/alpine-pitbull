@@ -37,8 +37,17 @@ const Footer = () => {
             fill
             unoptimized
           />
-          <Link href="/" className={`${styles.footer_flag_wrap}`}>
-            ArmoredVehicles.com
+          <Link
+            href="https://armoredvehicles.com"
+            target="_blank"
+            className={`${styles.footer_flag_wrap}`}
+          >
+            <Image
+              src="/images/armoredVehicles.svg"
+              alt="armoredVehicles.com logo"
+              width={350}
+              height={24}
+            />
           </Link>
         </div>
       </div>
