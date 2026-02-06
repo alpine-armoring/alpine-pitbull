@@ -1,7 +1,7 @@
 .hp_banner {
   position: relative;
   height: 93vh;
-  height: calc(100svh + 50px);
+  height: calc(100svh + 40px);
   max-height: 800px;
   overflow: hidden;
   z-index: 2;
@@ -210,6 +210,24 @@
         left: -150px;
         right: -150px;
       }
+    }
+  }
+
+  &_USArmoring{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: rem(40);
+    margin: auto;
+    color: white;
+    text-align: center;
+    z-index: 1;
+    font-size: rem(14);
+    font-weight: var(--font-medium);
+
+    @include breakpoint(large) {
+      bottom: rem(120);
+      font-size: rem(16);
     }
   }
 }

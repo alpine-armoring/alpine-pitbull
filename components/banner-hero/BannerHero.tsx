@@ -105,6 +105,7 @@ const BannerHero = ({
           </FadeInContent>
         </div>
       </div>
+      <p className={`${styles.hp_banner_USArmoring}`}>USA armoring™</p>
       <div className={`${styles.hp_banner_shape} shape-before`}></div>
     </div>
   );
