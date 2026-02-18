@@ -186,8 +186,8 @@ const Footer = () => {
       </div>
 
       <p className={`${styles.footer_copy}`}>
-        ©2025. Pit-Bull® is a Registered Trademark of Alpine Armoring Corp.
-        All Rights Reserved.
+        ©{new Date().getFullYear()}. Pit-Bull® is a Registered Trademark of
+        Alpine Armoring Corp. All Rights Reserved.
       </p>
     </footer>
   );
