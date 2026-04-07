@@ -107,6 +107,7 @@ export default {
   formHearRepeat: 'Repeat Customer',
   formHearEmail: 'Email or Newsletter',
   formHearThird: 'Third-Party Review',
+  formHearKnew: 'I already know about Alpine Armoring',
   formHearReferral: 'Referral',
   formHearOther: 'Other',
   formCountry: 'Country',
