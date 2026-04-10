@@ -300,9 +300,13 @@ small {
           width: 50%;
 
           p {
+            margin-bottom: rem(14);
             font-size: rem(15);
 
-            margin-bottom: rem(14);
+            em{
+              display: inline-block;
+              margin-top: 40px;
+            }
           }
         }
       }
@@ -336,19 +340,20 @@ small {
           }
 
           span {
-            margin-right: rem(20);
-            min-width: 75px;
+            margin-right: rem(14);
+            width: 83px;
             color: rgb(153, 153, 153);
             font-size: rem(11);
 
             @include breakpoint(large) {
-              margin-right: rem(50);
-              min-width: 102px;
+              margin-right: rem(30);
+              min-width: 148px;
+              width: auto;
               font-size: rem(15);
             }
             @include breakpoint(huge) {
-              margin-right: rem(100);
-              min-width: 125px;
+              margin-right: rem(80);
+              min-width: 168px;
               font-size: rem(17);
             }
           }
