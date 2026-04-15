@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description:
-    'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',
+    'The Pit-Bull® armored SWAT truck offers unmatched ballistic protection (B6+/B7+) for law enforcement. GSA contract holder. Flexible financing & grants available.',
   authors: [{ name: 'Pit-Bull®' }],
   creator: 'Pit-Bull®',
   publisher: 'Pit-Bull®',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: 'Pit-Bull®',
     title: 'Pit-Bull®',
     description:
-      'Pit-Bull® - Premium outdoor equipment and gear for your adventures.',
+      'The Pit-Bull® armored SWAT truck offers unmatched ballistic protection (B6+/B7+) for law enforcement. GSA contract holder. Flexible financing & grants available.',
     images: [
       {
         url: '/images/pitbull_head.png',
