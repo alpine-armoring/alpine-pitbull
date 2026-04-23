@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'alpinetesting.cloudflex-ha.com',
+        hostname: 'cms.alpine-web.com',
         pathname: '**',
       },
       {

@@ -203,7 +203,7 @@ export default async function Home() {
         )}
       </div>
 
-      {pageData.socialFeed && (
+      {pageData?.socialFeed && (
         <FadeInContent>
           <SocialFeed videos={pageData.socialFeed} />
         </FadeInContent>
