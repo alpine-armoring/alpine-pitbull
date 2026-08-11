@@ -33,7 +33,7 @@ const Footer = () => {
           </p>
           <Link
             href="https://armoredvehicles.com"
-            target="_blank"
+            target="armoredvehicles"
             className={`${styles.footer_flag_wrap}`}
           >
             <Image

@@ -477,22 +477,26 @@ const Form = () => {
     if (isSubmitting) {
       return {
         text: 'Submitting ...',
-        className: `${styles.form_submit}`,
+        className: ['c-button', styles.form_submit].filter(Boolean).join(' '),
       };
     } else if (submitStatus === 'success') {
       return {
         text: lang.formSent,
-        className: `${styles.form_submit} submitted`,
+        className: ['c-button', styles.form_submit, 'submitted']
+          .filter(Boolean)
+          .join(' '),
       };
     } else if (submitStatus === 'error') {
       return {
         text: lang.error,
-        className: `${styles.form_submit} error`,
+        className: ['c-button', styles.form_submit, 'error']
+          .filter(Boolean)
+          .join(' '),
       };
     } else {
       return {
         text: lang.formSendMessage,
-        className: styles.form_submit,
+        className: ['c-button', styles.form_submit].filter(Boolean).join(' '),
       };
     }
   };
@@ -726,7 +730,7 @@ const Form = () => {
         onClick={handleSubmit}
         type="submit"
         value={buttonProps.text}
-        className={`${styles.form_submit}`}
+        className={buttonProps.className}
         disabled={isSubmitting}
       />
     </div>
