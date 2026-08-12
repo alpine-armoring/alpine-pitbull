@@ -3,6 +3,12 @@
 import React, { useState } from 'react';
 import styles from '@/components/form/Form.module.scss';
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
 interface ConfiguratorFormProps {
   selectedOptions: Record<string, string | string[]>;
   requestPassword: boolean;
@@ -135,6 +141,20 @@ const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
         }
 
         setSubmitStatus('success');
+
+        // GTM conversion tracking
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'generate_lead',
+            form_name: 'configurator',
+            form_location: window.location.pathname,
+            site: 'pit-bull.net',
+          });
+        } catch {
+          // no-op — analytics must never break the success UX
+        }
+
         setTimeout(() => {
           setSubmitStatus('');
         }, 3000);

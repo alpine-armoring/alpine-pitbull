@@ -6,6 +6,12 @@ import useGoogleAdsTracking from 'utils/useGoogleAdsTracking';
 import styles from './Form.module.scss';
 import Dropdown from './Dropdown';
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
 const Form = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
@@ -442,6 +448,21 @@ const Form = () => {
 
         // Handle success
         setSubmitStatus('success');
+
+        // GTM conversion tracking
+        try {
+          const pathname = window.location.pathname;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'generate_lead',
+            form_name: pathname === '/contact' ? 'contact' : 'rfq',
+            form_location: pathname,
+            site: 'pit-bull.net',
+          });
+        } catch {
+          // no-op — analytics must never break the success UX
+        }
+
         setTimeout(() => {
           setSubmitStatus('');
         }, 2000);
