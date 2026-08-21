@@ -1,13 +1,52 @@
 'use client';
 
 import React, { useState } from 'react';
+import Script from 'next/script';
 import styles from '@/components/form/Form.module.scss';
 
 declare global {
   interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void | Promise<void>) => void;
+      execute: (
+        siteKey: string,
+        options: { action: string }
+      ) => Promise<string>;
+    };
     dataLayer?: Record<string, unknown>[];
   }
 }
+
+const RECAPTCHA_SRC = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`;
+
+const getRecaptchaToken = (): Promise<string> =>
+  new Promise((resolve) => {
+    if (!window.grecaptcha) {
+      resolve('');
+      return;
+    }
+    window.grecaptcha.ready(() => {
+      window
+        .grecaptcha!.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
+          action: 'contact',
+        })
+        .then(resolve);
+    });
+  });
+
+const withTimeout = <T,>(
+  promise: Promise<T>,
+  ms: number,
+  fallback: T
+): Promise<T> => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<T>((resolve) => {
+    timeoutId = setTimeout(() => resolve(fallback), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() =>
+    clearTimeout(timeoutId)
+  );
+};
 
 interface ConfiguratorFormProps {
   selectedOptions: Record<string, string | string[]>;
@@ -113,28 +152,28 @@ const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
       const configuratorOptions = formatSelectedOptions();
 
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/emails`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
+        const token = await withTimeout(getRecaptchaToken(), 5000, '');
+
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token,
+            data: {
+              name: name,
+              email: email,
+              phoneNumber: phone,
+              company: company,
+              message: configuratorOptions,
+              route: window.location.origin + window.location.pathname,
+              date: Date.now(),
+              domain: 'pitbull',
+              inquiry: requestPassword ? 'requestPassword' : 'requestInquiry',
             },
-            body: JSON.stringify({
-              data: {
-                name: name,
-                email: email,
-                phoneNumber: phone,
-                company: company,
-                message: configuratorOptions,
-                route: window.location.origin + window.location.pathname,
-                date: Date.now(),
-                domain: 'pitbull',
-                inquiry: requestPassword ? 'requestPassword' : 'requestInquiry',
-              },
-            }),
-          }
-        );
+          }),
+        });
 
         if (!response.ok) {
           throw new Error('Failed to submit form');
@@ -204,6 +243,8 @@ const ConfiguratorForm: React.FC<ConfiguratorFormProps> = ({
 
   return (
     <div className={`${styles.form} ${styles.form_plain}`}>
+      <Script src={RECAPTCHA_SRC} strategy="afterInteractive" />
+
       <div
         className={`${styles.form_group} ${errors.name ? styles.error : ''}`}
       >
